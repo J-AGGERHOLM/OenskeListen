@@ -24,10 +24,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        env:
-          DEV_DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
-          DEV_USERNAME: ${{ secrets.PROD_USERNAME }}
-          DEV_PASSWORD: ${{ secrets.PROD_PASSWORD }}
+        #env:
+          #DEV_DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+          #DEV_USERNAME: ${{ secrets.PROD_USERNAME }}
+          #DEV_PASSWORD: ${{ secrets.PROD_PASSWORD }}
         run: mvn clean install
 
       - name: Run Tests
