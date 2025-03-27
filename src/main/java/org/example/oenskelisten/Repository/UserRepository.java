@@ -27,9 +27,13 @@ public class UserRepository extends BaseRepository implements IUserRepository {
         // vælger specifik user
         String sql = "SELECT * FROM persons " +
                 "WHERE personId = ?";
-        return getJdbc().queryForObject(sql,
-                new UserRowMapper(),
-                id);
+        try {
+            return getJdbc().queryForObject(sql,
+                    new UserRowMapper(),
+                    id);
+        }catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -39,9 +43,13 @@ public class UserRepository extends BaseRepository implements IUserRepository {
                 "SET name = ?, email = ?, password = ? " +
                 "WHERE personId = ?";
 
-        return getJdbc().update(sql, newUser.getName(),
-                newUser.getEmail(),
-                newUser.getPassword(),
-                newUser.getPersonId()) > 0;
+        try{
+            return getJdbc().update(sql, newUser.getName(),
+                    newUser.getEmail(),
+                    newUser.getPassword(),
+                    newUser.getPersonId()) > 0;
+        } catch(Exception e) {
+            return false;
+        }
     }
 }

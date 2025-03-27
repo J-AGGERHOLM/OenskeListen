@@ -23,7 +23,6 @@ public class GlobalException {
         return "error-page";
     }
 
-    // Her fortæller vi hvilken Exception den skal gribe
     @ExceptionHandler(UnknownErrorException.class)
     public String handleUnknownErrorException(UnknownErrorException ex, Model model){
         model.addAttribute("error", ex.getMessage());

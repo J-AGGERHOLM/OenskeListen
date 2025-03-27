@@ -39,7 +39,7 @@ public class UserController {
 
         model.addAttribute("user", userService.getUser(id));
 
-        return "edit-user";
+        return "editUserSide";
     }
 
     // opdaterer en user
@@ -47,8 +47,8 @@ public class UserController {
     public String updateAttraction(@ModelAttribute("user") User newUser) {
         if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
 
-        boolean result = userService.editUser(newUser);
-        if (result) throw new UnknownErrorException("Noget gik galt");
+        var result = userService.editUser(newUser);
+        if(!result) throw new UnknownErrorException("Noget gik galt");
 
         // laver en 302 response sådan, at ikke kan poste det samme igen.
         return "redirect:/denSideViSkalRedirectTil";
