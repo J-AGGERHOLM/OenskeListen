@@ -8,6 +8,7 @@ public class WishRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+
     public WishRepository() {
         jdbcTemplate = new JdbcTemplate();
     }
