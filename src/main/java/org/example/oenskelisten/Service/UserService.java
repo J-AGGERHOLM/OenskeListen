@@ -26,9 +26,9 @@ public class UserService {
     }
 
     // edit user
-    public boolean editUser(int userId, User newUser) {
+    public boolean editUser(User newUser) {
         // Kontrollere om der er en user.
-        var oldUser = userRepository.getById(userId);
+        var oldUser = userRepository.getById(newUser.getPersonId());
         if (oldUser == null) throw new NullPointerException("User not found");
 
         // indsætter user

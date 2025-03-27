@@ -1,10 +1,14 @@
 package org.example.oenskelisten.Controller;
 
+import org.example.oenskelisten.Exception.UnknownErrorException;
+import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
@@ -28,6 +32,27 @@ public class UserController {
         return "SpecifikUserSideHer";
     }
 
+    // henter layout for edit
+    @GetMapping("{id}/edit")
+    public String getHandleAttraction(@PathVariable("id") int id, Model model) {
+        if (id == 0) throw new IllegalArgumentException();
+
+        model.addAttribute("user", userService.getUser(id));
+
+        return "edit-user";
+    }
+
+    // opdaterer en user
+    @PostMapping("update")
+    public String updateAttraction(@ModelAttribute("user") User newUser) {
+        if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
+
+        boolean result = userService.editUser(newUser);
+        if (result) throw new UnknownErrorException("Noget gik galt");
+
+        // laver en 302 response sådan, at ikke kan poste det samme igen.
+        return "redirect:/denSideViSkalRedirectTil";
+    }
 
 
 
