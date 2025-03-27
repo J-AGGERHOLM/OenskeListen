@@ -16,4 +16,11 @@ public class GlobalException {
         return "error-page";
     }
 
+    // Her fortæller vi hvilken Exception den skal gribe
+    @ExceptionHandler(NullPointerException.class)
+    public String handleNullException(NullPointerException ex, Model model){
+        model.addAttribute("error", ex.getMessage());
+        return "error-page";
+    }
+
 }
