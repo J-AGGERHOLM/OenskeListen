@@ -34,7 +34,7 @@ jobs:
         run: mvn test
 
       - name: Publish Test Report
-        if: success()
+        if: always()
         uses: scacap/action-surefire-report@v1
 
   qodana:
