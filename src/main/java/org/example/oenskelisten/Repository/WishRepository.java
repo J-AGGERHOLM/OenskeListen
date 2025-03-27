@@ -4,13 +4,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class WishRepository {
+public class WishRepository extends BaseRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-
-
-    public WishRepository() {
-        jdbcTemplate = new JdbcTemplate();
+    public WishRepository(JdbcTemplate jdbcTemplate) {
+        super(jdbcTemplate);
     }
+
 
 }
