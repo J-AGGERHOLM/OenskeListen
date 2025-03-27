@@ -7,13 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class UserRowMapper implements RowMapper<Person> {
+public class UserRowMapper implements RowMapper<User> {
     @Override
-    public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         int personId = rs.getInt("personID");
         String name = rs.getString("name");
         String email = rs.getString("email");
         String password = rs.getString("password");
-        return new Person(personId,name,email,password);
+        return new User(personId,name,email,password);
     }
 }
