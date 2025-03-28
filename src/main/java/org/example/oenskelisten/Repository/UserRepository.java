@@ -17,16 +17,39 @@ public class UserRepository extends BaseRepository implements IUserRepository {
 
     //get all users
     @Override
-    public List<User> getAll(){
+    public List<User> getAll() {
         String sql = "SELECT * FROM persons";
         return getJdbc().query(sql, new UserRowMapper());
     }
 
-    // Get by id
     @Override
-    public User getById(int id){
+    public User getById(int id) {
+        // vælger specifik user
         String sql = "SELECT * FROM persons " +
                 "WHERE personId = ?";
-        return getJdbc().queryForObject(sql, new UserRowMapper(), id);
+        try {
+            return getJdbc().queryForObject(sql,
+                    new UserRowMapper(),
+                    id);
+        }catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean edit(User newUser) {
+        // Opdater attraction
+        String sql = "UPDATE persons " +
+                "SET name = ?, email = ?, password = ? " +
+                "WHERE personId = ?";
+
+        try{
+            return getJdbc().update(sql, newUser.getName(),
+                    newUser.getEmail(),
+                    newUser.getPassword(),
+                    newUser.getPersonId()) > 0;
+        } catch(Exception e) {
+            return false;
+        }
     }
 }
