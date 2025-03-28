@@ -1,0 +1,77 @@
+package org.example.oenskelisten.Controller;
+
+import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Service.WishListService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
+
+@Controller
+public class WishListController {
+    private final WishListService wishListService;
+
+    public WishListController(WishListService service) {
+        this.wishListService = service;
+    }
+
+    @GetMapping("/wishlist")
+    public String getAllWishListItems(Model model) {
+        List<Wish> wishListItems = wishListService.getAllWishListItems();
+        model.addAttribute("wishListItems", wishListItems);
+        return "wishlist";
+    }
+
+    @GetMapping("/{id}/wishListItem")
+    public String getWishListItem(@PathVariable int id, Model model) {
+        model.addAttribute("wishListItem", wishListService.getWishById(id));
+        return "wishListItem";
+    }
+
+    @GetMapping("/add")
+    public String addWish(Model model) {
+        Wish wish = new Wish();
+        model.addAttribute("wish", wish);
+        return "addWish";
+    }
+
+    @PostMapping("/save")
+    public String addWish(@ModelAttribute("wish") Wish wish) {
+        wishListService.addWish(wish);
+        return "redirect:/wishlist";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editWish(@PathVariable int id, Model model) {
+        Wish wish = wishListService.getWishById(id);
+        model.addAttribute("wish", wish);
+        return "editWish";
+    }
+
+    @PostMapping("/update")
+    public String editWish(@ModelAttribute("wish") Wish wish) {
+        wishListService.updateWish(wish);
+        return "redirect:/wishlist";
+    }
+
+    @PostMapping("/delete/{name}")
+    public String deleteWish(@PathVariable String name) {
+        Wish wish = wishListService.getWishByName(name);
+        if(wish == null) {
+            throw new IllegalArgumentException("Wish does not exist");
+        }
+        wishListService.deleteWishById(wish.getId());
+        return "redirect:/wishlist";
+    }
+
+
+
+
+
+
+
+}
