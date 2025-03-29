@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add a Wish</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
-<body>
+<body class = "addWish-body">
+<div>
+ <div class = "content">
+     <div class = "centered-box">
+        <h1>Add a wish</h1>
+         <form role="form" action="#" method="post" th:action="@{/wishlist/save}"
+            th:object="${wish}">
+            <label>Wish Name</label>
+            <input type="text" th:field="*{name}"/>
+
+            <br>
+            <label>Description</label>
+             <textarea rows = "3" cols ="20" th:field="*{description}"></textarea>
+
+             <br>
+            <label>Link</label>
+             <input type="text" th:field="*{link}"/>
+
+             <button type="submit">Add wish to wishlist</button>
+         </form>
+     </div>
+ </div>
+</div>
 
 </body>
 </html>
