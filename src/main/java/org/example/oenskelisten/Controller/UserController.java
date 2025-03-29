@@ -21,13 +21,13 @@ public class UserController {
     }
 
     @GetMapping("")
-    public String helloWorld(){
+    public String helloWorld() {
         return "index";
     }
 
     @GetMapping("{id}/user")
-    public String userMedID(@PathVariable("id") int id, Model model){
-        if(id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
+    public String userMedID(@PathVariable("id") int id, Model model) {
+        if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
 
         model.addAttribute("User", userService.getUser(id));
 
@@ -36,10 +36,24 @@ public class UserController {
 
     //Henter alle users
     @GetMapping("/users")
-    public String getUsers(Model model){
+    public String getUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "users";
+    }
+
+    @GetMapping("/newUser")
+    public String addUser(Model model) {
+        User user = new User();
+        model.addAttribute("newUser", user);
+        return "new-user-form";
+    }
+
+    @PostMapping("/newUser")
+    public String addUser(@ModelAttribute ("newUser") User newUser){
+        userService.addUser(newUser);
+        return "redirect:/userPage";
+
     }
 
 
@@ -59,12 +73,11 @@ public class UserController {
         if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
 
         var result = userService.editUser(newUser);
-        if(!result) throw new UnknownErrorException("Noget gik galt");
+        if (!result) throw new UnknownErrorException("Noget gik galt");
 
         // laver en 302 response sådan, at ikke kan poste det samme igen.
         return "redirect:/denSideViSkalRedirectTil";
     }
-
 
 
 }

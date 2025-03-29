@@ -48,4 +48,8 @@ public class UserService {
         //returns list of users:
         return userRepository.getAll();
     }
+
+    public void addUser(User newUser) {
+        userRepository.add(newUser);
+    }
 }

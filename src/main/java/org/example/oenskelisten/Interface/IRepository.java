@@ -10,4 +10,5 @@ public interface IRepository<T> {
     List<T> getAll();
     T getById(int id);
     boolean edit(T newObject);
+    void add(T newObject);
 }
