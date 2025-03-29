@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     private final UserService userService;
@@ -31,6 +33,15 @@ public class UserController {
 
         return "SpecifikUserSideHer";
     }
+
+    //Henter alle users
+    @GetMapping("/users")
+    public String getUsers(Model model){
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users";
+    }
+
 
     // henter layout for edit
     @GetMapping("{id}/edit")

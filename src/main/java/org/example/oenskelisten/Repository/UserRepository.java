@@ -19,7 +19,12 @@ public class UserRepository extends BaseRepository implements IUserRepository {
     @Override
     public List<User> getAll() {
         String sql = "SELECT * FROM persons";
-        return getJdbc().query(sql, new UserRowMapper());
+
+        try{
+        return getJdbc().query(sql, new UserRowMapper());}
+        catch (Exception e){
+            return null;
+        }
     }
 
     @Override
