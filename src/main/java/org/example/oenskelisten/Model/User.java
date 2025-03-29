@@ -1,7 +1,7 @@
 package org.example.oenskelisten.Model;
 
 public class User {
-    private final int personId;
+    private int personId;
     private String name;
     private String email;
     private String password;

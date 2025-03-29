@@ -66,4 +66,11 @@ public class UserRepository extends BaseRepository implements IUserRepository {
         String sql = "INSERT INTO persons (name, email, password) VALUES (?,?,?)";
                 jdbcTemplate.update(sql, newUser.getName(),newUser.getEmail(), newUser.getPassword());
     }
+
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM persons WHERE id = ?";
+
+        jdbcTemplate.update(sql, id);
+    }
 }

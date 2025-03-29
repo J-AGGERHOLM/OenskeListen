@@ -79,5 +79,12 @@ public class UserController {
         return "redirect:/denSideViSkalRedirectTil";
     }
 
+    @PostMapping("/{id}/delete")
+    public String deleteUser(@PathVariable("id") int id){
+        if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
+        userService.deleteUser(id);
+        return "redirect:/users";
+    }
+
 
 }
