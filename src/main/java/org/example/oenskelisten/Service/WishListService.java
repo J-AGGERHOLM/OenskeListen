@@ -31,7 +31,7 @@ public class WishListService {
     }
 
     public Wish getWishByName(String name) {
-        return wishListRepository.getWishByName();
+        return wishListRepository.getWishByName(name);
     }
 
     public void deleteWishById(int id) {
