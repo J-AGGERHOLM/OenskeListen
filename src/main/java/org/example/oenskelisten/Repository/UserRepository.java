@@ -11,15 +11,23 @@ import java.util.List;
 @Repository
 public class UserRepository extends BaseRepository implements IUserRepository {
 
+    private final JdbcTemplate jdbcTemplate;
+
     public UserRepository(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     //get all users
     @Override
     public List<User> getAll() {
         String sql = "SELECT * FROM persons";
-        return getJdbc().query(sql, new UserRowMapper());
+
+        try{
+        return getJdbc().query(sql, new UserRowMapper());}
+        catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -51,5 +59,18 @@ public class UserRepository extends BaseRepository implements IUserRepository {
         } catch(Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public void add(User newUser) {
+        String sql = "INSERT INTO persons (name, email, password) VALUES (?,?,?)";
+                jdbcTemplate.update(sql, newUser.getName(),newUser.getEmail(), newUser.getPassword());
+    }
+
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM persons WHERE id = ?";
+
+        jdbcTemplate.update(sql, id);
     }
 }

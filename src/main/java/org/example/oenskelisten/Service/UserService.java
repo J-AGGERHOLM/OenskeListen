@@ -5,6 +5,8 @@ import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Repository.UserRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserService {
 
@@ -36,4 +38,29 @@ public class UserService {
                 newUser.getPassword()
         ));
     }
+
+    //returning all users
+    public List<User> getAllUsers() {
+        //checks if the list is empty:
+        if(userRepository.getAll().isEmpty()){
+            throw new NullPointerException("Der er ikke nogen brugere endnu");
+        }
+        //returns list of users:
+        return userRepository.getAll();
+    }
+
+    public void addUser(User newUser) {
+        userRepository.add(newUser);
+    }
+
+    public void deleteUser(int id){
+
+        var user = userRepository.getById(id);
+
+        if (user == null) throw new NullPointerException("Bruger findes ikke" + id);
+
+        userRepository.delete(id);
+    }
+
+
 }
