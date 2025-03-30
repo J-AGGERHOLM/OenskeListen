@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishListRepository extends BaseRepository implements IRepository<Wish>, IWishRepository<Wish> {
+public class WishListRepository extends BaseRepository implements IWishRepository<Wish> {
 
     public WishListRepository(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);
