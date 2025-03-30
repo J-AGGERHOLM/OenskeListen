@@ -1,5 +1,6 @@
 package org.example.oenskelisten.Repository;
 
+import org.example.oenskelisten.Interface.IRepository;
 import org.example.oenskelisten.Model.Wish;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -7,32 +8,62 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishListRepository extends BaseRepository {
+public class WishListRepository extends BaseRepository implements IRepository<Wish> {
+
     public WishListRepository(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);
     }
 
-    public List<Wish> getAllWishListItems() {
+    public List<Wish> getAll() {
+//        String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
+//        return getJdbc().query(sql, new WishRowMapper());
         return null;
     }
 
-    public Wish getWishById(int id) {
+    public Wish getById(int id) {
+//        String sql = "SELECT * FROM wishes WHERE id = ?";
+//        try {
+//            return getJdbc().queryForObject(sql, new WishRowMapper(), id);
+//        } catch (Exception e){
+//            return null;
+//        }
         return null;
     }
 
     public void addWish(Wish wish) {
-
+//        String sql = "INSERT INTO wishes (name, description, productlink, imagelink, price ) VALUES (?, ?, ?, ?, ?)";
+//        getJdbc().update(sql, wish.getName(),
+//                              wish.getDescription(),
+//                              wish.getProductLink(),
+//                              wish.getImageLink(),
+//                              wish.getPrice());
     }
 
-    public void updateWish(Wish wish) {
-
+    public boolean edit(Wish wish) {
+//        String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ?,
+//                     WHERE id = ?";
+//        getJdbc().update(sql, wish.getName(),
+//                              wish.getDescription(),
+//                              wish.getProductLink(),
+//                              wish.getImageLink(),
+//                              wish.getPrice());
+        return false;
     }
 
     public Wish getWishByName(String name) {
+//        String sql = "SELECT * FROM wish WHERE name = ?";
+//        try {
+//            return getJdbc().queryForObject(sql, new WishRowMapper(), name);
+//        } catch (Exception e){
+//            return null;
+//        }
+
         return null;
     }
 
     public void deleteWishById(int id) {
+//        String sql ="DELETE FROM wishes WHERE id = ?";
+//        getJdbc().update(sql, id);
 
     }
 }

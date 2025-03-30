@@ -15,11 +15,11 @@ public class WishListService {
     }
 
     public List<Wish> getAllWishListItems() {
-        return wishListRepository.getAllWishListItems();
+        return wishListRepository.getAll();
     }
 
     public Wish getWishById(int id) {
-        return wishListRepository.getWishById(id);
+        return wishListRepository.getById(id);
     }
 
     public void addWish(Wish wish) {
@@ -27,7 +27,7 @@ public class WishListService {
     }
 
     public void updateWish(Wish wish) {
-        wishListRepository.updateWish(wish);
+        wishListRepository.edit(wish);
     }
 
     public Wish getWishByName(String name) {
