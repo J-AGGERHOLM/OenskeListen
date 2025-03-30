@@ -4,14 +4,13 @@ import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Service.WishListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Controller
+@RequestMapping("wishlist")
 public class WishListController {
     private final WishListService wishListService;
 
@@ -19,7 +18,7 @@ public class WishListController {
         this.wishListService = service;
     }
 
-    @GetMapping("/wishlist")
+    @GetMapping("/")
     public String getAllWishListItems(Model model) {
         List<Wish> wishListItems = wishListService.getAllWishListItems();
         model.addAttribute("wishListItems", wishListItems);
@@ -60,7 +59,7 @@ public class WishListController {
 
     @PostMapping("/delete/{name}")
     public String deleteWish(@PathVariable String name) {
-        Wish wish = wishListService.getWishByName(name);
+        Wish wish = wishListService.getByName(name);
         if(wish == null) {
             throw new IllegalArgumentException("Wish does not exist");
         }

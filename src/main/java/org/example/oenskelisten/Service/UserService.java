@@ -3,11 +3,11 @@ package org.example.oenskelisten.Service;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Repository.UserRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Service
 public class UserService {
 
     private final IUserRepository userRepository;
@@ -59,7 +59,7 @@ public class UserService {
 
         if (user == null) throw new NullPointerException("Bruger findes ikke" + id);
 
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 
 
