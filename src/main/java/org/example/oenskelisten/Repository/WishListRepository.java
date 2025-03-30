@@ -1,6 +1,7 @@
 package org.example.oenskelisten.Repository;
 
 import org.example.oenskelisten.Interface.IRepository;
+import org.example.oenskelisten.Interface.IWishRepository;
 import org.example.oenskelisten.Model.Wish;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishListRepository extends BaseRepository implements IRepository<Wish> {
+public class WishListRepository extends BaseRepository implements IRepository<Wish>, IWishRepository<Wish> {
 
     public WishListRepository(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);

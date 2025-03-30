@@ -9,8 +9,5 @@ import java.util.List;
 public interface IRepository<T> {
     List<T> getAll();
     T getById(int id);
-    T getByName(String name);
-    void add(T item);
-    void deleteById(int id);
     boolean edit(T newObject);
 }
