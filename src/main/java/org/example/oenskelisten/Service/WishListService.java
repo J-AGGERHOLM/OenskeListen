@@ -23,7 +23,7 @@ public class WishListService {
     }
 
     public void addWish(Wish wish) {
-        wishListRepository.addWish(wish);
+        wishListRepository.add(wish);
     }
 
     public void updateWish(Wish wish) {
@@ -31,11 +31,11 @@ public class WishListService {
     }
 
     public Wish getWishByName(String name) {
-        return wishListRepository.getWishByName(name);
+        return wishListRepository.getByName(name);
     }
 
     public void deleteWishById(int id) {
-        wishListRepository.deleteWishById(id);
+        wishListRepository.deleteById(id);
     }
 
 
