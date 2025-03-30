@@ -1,6 +1,8 @@
 package org.example.oenskelisten.Interface;
 
-public interface IWishRepository<Wish> extends IRepository<Wish> {
+import org.example.oenskelisten.Model.Wish;
+
+public interface IWishRepository extends IRepository<Wish> {
     Wish getByName(String name);
     void add(Wish item);
     void deleteById(int id);
