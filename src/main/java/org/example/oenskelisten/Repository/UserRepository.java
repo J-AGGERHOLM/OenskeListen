@@ -9,12 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserRepository extends BaseRepository implements IUserRepository {
+public class UserRepository implements IUserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     public UserRepository(JdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -24,7 +23,7 @@ public class UserRepository extends BaseRepository implements IUserRepository {
         String sql = "SELECT * FROM persons";
 
         try{
-        return getJdbc().query(sql, new UserRowMapper());}
+        return jdbcTemplate.query(sql, new UserRowMapper());}
         catch (Exception e){
             return null;
         }
@@ -36,7 +35,7 @@ public class UserRepository extends BaseRepository implements IUserRepository {
         String sql = "SELECT * FROM persons " +
                 "WHERE personId = ?";
         try {
-            return getJdbc().queryForObject(sql,
+            return jdbcTemplate.queryForObject(sql,
                     new UserRowMapper(),
                     id);
         }catch (Exception e) {
@@ -52,7 +51,7 @@ public class UserRepository extends BaseRepository implements IUserRepository {
                 "WHERE personId = ?";
 
         try{
-            return getJdbc().update(sql, newUser.getName(),
+            return jdbcTemplate.update(sql, newUser.getName(),
                     newUser.getEmail(),
                     newUser.getPassword(),
                     newUser.getPersonId()) > 0;
