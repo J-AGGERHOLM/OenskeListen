@@ -10,16 +10,9 @@ import org.springframework.context.ApplicationContext;
 public class OenskeListenApplication {
 
     public static void main(String[] args) {
-       // SpringApplication.run(OenskeListenApplication.class, args);
-
-        ApplicationContext context = SpringApplication.run(OenskeListenApplication.class);
+       SpringApplication.run(OenskeListenApplication.class, args);
 
 
-
-        var userService = context.getBean(UserService.class);
-
-
-        userService.getUser(1);
     }
 
 }

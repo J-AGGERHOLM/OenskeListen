@@ -6,6 +6,7 @@ import org.example.oenskelisten.Model.UserRowMapper;
 import org.example.oenskelisten.Model.WishList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class UserRepository implements IUserRepository {
     }
 
     //get all users
-    @Override
+    @Transactional
     public List<User> getAll() {
         String sql = "SELECT * FROM persons";
 
@@ -30,7 +31,8 @@ public class UserRepository implements IUserRepository {
         }
     }
 
-    @Override
+
+    @Transactional
     public User getById(int id) {
         // vælger specifik user
         String sql = "SELECT " +
@@ -57,7 +59,8 @@ public class UserRepository implements IUserRepository {
 
 
 
-    @Override
+
+    @Transactional
     public boolean edit(User newUser) {
         // Opdater attraction
         String sql = "UPDATE persons " +
@@ -74,13 +77,14 @@ public class UserRepository implements IUserRepository {
         }
     }
 
-    @Override
+
+    @Transactional
     public void add(User newUser) {
         String sql = "INSERT INTO persons (name, email, password) VALUES (?,?,?)";
         jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
     }
 
-    @Override
+    @Transactional
     public void deleteById(int id) {
         String sql = "DELETE FROM persons WHERE id = ?";
 
