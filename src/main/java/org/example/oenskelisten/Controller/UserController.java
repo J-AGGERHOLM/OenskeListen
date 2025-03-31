@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @GetMapping("")
-    public String helloWorld() {
+    public String index() {
         return "index";
     }
 
@@ -40,14 +40,14 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/newUser")
+    @GetMapping("/add-user")
     public String addUser(Model model) {
         User user = new User();
         model.addAttribute("newUser", user);
-        return "new-user-form";
+        return "add-user";
     }
 
-    @PostMapping("/newUser")
+    @PostMapping("/new-user")
     public String addUser(@ModelAttribute ("newUser") User newUser){
         userService.addUser(newUser);
         return "redirect:/userPage";
@@ -57,7 +57,7 @@ public class UserController {
 
     // henter layout for edit
     @GetMapping("{id}/edit")
-    public String getHandleAttraction(@PathVariable("id") int id, Model model) {
+    public String getHandleUser(@PathVariable("id") int id, Model model) {
         if (id == 0) throw new IllegalArgumentException();
 
         model.addAttribute("user", userService.getUser(id));
@@ -67,7 +67,7 @@ public class UserController {
 
     // opdaterer en user
     @PostMapping("update")
-    public String updateAttraction(@ModelAttribute("user") User newUser) {
+    public String updateUser(@ModelAttribute("user") User newUser) {
         if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
 
         var result = userService.editUser(newUser);
