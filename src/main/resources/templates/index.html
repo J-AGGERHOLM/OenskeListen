@@ -8,8 +8,16 @@
 </head>
 <body>
 <Header>Velkommen til ønskelisten</Header>
-<nav>en navbar</nav>
-<main>Users wishList eller login</main>
-<footer>Evt. en footer</footer>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<main>
+    <label for="userForm"></label>
+    <a th:href="@{/add-user}" id="userForm">Opret</a>
+
+    <label for="userLogin">Login</label>
+    <a id="userLogin">Login</a>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
