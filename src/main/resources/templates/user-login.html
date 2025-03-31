@@ -3,7 +3,8 @@
 xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login page</title>
+    <link rel="stylesheet" th:href="@{/css/general.css}">
 </head>
 <body>
 <header>en header</header>
@@ -13,10 +14,15 @@ xmlns:th="http://www.thymeleaf.org">
 
     <form th:action="@{/login}" method="post">
         <p th:if="${wrongCredentials}" class="error">Forkert email eller password</p>
-        <div><label for="email">Email:</label>
-            <input id="email" name="email" type="text" autofocus></div>
+        <p th:if="${insertValue}" class="error">Udfyld email og password</p>
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="text" autofocus>
+        </div>
+
         <div><label for="password">Password:</label>
-            <input id="password" name="pw" type="password" autofocus></div>
+            <input id="password" name="password" type="password" autofocus>
+        </div>
         <div>
             <button type="submit">Login</button>
             <a th:href="@{'/'}"><button type="button">Fortryd</button></a>

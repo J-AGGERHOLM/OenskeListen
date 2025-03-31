@@ -54,12 +54,21 @@ public class UserService {
     }
 
     public void deleteUser(int id){
-
         var user = userRepository.getById(id);
 
         if (user == null) throw new NullPointerException("Bruger findes ikke" + id);
 
         userRepository.deleteById(id);
+    }
+
+    public User login(String email, String password) {
+        // Tjekker om user eksisterer
+        var user = userRepository.getByEmail(email);
+        if(user == null) return null;
+
+        return user.getPassword().equals(password)
+                ? user
+                : null;
     }
 
 

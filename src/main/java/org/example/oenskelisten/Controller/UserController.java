@@ -9,11 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/")
 public class UserController {
     private final UserService userService;
+    // 30 minutter
+    private final int MAX_SESSION_LENGTH = 1800;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -24,19 +25,30 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/user-login")
     public String getLoginPage() {
         return "user-login";
     }
-
-    @PostMapping("/login")
-    public String login(@RequestParam String username,
+    @RequestMapping("/login")
+    public String login(@RequestParam String email,
                         @RequestParam String password,
                         HttpSession session,
-                        Model model) {
+                        Model redirectAttributes) {
+        if(email.trim().isEmpty() || password.trim().isEmpty()){
+            redirectAttributes.addAttribute("insertValue", true);
+            return "user-login";
+        }
 
-        return "";
+        // kontrollere om der er en user
+        var exist = userService.login(email, password);
+        if(exist != null){
+            session.setAttribute("user", exist.getPersonId());
+            session.setMaxInactiveInterval(MAX_SESSION_LENGTH);
+            return "redirect:/";
+        }
 
+        redirectAttributes.addAttribute("wrongCredentials", true);
+        return "user-login";
     }
 
     @GetMapping("{id}/user")
@@ -56,18 +68,16 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/add-user")
+    @GetMapping("/user-add")
     public String addUser(Model model) {
         User user = new User();
         model.addAttribute("newUser", user);
         return "user-form";
     }
-
-    @PostMapping("/new-user")
+    @PostMapping("/user-create")
     public String addUser(@ModelAttribute ("newUser") User newUser){
         userService.addUser(newUser);
         return "redirect:/userPage";
-
     }
 
 

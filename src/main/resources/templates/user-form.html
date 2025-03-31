@@ -14,7 +14,7 @@
 <nav th:replace="/fragments/navbar :: navbar"></nav>
 
 <main>
-    <form th:object="${newUser}" th:action="@{/new-user}" th:method="post">
+    <form th:object="${newUser}" th:action="@{/user-create}" th:method="post">
         <input type="text" hidden name="id" th:value="*{personId}">
 
         <div>
@@ -32,6 +32,7 @@
             <input type="text" name="name" id="name" th:value="*{name}">
         </div>
 
+        <button type="submit">Opret</button>
     </form>
 </main>
 
