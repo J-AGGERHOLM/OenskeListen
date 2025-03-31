@@ -4,7 +4,6 @@ import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
 import org.example.oenskelisten.Model.WishList;
-import org.example.oenskelisten.Model.WishListRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -34,29 +33,29 @@ public class UserRepository implements IUserRepository {
     @Override
     public User getById(int id) {
         // vælger specifik user
-        String sql = "SELECT * FROM persons " +
-                "WHERE personId = ?";
+        String sql = "SELECT " +
+                "persons.personID," +
+                "persons.name," +
+                "persons.email," +
+                "persons.password," +
+                "GROUP_CONCAT(wishlist.wishlistID) AS wishlistID, " +
+                "GROUP_CONCAT(wishlist.name) AS wishListName " +
+                " FROM persons " +
+                "LEFT JOIN wishlist ON persons.personID = wishlist.personID "+
+                "WHERE persons.personId = ? " +
+                "GROUP BY persons.personID"
+                ;
         try {
             User foundUser = jdbcTemplate.queryForObject(sql,
                     new UserRowMapper(),
                     id);
-            foundUser.setWishListList(findUserWishLists(id));
             return foundUser;
         } catch (Exception e) {
             return null;
         }
     }
 
-        //Helper method for finding wishLists belonging to a user
-    public List<WishList> findUserWishLists(int personID){
-        String sql = "SELECT wishList.wishlistID , wishlist.name, wishList.personID FROM wishlist " +
-                "JOIN persons ON wishlist.personID = persons.personID " +
-                "WHERE wishList.personID = ? ";
 
-        return jdbcTemplate.query(sql, new WishListRowMapper(), personID);
-
-
-    }
 
     @Override
     public boolean edit(User newUser) {
@@ -87,4 +86,6 @@ public class UserRepository implements IUserRepository {
 
         jdbcTemplate.update(sql, id);
     }
+
+
 }

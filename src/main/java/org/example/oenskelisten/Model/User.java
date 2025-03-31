@@ -55,6 +55,11 @@ public class User {
         this.wishListList = wishListList;
     }
 
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+
     @Override
     public String toString(){
         return "ID: " + personId + " name: " + name + " email: " + email + " Password: " + password;
