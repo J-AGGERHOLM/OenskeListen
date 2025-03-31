@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Index</title>
+    <link rel="stylesheet" th:href="@{/css/general.css}">
 </head>
 <body>
-    <h1>Hello world, lets see if we get errors</h1>
+<Header>Velkommen til ønskelisten</Header>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<main>
+    <label for="userForm"></label>
+    <a th:href="@{/add-user}" id="userForm">Opret</a>
+
+    <label for="userLogin">Login</label>
+    <a id="userLogin">Login</a>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

@@ -40,6 +40,10 @@ public class WishListController {
 
     @PostMapping("/save")
     public String addWish(@ModelAttribute("wish") Wish wish) {
+
+        //add functionality for binding a wishlist to the
+        //wish later, for now set the wishlistID to be 1:
+        wish.setWishlistID(1);
         wishListService.addWish(wish);
         return "redirect:/wishlist";
     }

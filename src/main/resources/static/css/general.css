@@ -1,0 +1,55 @@
+/* Fortæller strukturen på siden. */
+body {
+    display: grid;
+    /* indstillinger: header, nav, indhold, footer, altså 4 rows */
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: /* giver variable navne for de forskellige elementer */
+            'banner banner'
+                'nav nav'
+                'main main'
+                'footer footer';
+}
+
+header {
+    grid-area: banner; /* Bliver nr 1 i strukturen. Pga. variabel navn */
+    font-size: 25px;
+    padding: 130px;
+    background-color: #1ad5d5;
+    color: white;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(165, 42, 42, 0.65); /* sidste tal er gennemsigtighed*/
+    grid-area: nav; /* Bliver nr 2 i strukturen. Pga. variabel navn */
+    padding: 1em 1em 1em;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /*nav bar ligger over resterende elementer når scroll*/
+}
+
+main {
+    grid-area: main; /* Bliver nr 3 i strukturen. Pga. variabel navn */
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 1em;
+}
+
+footer {
+    grid-area: footer; /* Bliver nr 4 i strukturen. Pga. variabel navn */
+    /* Giver luft imellem section og footer */
+    margin-top: 1em;
+    background-color: rgb(165, 42, 42, 0.65);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+
+
+

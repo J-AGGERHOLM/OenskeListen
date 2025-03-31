@@ -21,3 +21,62 @@
     justify-content: center;
     align-content: center
 }
+
+footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    background: white;
+    opacity: 75%;
+    height: 10vh;
+    color: black;
+
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content should grow to take up available space */
+body {
+    flex: 1;
+}
+
+/* Footer container */
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;  /* Center the text inside the footer */
+    position: relative;  /* For positioning at the bottom */
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the footer content horizontally */
+    align-items: center; /* Center the footer content vertically */
+    height: 100px; /* Set a fixed height for the footer */
+}
+
+/* GitHub icon and text container */
+.github-icon {
+    display: flex;
+    align-items: center;  /* Vertically align items */
+    justify-content: center;  /* Center items horizontally */
+    gap: 10px;  /* Space between the icon and the text */
+}
+
+/* Styling for the GitHub icon */
+.github-icon i {
+    font-size: 40px;  /* Adjust the size of the icon */
+}
+
+/* Styling for the text */
+.github-icon span {
+    font-size: 18px;  /* Adjust the font size for the text */
+    color: white;  /* Make the text white (or whatever color fits your design) */
+}

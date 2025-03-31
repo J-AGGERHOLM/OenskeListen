@@ -1,30 +1,20 @@
-USE wishListDatabase;
+-- Insert Users
+INSERT INTO Users (name, email, password) VALUES
+                                              ('Alice Johnson', 'alice@example.com', 'password123'),
+                                              ('Bob Smith', 'bob@example.com', 'securepass'),
+                                              ('Charlie Davis', 'charlie@example.com', 'charlie123');
 
--- Insert test data into Persons
-INSERT INTO Persons (name, email, password) VALUES
-('Alice Johnson', 'alice@example.com', 'password123'),
-('Bob Smith', 'bob@example.com', 'securepass'),
-('Charlie Brown', 'charlie@example.com', 'charliepass');
+-- Insert Wishlists
+INSERT INTO WishList (name, userID) VALUES
+                                        ('Alices Birthday List', 1),
+                                        ('Bobs Christmas List', 2),
+                                        ('Charlies New Year List', 3);
 
--- Insert test data into WishList
-INSERT INTO WishList (name, personID) VALUES
-('Alice\'s Birthday List', 1),
-('Bob\'s Tech Wishlist', 2),
-('Charlie\'s Holiday Wishlist', 3);
-
-
--- Insert test data into Wishes
-INSERT INTO Wishes (name, description, productLink, imageLink, wishlistID) VALUES
-('Smartphone', 'Latest model with best camera', 'https://example.com/smartphone', 'https://example.com/images/smartphone.jpg', 1),
-('Laptop', 'Powerful laptop for gaming and work', 'https://example.com/laptop', 'https://example.com/images/laptop.jpg', 1),
-('Headphones', 'Noise-cancelling over-ear headphones', 'https://example.com/headphones', 'https://example.com/images/headphones.jpg', 2),
-('Smartwatch', 'Fitness tracking and notifications on wrist', 'https://example.com/smartwatch', 'https://example.com/images/smartwatch.jpg', 2),
-('Backpack', 'Stylish and durable travel backpack', 'https://example.com/backpack', 'https://example.com/images/backpack.jpg', 3),
-('Camera', 'Mirrorless camera for photography', 'https://example.com/camera', 'https://example.com/images/camera.jpg', 3);
-
--- SELECT * FROM wishes;
-
--- DELETE FROM Persons WHERE personID = 1;
-
-
--- SELECT * FROM wishes; 
+-- Insert Wishes
+INSERT INTO Wishes (name, description, productLink, imageLink, price, wishlistID, reserved, reserveeID) VALUES
+                                                                                                            ('Smartphone', 'Latest model with OLED display', 'https://example.com/smartphone', 'https://example.com/smartphone.jpg', 999, 1, FALSE, NULL),
+                                                                                                            ('Gaming Laptop', 'High-end gaming laptop with RTX 4080', 'https://example.com/gaming-laptop', 'https://example.com/gaming-laptop.jpg', 2000, 1, TRUE, 2),
+                                                                                                            ('Headphones', 'Noise-canceling over-ear headphones', 'https://example.com/headphones', 'https://example.com/headphones.jpg', 300, 2, FALSE, NULL),
+                                                                                                            ('Smartwatch', 'Waterproof smartwatch with GPS', 'https://example.com/smartwatch', 'https://example.com/smartwatch.jpg', 250, 2, TRUE, 1),
+                                                                                                            ('E-Reader', 'Lightweight e-reader with backlit display', 'https://example.com/ereader', 'https://example.com/ereader.jpg', 150, 3, FALSE, NULL),
+                                                                                                            ('Backpack', 'Durable travel backpack with USB charging port', 'https://example.com/backpack', 'https://example.com/backpack.jpg', 80, 3, TRUE, 2);
