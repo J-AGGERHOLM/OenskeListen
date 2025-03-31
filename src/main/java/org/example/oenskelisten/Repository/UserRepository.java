@@ -68,7 +68,7 @@ public class UserRepository extends BaseRepository implements IUserRepository {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM persons WHERE id = ?";
 
         jdbcTemplate.update(sql, id);
