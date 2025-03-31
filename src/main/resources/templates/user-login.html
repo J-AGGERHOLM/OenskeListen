@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>en header</header>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<main>
+    <h1>Login</h1>
+
+    <form th:action="@{/login}" method="post">
+        <p th:if="${wrongCredentials}" class="error">Forkert email eller password</p>
+        <div><label for="email">Email:</label>
+            <input id="email" name="email" type="text" autofocus></div>
+        <div><label for="password">Password:</label>
+            <input id="password" name="pw" type="password" autofocus></div>
+        <div>
+            <button type="submit">Login</button>
+            <a th:href="@{'/'}"><button type="button">Fortryd</button></a>
+        </div>
+    </form>
+
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

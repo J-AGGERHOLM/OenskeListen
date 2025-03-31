@@ -22,7 +22,7 @@ header {
 nav {
     display: flex;
     flex-direction: column;
-    background-color: rgb(165, 42, 42, 0.65); /* sidste tal er gennemsigtighed*/
+    background-color: rgba(107, 194, 255, 0.65); /* sidste tal er gennemsigtighed*/
     grid-area: nav; /* Bliver nr 2 i strukturen. Pga. variabel navn */
     padding: 1em 1em 1em;
     align-items: center;
@@ -43,11 +43,17 @@ footer {
     grid-area: footer; /* Bliver nr 4 i strukturen. Pga. variabel navn */
     /* Giver luft imellem section og footer */
     margin-top: 1em;
-    background-color: rgb(165, 42, 42, 0.65);
+    background-color: rgba(107, 194, 255, 0.65);
     color: white;
     text-align: center;
+    align-content: center;
     padding: 10px;
+    opacity: 75%;
+    height: 10vh;
 }
+
+
+
 
 
 

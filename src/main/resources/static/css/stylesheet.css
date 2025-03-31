@@ -22,20 +22,6 @@
     align-content: center
 }
 
-footer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    text-align: center;
-    align-content: center;
-    width: 100%;
-    background: white;
-    opacity: 75%;
-    height: 10vh;
-    color: black;
-
-}
-
 html, body {
     height: 100%;
     margin: 0;

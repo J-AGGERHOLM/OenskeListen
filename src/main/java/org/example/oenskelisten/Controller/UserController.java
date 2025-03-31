@@ -1,5 +1,6 @@
 package org.example.oenskelisten.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Service.UserService;
@@ -23,6 +24,21 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "user-login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String username,
+                        @RequestParam String password,
+                        HttpSession session,
+                        Model model) {
+
+        return "";
+
+    }
+
     @GetMapping("{id}/user")
     public String userMedID(@PathVariable("id") int id, Model model) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
@@ -44,7 +60,7 @@ public class UserController {
     public String addUser(Model model) {
         User user = new User();
         model.addAttribute("newUser", user);
-        return "add-user";
+        return "user-form";
     }
 
     @PostMapping("/new-user")
