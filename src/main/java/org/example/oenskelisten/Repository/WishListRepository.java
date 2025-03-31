@@ -8,16 +8,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishListRepository extends BaseRepository implements IWishListRepository {
+public class WishListRepository implements IWishListRepository {
+    private final JdbcTemplate jdbcTemplate;
 
     public WishListRepository(JdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public List<Wish> getAll() {
 //        String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
-//        return getJdbc().query(sql, new WishRowMapper());
+//        return jdbcTemplate.query(sql, new WishRowMapper());
         return null;
     }
 
@@ -25,7 +26,7 @@ public class WishListRepository extends BaseRepository implements IWishListRepos
     public Wish getById(int id) {
 //        String sql = "SELECT * FROM wishes WHERE id = ?";
 //        try {
-//            return getJdbc().queryForObject(sql, new WishRowMapper(), id);
+//            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
 //        } catch (Exception e){
 //            return null;
 //        }
@@ -35,7 +36,7 @@ public class WishListRepository extends BaseRepository implements IWishListRepos
     @Override
     public void add(Wish wish) {
 //        String sql = "INSERT INTO wishes (name, description, productlink, imagelink, price ) VALUES (?, ?, ?, ?, ?)";
-//        getJdbc().update(sql, wish.getName(),
+//        jdbcTemplate.update(sql, wish.getName(),
 //                              wish.getDescription(),
 //                              wish.getProductLink(),
 //                              wish.getImageLink(),
@@ -46,7 +47,7 @@ public class WishListRepository extends BaseRepository implements IWishListRepos
     public boolean edit(Wish wish) {
 //        String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ?,
 //                     WHERE id = ?";
-//        getJdbc().update(sql, wish.getName(),
+//        jdbcTemplate.update(sql, wish.getName(),
 //                              wish.getDescription(),
 //                              wish.getProductLink(),
 //                              wish.getImageLink(),
@@ -58,7 +59,7 @@ public class WishListRepository extends BaseRepository implements IWishListRepos
     public Wish getByName(String name) {
 //        String sql = "SELECT * FROM wish WHERE name = ?";
 //        try {
-//            return getJdbc().queryForObject(sql, new WishRowMapper(), name);
+//            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
 //        } catch (Exception e){
 //            return null;
 //        }
@@ -69,7 +70,7 @@ public class WishListRepository extends BaseRepository implements IWishListRepos
     @Override
     public void deleteById(int id) {
 //        String sql ="DELETE FROM wishes WHERE id = ?";
-//        getJdbc().update(sql, id);
+//        jdbcTemplate.update(sql, id);
 
     }
 }
