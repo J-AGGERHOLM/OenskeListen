@@ -30,12 +30,12 @@ jobs:
           #DEV_PASSWORD: ${{ secrets.PROD_PASSWORD }}
         run: mvn clean install
 
-      - name: Run Tests
-        run: mvn test
+      #- name: Run Tests
+        #run: mvn test
 
-      - name: Publish Test Report
-        if: always()
-        uses: scacap/action-surefire-report@v1
+      #- name: Publish Test Report
+        #if: success()
+        #uses: scacap/action-surefire-report@v1
 
   qodana:
     runs-on: ubuntu-latest
