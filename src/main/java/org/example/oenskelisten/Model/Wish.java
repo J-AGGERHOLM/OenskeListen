@@ -11,12 +11,21 @@ public class Wish {
     private int wishlistID;
     private boolean reserved;
     private int reserveeID;
-    //add once we have a wishlist model object
-    //private Wishlist wishlist;
 
 
 
-    public Wish(String name, String description, String productLink, String imageLink, int price, int wishlistID, boolean reserved, int reserveeID){
+
+    public Wish(int id,
+                String name,
+                String description,
+                String productLink,
+                String imageLink,
+                int price,
+                int wishlistID,
+                boolean reserved,
+                int reserveeID){
+
+        this.id = id;
         this.name = name;
         this.description = description;
         this.productLink = productLink;
@@ -25,6 +34,19 @@ public class Wish {
         this.wishlistID = wishlistID;
         this.reserved = reserved;
         this.reserveeID = reserveeID;
+    }
+
+    public Wish(){
+        this.id = -1;
+        this.name = null;
+        this.description = null;
+        this.productLink = null;
+        this.imageLink = null;
+        this.price = -1;
+        this.wishlistID = -1;
+        this.reserved = false;
+        //change back to minus 1 after were done testing
+        this.reserveeID = 1;
     }
 
     public String getName() {
@@ -72,7 +94,17 @@ public class Wish {
     }
 
     public int getReserveeID() {
+
         return reserveeID;
+
+    }
+
+    public String getReserveeIDAsString(){
+        if(!reserved){
+            return null;
+        }else{
+            return Integer.toString(reserveeID);
+        }
     }
 
     public void setWishlistID(int wishlistID) {

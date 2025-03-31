@@ -35,12 +35,17 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public void add(Wish wish) {
-//        String sql = "INSERT INTO wishes (name, description, productlink, imagelink, price ) VALUES (?, ?, ?, ?, ?)";
-//        jdbcTemplate.update(sql, wish.getName(),
-//                              wish.getDescription(),
-//                              wish.getProductLink(),
-//                              wish.getImageLink(),
-//                              wish.getPrice());
+        String sql = "INSERT INTO wishes (name, description, productlink, imagelink, price, wishlistID, reserved, reserveeID ) VALUES (?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,
+                wish.getName(),
+                wish.getDescription(),
+                wish.getProductLink(),
+                wish.getImageLink(),
+                wish.getPrice(),
+                wish.getWishlistID(),
+                wish.isReserved(),
+                wish.getReserveeIDAsString());
+
     }
 
     @Override

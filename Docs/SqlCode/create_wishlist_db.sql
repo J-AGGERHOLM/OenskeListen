@@ -17,9 +17,9 @@ DROP TABLE IF EXISTS WishList CASCADE;
 CREATE TABLE WishList(
                          wishlistID INT NOT NULL AUTO_INCREMENT,
                          name VARCHAR(200),
-                         personID INT NOT NULL,
+                         userID INT NOT NULL,
                          PRIMARY KEY(wishlistID),
-                         FOREIGN KEY(personID) REFERENCES Persons(personID) ON DELETE CASCADE
+                         FOREIGN KEY(userID) REFERENCES Users(userID) ON DELETE CASCADE
 
 );
 
@@ -33,8 +33,8 @@ CREATE TABLE Wishes(
                        price INT,
                        wishlistID INT NOT NULL,
                        reserved BOOLEAN,
-                       reserveeID INT,
+                       reserveeID INT NULL,
                        PRIMARY KEY(wishID),
                        FOREIGN KEY(wishlistID) REFERENCES WishList(wishlistID) ON DELETE CASCADE,
-                       FOREIGN KEY(reserveeID) REFERENCES Users(userID)
+                       FOREIGN KEY(reserveeID) REFERENCES Users(userID) ON DELETE SET NULL
 );
