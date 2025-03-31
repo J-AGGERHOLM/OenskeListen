@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Create WishList</title>
+  <link rel="stylesheet" href="/css/stylesheet.css">
+
+</head>
+<body class="edit-body">
+<div>
+  <div class="content">
+    <div class="centered-box">
+      <h1>Create WishList</h1>
+      <form role="form" action="#" method="post" th:action="@{/}"
+            th:object="${wishlist}">
+        <label>WishList Name</label>
+        <input type="text" th:field="*{name}"/>
+
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
