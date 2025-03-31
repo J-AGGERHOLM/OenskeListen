@@ -2,6 +2,7 @@ package org.example.oenskelisten.Repository;
 
 import org.example.oenskelisten.Interface.IWishListRepository;
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,13 +25,14 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public Wish getById(int id) {
-//        String sql = "SELECT * FROM wishes WHERE id = ?";
-//        try {
-//            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
-//        } catch (Exception e){
-//            return null;
-//        }
-        return null;
+        System.out.println("We in the getbyID");
+       String sql = "SELECT * FROM wishes WHERE wishID = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
+        } catch (Exception e){
+            System.out.println("We done goofed boi");
+            return null;
+        }
     }
 
     @Override
