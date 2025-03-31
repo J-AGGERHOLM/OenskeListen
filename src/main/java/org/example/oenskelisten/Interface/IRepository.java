@@ -11,5 +11,5 @@ public interface IRepository<T> {
     T getById(int id);
     boolean edit(T newObject);
     void add(T newObject);
-    void delete(int id);
+    void deleteById(int id);
 }

@@ -2,7 +2,7 @@ package org.example.oenskelisten.Model;
 
 public class Wish {
 
-
+    private int id;
     private String name;
     private String description;
     private String productLink;
@@ -91,6 +91,11 @@ public class Wish {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
 }
