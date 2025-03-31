@@ -28,14 +28,14 @@ jobs:
           #DEV_DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
           #DEV_USERNAME: ${{ secrets.PROD_USERNAME }}
           #DEV_PASSWORD: ${{ secrets.PROD_PASSWORD }}
-        run: mvn clean install -DskipTests
+        run: mvn clean install
 
-      #- name: Run Tests
-        #run: mvn test
+      - name: Run Tests
+        run: mvn test
 
-      #- name: Publish Test Report
-        #if: always()
-        #uses: scacap/action-surefire-report@v1
+      - name: Publish Test Report
+        if: always()
+        uses: scacap/action-surefire-report@v1
 
   qodana:
     runs-on: ubuntu-latest
