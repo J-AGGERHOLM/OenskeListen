@@ -32,6 +32,7 @@ public class UserRepository implements IUserRepository {
     }
 
 
+
     @Transactional
     public User getById(int id) {
         // vælger specifik user
