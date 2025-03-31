@@ -3,6 +3,8 @@ package org.example.oenskelisten.Repository;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
+import org.example.oenskelisten.Model.WishList;
+import org.example.oenskelisten.Model.WishListRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,9 +24,9 @@ public class UserRepository implements IUserRepository {
     public List<User> getAll() {
         String sql = "SELECT * FROM persons";
 
-        try{
-        return jdbcTemplate.query(sql, new UserRowMapper());}
-        catch (Exception e){
+        try {
+            return jdbcTemplate.query(sql, new UserRowMapper());
+        } catch (Exception e) {
             return null;
         }
     }
@@ -35,12 +37,25 @@ public class UserRepository implements IUserRepository {
         String sql = "SELECT * FROM persons " +
                 "WHERE personId = ?";
         try {
-            return jdbcTemplate.queryForObject(sql,
+            User foundUser = jdbcTemplate.queryForObject(sql,
                     new UserRowMapper(),
                     id);
-        }catch (Exception e) {
+            foundUser.setWishListList(findUserWishLists(id));
+            return foundUser;
+        } catch (Exception e) {
             return null;
         }
+    }
+
+        //Helper method for finding wishLists belonging to a user
+    public List<WishList> findUserWishLists(int personID){
+        String sql = "SELECT * FROM wishlist" +
+                "INNER JOIN persons on wishlist.personID = persons.personID"+
+                "WHERE personID = ?";
+
+        return jdbcTemplate.query(sql, new WishListRowMapper(), personID);
+
+
     }
 
     @Override
@@ -50,12 +65,12 @@ public class UserRepository implements IUserRepository {
                 "SET name = ?, email = ?, password = ? " +
                 "WHERE personId = ?";
 
-        try{
+        try {
             return jdbcTemplate.update(sql, newUser.getName(),
                     newUser.getEmail(),
                     newUser.getPassword(),
                     newUser.getPersonId()) > 0;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -63,7 +78,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public void add(User newUser) {
         String sql = "INSERT INTO persons (name, email, password) VALUES (?,?,?)";
-                jdbcTemplate.update(sql, newUser.getName(),newUser.getEmail(), newUser.getPassword());
+        jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
     }
 
     @Override
