@@ -49,9 +49,9 @@ public class UserRepository implements IUserRepository {
 
         //Helper method for finding wishLists belonging to a user
     public List<WishList> findUserWishLists(int personID){
-        String sql = "SELECT * FROM wishlist" +
-                "INNER JOIN persons on wishlist.personID = persons.personID"+
-                "WHERE personID = ?";
+        String sql = "SELECT wishList.wishlistID , wishlist.name, wishList.personID FROM wishlist " +
+                "JOIN persons ON wishlist.personID = persons.personID " +
+                "WHERE wishList.personID = ? ";
 
         return jdbcTemplate.query(sql, new WishListRowMapper(), personID);
 
