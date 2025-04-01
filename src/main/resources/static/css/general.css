@@ -1,22 +1,12 @@
 /* Fortæller strukturen på siden. */
 body {
     display: grid;
-    /* indstillinger: header, nav, indhold, footer, altså 4 rows */
-    grid-template-rows: auto auto 1fr auto;
+    /* indstillinger: nav, indhold, footer, altså 4 rows */
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: /* giver variable navne for de forskellige elementer */
-            'banner banner'
                 'nav nav'
                 'main main'
                 'footer footer';
-}
-
-header {
-    grid-area: banner; /* Bliver nr 1 i strukturen. Pga. variabel navn */
-    font-size: 25px;
-    padding: 130px;
-    background-color: #1ad5d5;
-    color: white;
-    text-align: center;
 }
 
 nav {

@@ -4,7 +4,6 @@ import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
 import org.springframework.dao.DataAccessException;
-import org.example.oenskelisten.Model.WishList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -97,6 +96,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
+    @Transactional
     public User getByEmail(String email) {
         try {
         String sql = "SELECT * FROM persons " +
