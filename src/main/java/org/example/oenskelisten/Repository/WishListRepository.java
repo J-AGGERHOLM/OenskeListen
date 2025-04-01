@@ -25,12 +25,10 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public Wish getById(int id) {
-        System.out.println("We in the getbyID");
        String sql = "SELECT * FROM wishes WHERE wishID = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
         } catch (Exception e){
-            System.out.println("We done goofed boi");
             return null;
         }
     }
@@ -60,7 +58,6 @@ public class WishListRepository implements IWishListRepository {
                               wish.getImageLink(),
                               wish.getPrice(),
                                 wish.getId());
-        System.out.println();
         return true;
     }
 

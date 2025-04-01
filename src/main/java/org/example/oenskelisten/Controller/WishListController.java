@@ -51,15 +51,12 @@ public class WishListController {
     @GetMapping("/{id}/edit")
     public String editWish(@PathVariable int id, Model model) {
         Wish wish = wishListService.getWishById(id);
-        System.out.println("hello from the controller. id: " + wish.getId());
         model.addAttribute("wish", wish);
         return "editWish";
     }
 
     @PostMapping("/update")
     public String editWish(@ModelAttribute("wish") Wish wish) {
-        System.out.println("updating: wish id: " + wish.getId());
-        System.out.println("Wish description: " + wish.getDescription());
         wishListService.updateWish(wish);
         return "redirect:/wishlist";
     }
