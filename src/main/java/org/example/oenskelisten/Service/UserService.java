@@ -43,7 +43,7 @@ public class UserService {
     //returning all users
     public List<User> getAllUsers() {
         //checks if the list is empty:
-        if(userRepository.getAll().isEmpty()){
+        if (userRepository.getAll().isEmpty()) {
             throw new NullPointerException("Der er ikke nogen brugere endnu");
         }
         //returns list of users:
@@ -51,10 +51,18 @@ public class UserService {
     }
 
     public void addUser(User newUser) {
+        List<User> users = userRepository.getAll();
+
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getEmail().equalsIgnoreCase(newUser.getEmail())){
+                return "";
+            }
+        }
+
         userRepository.add(newUser);
     }
 
-    public void deleteUser(int id){
+    public void deleteUser(int id) {
 
         var user = userRepository.getById(id);
 
