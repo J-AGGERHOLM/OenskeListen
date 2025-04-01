@@ -1,12 +1,15 @@
 package org.example.oenskelisten.Model;
 
+import java.util.List;
+
 public class User {
     private int personId;
     private String name;
     private String email;
     private String password;
+    private List<WishList> wishListList;
 
-    public User(int personId, String name, String email, String password){
+    public User(int personId, String name, String email, String password, List<WishList> wishListList){
         this.personId = personId;
         this.name=name;
         this.email=email;
@@ -43,6 +46,19 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<WishList> getWishListList() {
+        return wishListList;
+    }
+
+    public void setWishListList(List<WishList> wishListList) {
+        this.wishListList = wishListList;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
 
     @Override
     public String toString(){
