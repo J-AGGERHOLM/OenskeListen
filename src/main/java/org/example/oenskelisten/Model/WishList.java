@@ -1,18 +1,23 @@
 package org.example.oenskelisten.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class WishList {
+public class        WishList {
     private int id;
+    private String name;
     private List<Wish> wishes;
+    private int personID;
 
     public WishList() {
 
     }
 
-    public WishList(int id, List<Wish> wishes) {
+    public WishList(int id,String name, int personID) {
         this.id = id;
-        this.wishes = wishes;
+        this.name = name;
+        this.wishes = new ArrayList<>();
+        this.personID = personID;
     }
 
     public int getId() {
@@ -29,5 +34,13 @@ public class WishList {
 
     public void setWishes(List<Wish> wishes) {
         this.wishes = wishes;
+    }
+
+    public int getPersonID() {
+        return personID;
+    }
+
+    public void setPersonID(int personID) {
+        this.personID = personID;
     }
 }

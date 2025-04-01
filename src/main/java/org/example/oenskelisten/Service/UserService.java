@@ -35,7 +35,8 @@ public class UserService {
         return userRepository.edit(new User(oldUser.getPersonId(),
                 newUser.getName(),
                 newUser.getEmail(),
-                newUser.getPassword()
+                newUser.getPassword(),
+                newUser.getWishListList()
         ));
     }
 
