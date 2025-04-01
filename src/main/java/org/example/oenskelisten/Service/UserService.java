@@ -55,7 +55,7 @@ public class UserService {
 
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getEmail().equalsIgnoreCase(newUser.getEmail())){
-                return "";
+                throw new NullPointerException("Email er allerede taget" + newUser.getEmail());
             }
         }
 
