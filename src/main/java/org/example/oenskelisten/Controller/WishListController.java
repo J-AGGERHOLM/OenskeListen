@@ -28,14 +28,14 @@ public class WishListController {
     @GetMapping("/{id}/wishListItem")
     public String getWishListItem(@PathVariable int id, Model model) {
         model.addAttribute("wishListItem", wishListService.getWishById(id));
-        return "wishListItem";
+        return "wish-list-item";
     }
 
     @GetMapping("/add")
     public String addWish(Model model) {
         Wish wish = new Wish();
         model.addAttribute("wish", wish);
-        return "addWish";
+        return "add-wish";
     }
 
     @PostMapping("/save")
@@ -52,7 +52,7 @@ public class WishListController {
     public String editWish(@PathVariable int id, Model model) {
         Wish wish = wishListService.getWishById(id);
         model.addAttribute("wish", wish);
-        return "editWish";
+        return "edit-wish";
     }
 
     @PostMapping("/update")

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+>
+<head>
+    <meta charset="UTF-8">
+    <title>add user</title>
+    <link rel="stylesheet" th:href="@{/css/general.css}">
+</head>
+<body>
+
+<header>En header</header>
+
+<nav th:replace="/fragments/navbar :: navbar"></nav>
+
+<main>
+    <form th:object="${newUser}" th:action="@{/user-create}" th:method="post">
+        <input type="text" hidden name="id" th:value="*{personId}">
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" th:value="*{email}" required>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" name="password" id="password" th:value="*{password}" required>
+        </div>
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" th:value="*{name}" required>
+        </div>
+
+        <div>
+            <button type="submit">Opret</button>
+            <a th:href="@{'/'}">
+                <button type="button">Fortryd</button>
+            </a>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>

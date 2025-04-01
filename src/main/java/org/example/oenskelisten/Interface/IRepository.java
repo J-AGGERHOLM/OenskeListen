@@ -1,7 +1,5 @@
 package org.example.oenskelisten.Interface;
 
-import org.example.oenskelisten.Model.User;
-
 import java.util.List;
 
 // Da vi vil få problemer med at begge repositories skal bruge dette,
