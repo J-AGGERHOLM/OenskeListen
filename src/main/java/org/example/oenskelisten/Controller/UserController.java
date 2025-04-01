@@ -1,6 +1,5 @@
 package org.example.oenskelisten.Controller;
 
-import jakarta.servlet.http.HttpSession;
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Service.UserService;
@@ -13,8 +12,6 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
     private final UserService userService;
-    // 30 minutter
-    private final int MAX_SESSION_LENGTH = 1800;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -23,32 +20,6 @@ public class UserController {
     @GetMapping("")
     public String index() {
         return "index";
-    }
-
-    @GetMapping("/user-login")
-    public String getLoginPage() {
-        return "user-login";
-    }
-    @RequestMapping("/login")
-    public String login(@RequestParam String email,
-                        @RequestParam String password,
-                        HttpSession session,
-                        Model redirectAttributes) {
-        if(email.trim().isEmpty() || password.trim().isEmpty()){
-            redirectAttributes.addAttribute("insertValue", true);
-            return "user-login";
-        }
-
-        // kontrollere om der er en user
-        var exist = userService.login(email, password);
-        if(exist != null){
-            session.setAttribute("user", exist.getPersonId());
-            session.setMaxInactiveInterval(MAX_SESSION_LENGTH);
-            return "redirect:/";
-        }
-
-        redirectAttributes.addAttribute("wrongCredentials", true);
-        return "user-login";
     }
 
     @GetMapping("{id}/user")
@@ -79,7 +50,6 @@ public class UserController {
         userService.addUser(newUser);
         return "redirect:/userPage";
     }
-
 
     // henter layout for edit
     @GetMapping("{id}/edit")

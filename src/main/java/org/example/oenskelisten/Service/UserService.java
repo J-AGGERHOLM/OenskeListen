@@ -35,8 +35,7 @@ public class UserService {
         return userRepository.edit(new User(oldUser.getPersonId(),
                 newUser.getName(),
                 newUser.getEmail(),
-                newUser.getPassword()
-        ));
+                newUser.getPassword()));
     }
 
     //returning all users
@@ -66,6 +65,7 @@ public class UserService {
         var user = userRepository.getByEmail(email);
         if(user == null) return null;
 
+        // tjekker om password passer.
         return user.getPassword().equals(password)
                 ? user
                 : null;
