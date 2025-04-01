@@ -59,6 +59,7 @@ public class WishListController {
     @PostMapping("/update")
     public String editWish(@ModelAttribute("wish") Wish wish) {
         System.out.println("updating: wish id: " + wish.getId());
+        System.out.println("Wish description: " + wish.getDescription());
         wishListService.updateWish(wish);
         return "redirect:/wishlist";
     }

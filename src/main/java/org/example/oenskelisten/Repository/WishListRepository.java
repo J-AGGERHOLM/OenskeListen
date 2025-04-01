@@ -52,14 +52,16 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public boolean edit(Wish wish) {
-//        String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ?,
-//                     WHERE id = ?";
-//        jdbcTemplate.update(sql, wish.getName(),
-//                              wish.getDescription(),
-//                              wish.getProductLink(),
-//                              wish.getImageLink(),
-//                              wish.getPrice());
-        return false;
+        String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ? " +
+                "WHERE wishID = ?";
+        jdbcTemplate.update(sql, wish.getName(),
+                              wish.getDescription(),
+                              wish.getProductLink(),
+                              wish.getImageLink(),
+                              wish.getPrice(),
+                                wish.getId());
+        System.out.println();
+        return true;
     }
 
     @Override
