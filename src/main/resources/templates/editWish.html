@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Editing ' + ${wish.name}"></title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
-<body>
+<body class = "addWish-body">
+    <h1 th:text="'Editing ' + ${wish.name}">Editing Wish</h1>
+
+    <div class="content">
+        <form role="form" action="#" method="post" th:action="@{/wishlist/update}"
+              th:object="${wish}">
+
+            <input type="number" th:field="*{id}" readonly hidden>
+
+            <label>Wish Name</label>
+            <input type="text" th:field="*{name}"/>
+
+            <br>
+            <label>Description</label>
+            <textarea rows = "3" cols ="20" th:field="*{description}"></textarea>
+
+            <br>
+            <label>Product Link</label>
+            <input type="text" th:field="*{productLink}"/>
+
+            <label>Image Link</label>
+            <input type="text" th:field="*{imageLink}">
+
+            <label>Price</label>
+            <input type="number" min="1" th:field="*{price}">
+
+            <button type="submit">Update Wish</button>
+        </form>
+    </div>
+
 
 </body>
 </html>
