@@ -18,6 +18,8 @@
         <input type="text" hidden name="id" th:value="*{personId}">
 
         <div>
+            <p th:if="${emailTaken}" class="error">Email er allerede taget</p>
+
             <label for="email">Email:</label>
             <input type="text" name="email" id="email" th:value="*{email}" required>
         </div>

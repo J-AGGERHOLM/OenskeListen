@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -45,10 +46,21 @@ public class UserController {
         model.addAttribute("newUser", user);
         return "user-form";
     }
+
     @PostMapping("/user-create")
-    public String addUser(@ModelAttribute ("newUser") User newUser){
+    public String addUser(@ModelAttribute("newUser") User newUser, Model redirectAttributes) {
+
+
+        if (userService.checkEmail(newUser.getEmail()) != null) {
+
+            redirectAttributes.addAttribute("emailTaken", true);
+            return "user-form";
+        }
+
         userService.addUser(newUser);
         return "redirect:/userPage";
+
+
     }
 
     // henter layout for edit
@@ -74,7 +86,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/delete")
-    public String deleteUser(@PathVariable("id") int id){
+    public String deleteUser(@PathVariable("id") int id) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
         userService.deleteUser(id);
         return "redirect:/users";
