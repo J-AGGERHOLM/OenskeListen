@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <title>Index</title>
     <link rel="stylesheet" th:href="@{/css/general.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 <header>Velkommen til ønskelisten</header>
-<nav th:replace="fragments/navbar :: navbar"></nav>
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
 <main>
     <div>
@@ -22,6 +23,6 @@
     </div>
 </main>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
