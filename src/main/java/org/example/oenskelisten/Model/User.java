@@ -3,24 +3,31 @@ package org.example.oenskelisten.Model;
 import java.util.List;
 
 public class User {
-    private int personId;
+    private int userID;
     private String name;
     private String email;
     private String password;
     private List<WishList> wishListList;
 
-    public User(int personId, String name, String email, String password, List<WishList> wishListList){
-        this.personId = personId;
+    public User(int userID, String name, String email, String password, List<WishList> wishListList){
+        this.userID = userID;
         this.name=name;
         this.email=email;
+        this.password = password;
+    }
+
+    public User(int userID, String name, String email, String password){
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
         this.password = password;
     }
 
     public User(){
     }
 
-    public int getPersonId() {
-        return personId;
+    public int getUserID() {
+        return userID;
     }
 
     public String getName() {
@@ -55,14 +62,14 @@ public class User {
         this.wishListList = wishListList;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
 
     @Override
     public String toString(){
-        return "ID: " + personId + " name: " + name + " email: " + email + " Password: " + password;
+        return "ID: " + userID + " name: " + name + " email: " + email + " Password: " + password;
     }
 
 }

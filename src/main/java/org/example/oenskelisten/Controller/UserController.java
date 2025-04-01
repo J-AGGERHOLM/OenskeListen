@@ -49,18 +49,20 @@ public class UserController {
 
     @PostMapping("/user-create")
     public String addUser(@ModelAttribute("newUser") User newUser, Model redirectAttributes) {
-
-
         if (userService.checkEmail(newUser.getEmail()) != null) {
-
             redirectAttributes.addAttribute("emailTaken", true);
             return "user-form";
         }
 
         userService.addUser(newUser);
-        return "redirect:/userPage";
+        return "redirect:/user-page";
 
 
+    }
+
+    @GetMapping("/user-page")
+    public String userPage() {
+        return "user-page";
     }
 
     // henter layout for edit
