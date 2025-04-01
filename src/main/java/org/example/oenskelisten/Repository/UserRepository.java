@@ -20,6 +20,7 @@ public class UserRepository implements IUserRepository {
     }
 
     //get all users
+    @Override
     @Transactional
     public List<User> getAll() {
         String sql = "SELECT * FROM persons";
@@ -32,7 +33,7 @@ public class UserRepository implements IUserRepository {
     }
 
 
-
+    @Override
     @Transactional
     public User getById(int id) {
         // vælger specifik user
@@ -60,7 +61,7 @@ public class UserRepository implements IUserRepository {
 
 
 
-
+    @Override
     @Transactional
     public boolean edit(User newUser) {
         // Opdater attraction
@@ -79,12 +80,14 @@ public class UserRepository implements IUserRepository {
     }
 
 
+    @Override
     @Transactional
     public void add(User newUser) {
         String sql = "INSERT INTO persons (name, email, password) VALUES (?,?,?)";
         jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
     }
 
+    @Override
     @Transactional
     public void deleteById(int id) {
         String sql = "DELETE FROM persons WHERE id = ?";
