@@ -28,11 +28,11 @@ public class UserService {
     // edit user
     public boolean editUser(User newUser) {
         // Kontrollere om der er en user.
-        var oldUser = userRepository.getById(newUser.getPersonId());
-        if (oldUser == null) throw new NullPointerException("Id findes ikke: " + newUser.getPersonId());
+        var oldUser = userRepository.getById(newUser.getUserID());
+        if (oldUser == null) throw new NullPointerException("Id findes ikke: " + newUser.getUserID());
 
         // indsætter user
-        return userRepository.edit(new User(oldUser.getPersonId(),
+        return userRepository.edit(new User(oldUser.getUserID(),
                 newUser.getName(),
                 newUser.getEmail(),
                 newUser.getPassword(),
@@ -72,5 +72,11 @@ public class UserService {
                 : null;
     }
 
+
+    public User checkEmail(String email){
+        return userRepository.getByEmail(email);
+
+
+    }
 
 }

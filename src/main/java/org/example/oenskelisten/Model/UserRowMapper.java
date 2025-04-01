@@ -12,25 +12,30 @@ public class UserRowMapper implements RowMapper<User> {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         var user = new User();
-        final int PERSON_ID = rs.getInt("personID");
-        user.setPersonId(PERSON_ID);
+        final int USER_ID = rs.getInt("userID");
+        user.setUserID(USER_ID);
         user.setName(rs.getString("name"));
         user.setEmail(rs.getString("email"));
         user.setPassword(rs.getString("password"));
-
-
-
-
-        user.setWishListList(generateWishLists(PERSON_ID, rs));
-
+        if (hasColumn(rs, "wishListName") && hasColumn(rs, "wishlistID")) {
+            user.setWishListList(generateWishLists(USER_ID, rs));
+        }
 
         return user;
     }
 
+    private boolean hasColumn(ResultSet rs, String columnName) {
+        try {
+            rs.findColumn(columnName);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 
 
     //Helper method for handling list generation
-    private List<WishList> generateWishLists(int PERSON_ID, ResultSet rs) throws SQLException {
+    private List<WishList> generateWishLists(int USER_ID, ResultSet rs) throws SQLException {
         String ConcatenatedWishListName = rs.getString("wishListName");
         String[] wishListNameArray = ConcatenatedWishListName.split(",");
 
@@ -43,7 +48,7 @@ public class UserRowMapper implements RowMapper<User> {
 
         List<WishList> temp = new ArrayList<>();
         for (int i = 0; i < wishListIDArray.length; i++) {
-            temp.add(new WishList(Integer.parseInt(wishListIDArray[i]), wishListNameArray[i], PERSON_ID));
+            temp.add(new WishList(Integer.parseInt(wishListIDArray[i]), wishListNameArray[i], USER_ID));
         }
 
         return temp;

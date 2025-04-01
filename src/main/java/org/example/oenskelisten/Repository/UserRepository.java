@@ -67,7 +67,7 @@ public class UserRepository implements IUserRepository {
             return jdbcTemplate.update(sql, newUser.getName(),
                     newUser.getEmail(),
                     newUser.getPassword(),
-                    newUser.getPersonId()) > 0;
+                    newUser.getUserID()) > 0;
         } catch (Exception e) {
             return false;
         }
