@@ -3,6 +3,7 @@ package org.example.oenskelisten.Repository;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
+import org.springframework.dao.DataAccessException;
 import org.example.oenskelisten.Model.WishList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -93,6 +94,19 @@ public class UserRepository implements IUserRepository {
         String sql = "DELETE FROM persons WHERE id = ?";
 
         jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        try {
+        String sql = "SELECT * FROM persons " +
+                "WHERE email = ?";
+            return jdbcTemplate.queryForObject(sql,
+                    new UserRowMapper(),
+                    email);
+        } catch (DataAccessException e) {
+            return null;
+        }
     }
 
 

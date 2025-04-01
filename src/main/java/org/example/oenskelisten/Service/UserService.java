@@ -36,14 +36,13 @@ public class UserService {
                 newUser.getName(),
                 newUser.getEmail(),
                 newUser.getPassword(),
-                newUser.getWishListList()
-        ));
+                newUser.getWishListList()));
     }
 
     //returning all users
     public List<User> getAllUsers() {
         //checks if the list is empty:
-        if (userRepository.getAll().isEmpty()) {
+        if(userRepository.getAll().isEmpty()){
             throw new NullPointerException("Der er ikke nogen brugere endnu");
         }
         //returns list of users:
@@ -51,24 +50,26 @@ public class UserService {
     }
 
     public void addUser(User newUser) {
-        List<User> users = userRepository.getAll();
-
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getEmail().equalsIgnoreCase(newUser.getEmail())){
-                throw new NullPointerException("Email er allerede taget" + newUser.getEmail());
-            }
-        }
-
         userRepository.add(newUser);
     }
 
-    public void deleteUser(int id) {
-
+    public void deleteUser(int id){
         var user = userRepository.getById(id);
 
         if (user == null) throw new NullPointerException("Bruger findes ikke" + id);
 
         userRepository.deleteById(id);
+    }
+
+    public User login(String email, String password) {
+        // Tjekker om user eksisterer
+        var user = userRepository.getByEmail(email);
+        if(user == null) return null;
+
+        // tjekker om password passer.
+        return user.getPassword().equals(password)
+                ? user
+                : null;
     }
 
 

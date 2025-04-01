@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -40,20 +39,17 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/add-user")
+    @GetMapping("/user-add")
     public String addUser(Model model) {
         User user = new User();
         model.addAttribute("newUser", user);
-        return "add-user";
+        return "user-form";
     }
-
-    @PostMapping("/new-user")
+    @PostMapping("/user-create")
     public String addUser(@ModelAttribute ("newUser") User newUser){
         userService.addUser(newUser);
         return "redirect:/userPage";
-
     }
-
 
     // henter layout for edit
     @GetMapping("{id}/edit")

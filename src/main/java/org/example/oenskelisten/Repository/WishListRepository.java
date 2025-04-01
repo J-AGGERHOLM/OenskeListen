@@ -2,6 +2,7 @@ package org.example.oenskelisten.Repository;
 
 import org.example.oenskelisten.Interface.IWishListRepository;
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,13 +25,12 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public Wish getById(int id) {
-//        String sql = "SELECT * FROM wishes WHERE id = ?";
-//        try {
-//            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
-//        } catch (Exception e){
-//            return null;
-//        }
-        return null;
+       String sql = "SELECT * FROM wishes WHERE wishID = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -50,14 +50,15 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public boolean edit(Wish wish) {
-//        String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ?,
-//                     WHERE id = ?";
-//        jdbcTemplate.update(sql, wish.getName(),
-//                              wish.getDescription(),
-//                              wish.getProductLink(),
-//                              wish.getImageLink(),
-//                              wish.getPrice());
-        return false;
+        String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ? " +
+                "WHERE wishID = ?";
+        jdbcTemplate.update(sql, wish.getName(),
+                              wish.getDescription(),
+                              wish.getProductLink(),
+                              wish.getImageLink(),
+                              wish.getPrice(),
+                                wish.getId());
+        return true;
     }
 
     @Override

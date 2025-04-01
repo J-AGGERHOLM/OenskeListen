@@ -7,15 +7,19 @@
     <link rel="stylesheet" th:href="@{/css/general.css}">
 </head>
 <body>
-<Header>Velkommen til ønskelisten</Header>
+<header>Velkommen til ønskelisten</header>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <main>
-    <label for="userForm"></label>
-    <a th:href="@{/add-user}" id="userForm">Opret</a>
+    <div>
+    <label for="userForm">Opret</label><br>
+    <a th:href="@{/user-add}" id="userForm">Opret</a>
+    </div>
 
+    <div>
     <label for="userLogin">Login</label>
-    <a id="userLogin">Login</a>
+    <a th:href="@{/session/user-login}" id="userLogin">Login</a>
+    </div>
 </main>
 
 <footer th:replace="fragments/footer :: footer"></footer>
