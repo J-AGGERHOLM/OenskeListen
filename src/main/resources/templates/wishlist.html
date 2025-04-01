@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Title</title>
+
+    <style>
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2017/10/20/01/06/north-star-2869817_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        table {
+            background-color: rgba(0, 0, 0, 0.5); /* Darker background with transparency */
+            color: white; /* Make text color white to contrast with the dark background */
+        }
+        th {
+            color:white;
+        }
+        td {
+            color:white;
+        }
+        a {
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; text-decoration: underline;">Dine Ønsker</h1>
+<div style="text-align: center;">
+    <a th:href="@{/}">Home</a>
+    <span style="width: 20px; display: inline-block;"></span>
+    <a th:href="@{/wishlist/add}">Tilføj Ønske</a>
+</div>
+<table class="table table-hover" style="margin-left:auto; margin-right:auto;">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">Navn</th>
+        <th scope="col">Beskrivelse</th>
+        <th scope="col">Produktlink</th>
+        <th scope="col">Imagelink</th>
+        <th scope="col">Pris</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="wish : ${wishListItems}">
+        <th></th>
+        <td> <a th:href="@{wishlist/{name}(name=${wish.name})}" th:text="${wish.name}"></a></td>
+        <td th:text="${wish.description}"></td>
+        <td><a th:href="${wish.productLink}" th:text="${wish.productLink}" target="_blank"></a></td>
+        <td>
+            <form th:action="@{/wishlist/{name}/edit(name=${wish.name})}" method="get" style="display:inline;">
+                <button type="submit" class="edit-link">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/wishlist/delete/{name}(name=${wish.name})}" method="post" style="display:inline;">
+                <button type="submit" class="delete-link">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
