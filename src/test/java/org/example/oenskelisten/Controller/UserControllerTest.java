@@ -52,7 +52,7 @@ class UserControllerTest {
 
         mockMvc.perform(get("/users"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("users"))
+                .andExpect(view().name("user-all"))
                 .andExpect(model().attributeExists("users"));
 
         verify(userService, times(1)).getAllUsers();

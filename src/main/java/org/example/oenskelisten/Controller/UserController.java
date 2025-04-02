@@ -37,7 +37,7 @@ public class UserController {
     public String getUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "users";
+        return "user-all";
     }
 
     @GetMapping("/user-add")
@@ -93,6 +93,4 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
-
-
 }
