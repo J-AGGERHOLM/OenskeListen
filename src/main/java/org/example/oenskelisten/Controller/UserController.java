@@ -27,9 +27,21 @@ public class UserController {
     public String userMedID(@PathVariable("id") int id, Model model) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
 
-        model.addAttribute("User", userService.getUser(id));
+        model.addAttribute("user",
+                userService.getUser(id));
 
-        return "SpecifikUserSideHer";
+        return "user-edit";
+    }
+    // opdaterer en user
+    @PostMapping("update")
+    public String updateUser(@ModelAttribute("user") User newUser) {
+        if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
+
+        var result = userService.editUser(newUser);
+        if (!result) throw new UnknownErrorException("Noget gik galt");
+
+        // laver en 302 response sådan, at ikke kan poste det samme igen.
+        return "redirect:/users";
     }
 
     //Henter alle users
@@ -56,35 +68,11 @@ public class UserController {
 
         userService.addUser(newUser);
         return "redirect:/user-page";
-
-
     }
 
     @GetMapping("/user-page")
     public String userPage() {
         return "user-page";
-    }
-
-    // henter layout for edit
-    @GetMapping("{id}/edit")
-    public String getHandleUser(@PathVariable("id") int id, Model model) {
-        if (id == 0) throw new IllegalArgumentException();
-
-        model.addAttribute("user", userService.getUser(id));
-
-        return "editUserSide";
-    }
-
-    // opdaterer en user
-    @PostMapping("update")
-    public String updateUser(@ModelAttribute("user") User newUser) {
-        if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
-
-        var result = userService.editUser(newUser);
-        if (!result) throw new UnknownErrorException("Noget gik galt");
-
-        // laver en 302 response sådan, at ikke kan poste det samme igen.
-        return "redirect:/denSideViSkalRedirectTil";
     }
 
     @PostMapping("/{id}/delete")
