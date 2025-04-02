@@ -33,12 +33,24 @@ public class UserController {
         return "user-page";
     }
 
+    // opdaterer en user
+    @PostMapping("update")
+    public String updateUser(@ModelAttribute("user") User newUser) {
+        if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
+
+        var result = userService.editUser(newUser);
+        if (!result) throw new UnknownErrorException("Noget gik galt");
+
+        // laver en 302 response sådan, at ikke kan poste det samme igen.
+        return "redirect:/users";
+    }
+
     //Henter alle users
     @GetMapping("/users")
     public String getUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "users";
+        return "user-all";
     }
 
     @GetMapping("/user-add")
@@ -62,8 +74,7 @@ public class UserController {
     }
 
     @GetMapping("/user-page")
-    public String userPage(Model model) {
-        model.addAttribute("user");
+    public String userPage() {
         return "user-page";
     }
 
@@ -74,19 +85,7 @@ public class UserController {
 
         model.addAttribute("user", userService.getUser(id));
 
-        return "editUserSide";
-    }
-
-    // opdaterer en user
-    @PostMapping("update")
-    public String updateUser(@ModelAttribute("user") User newUser) {
-        if (newUser == null) throw new IllegalArgumentException("User kan ikke være null");
-
-        var result = userService.editUser(newUser);
-        if (!result) throw new UnknownErrorException("Noget gik galt");
-
-        // laver en 302 response sådan, at ikke kan poste det samme igen.
-        return "redirect:/denSideViSkalRedirectTil";
+        return "redirect:user-edit";
     }
 
     @PostMapping("/{id}/delete")

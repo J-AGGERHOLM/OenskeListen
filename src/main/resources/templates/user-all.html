@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>all users</title>
+    <link rel="stylesheet" th:href="@{css/general.css}">
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>UserID</th>
+            <th>Navn</th>
+            <th>Email</th>
+            <th>Slet bruger</th>
+            <th>Opdater bruger</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.userID}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <form th:action="@{/{id}/delete(id=${user.userID})}" method="post">
+                    <button type="submit">Slet</button>
+                </form>
+            </td>
+            <td><a th:href="@{/{id}/user(id=${user.userID})}">Opdater</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
