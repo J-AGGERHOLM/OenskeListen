@@ -17,6 +17,7 @@
             <th>Navn</th>
             <th>Email</th>
             <th>Slet bruger</th>
+            <th>Opdater bruger</th>
         </tr>
         </thead>
         <tbody>
@@ -26,9 +27,10 @@
             <td th:text="${user.email}"></td>
             <td>
                 <form th:action="@{/{id}/delete(id=${user.userID})}" method="post">
-                    <button type="submit">Slet bruger</button>
+                    <button type="submit">Slet</button>
                 </form>
             </td>
+            <td><a th:href="@{/{id}/user(id=${user.userID})}">Opdater</a></td>
         </tr>
         </tbody>
     </table>
