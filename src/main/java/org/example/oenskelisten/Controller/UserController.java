@@ -68,7 +68,11 @@ public class UserController {
         }
 
         userService.addUser(newUser);
-        return "redirect:/user-page";
+
+        //makes sure we get the auto incremented id:
+        User savedUser = userService.checkEmail(newUser.getEmail());
+
+        return "redirect:/"+savedUser.getUserID()+"/user";
 
 
     }

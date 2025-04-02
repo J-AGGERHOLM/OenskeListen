@@ -11,7 +11,7 @@
 
 <header>En header</header>
 
-<nav th:replace="/fragments/navbar :: navbar"></nav>
+<nav th:replace="~{/fragments/navbar :: navbar}"></nav>
 
 <main>
     <form th:object="${newUser}" th:action="@{/user-create}" th:method="post">
@@ -43,6 +43,6 @@
     </form>
 </main>
 
-<footer th:replace="/fragments/footer :: footer"></footer>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>
