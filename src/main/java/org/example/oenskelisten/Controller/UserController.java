@@ -2,6 +2,7 @@ package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
+import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class UserController {
 
         model.addAttribute("User", userService.getUser(id));
 
-        return "SpecifikUserSideHer";
+        return "user-page";
     }
 
     //Henter alle users
@@ -61,7 +62,8 @@ public class UserController {
     }
 
     @GetMapping("/user-page")
-    public String userPage() {
+    public String userPage(Model model) {
+        model.addAttribute("user");
         return "user-page";
     }
 
@@ -93,6 +95,14 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
+
+    @PostMapping("/wishList/{wishListID}/delete")
+    public String deleteWishList(@PathVariable int wishListID){
+        int userID=userService.getUserIDByWishListID(wishListID);
+        userService.deleteWishList(wishListID);
+        return "redirect:/" + userID+ "/user";
+    }
+
 
 
 }

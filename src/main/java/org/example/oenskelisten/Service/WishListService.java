@@ -40,10 +40,11 @@ public class WishListService {
     }
 
 
+    public List<Wish> getWishListByID(int id) {
+        return wishListRepository.getWishListById(id);
+    }
 
-
-
-
-
-
+    public void deleteWishList(int wishListID) {
+        wishListRepository.deleteById(wishListID);
+    }
 }

@@ -2,6 +2,7 @@ package org.example.oenskelisten.Service;
 
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
+import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -79,4 +80,13 @@ public class UserService {
 
     }
 
+
+    public void deleteWishList(int wishListID) {
+         userRepository.deleteWishList(wishListID);
+    }
+
+
+    public int getUserIDByWishListID(int wishListID){
+        return userRepository.getUserIDByWishListID(wishListID);
+    }
 }

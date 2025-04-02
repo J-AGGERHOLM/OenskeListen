@@ -5,6 +5,7 @@ import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -74,9 +75,17 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
+    public List<Wish> getWishListById(int id) {
+        String sql = "SELECT * FROM wishes WHERE wishes.wishListID = ?";
+
+        return jdbcTemplate.query(sql, new WishRowMapper(), id);
+    }
+
+    @Override
     public void deleteById(int id) {
 //        String sql ="DELETE FROM wishes WHERE id = ?";
 //        jdbcTemplate.update(sql, id);
 
     }
+
 }

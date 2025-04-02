@@ -3,6 +3,8 @@ package org.example.oenskelisten.Repository;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
+import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -100,6 +102,22 @@ public class UserRepository implements IUserRepository {
         } catch (DataAccessException e) {
             return null;
         }
+    }
+
+    @Transactional
+    @Override
+    public void deleteWishList(int wishListID) {
+        String sql = "DELETE FROM wishList WHERE wishListID = ?";
+        jdbcTemplate.update(sql, wishListID);
+    }
+
+
+    @Transactional
+    @Override
+    public int getUserIDByWishListID(int wishListID){
+        String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
+        return jdbcTemplate.queryForObject(sql,Integer.class, wishListID);
+
     }
 
 
