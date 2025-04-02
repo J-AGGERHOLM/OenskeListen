@@ -54,12 +54,19 @@ public class UserRowMapper implements RowMapper<User> {
         //gets the wishListName from the SQL query.
         // Because it is concatenated in the SQL query, it has the format of "1,2,3,4,5,6,7"
         String ConcatenatedWishListName = rs.getString("wishListName");
+        String concatenatedWishListID = rs.getString("wishlistID");
+
+        //check to see if strings are empty. If we try to split an empty string the program crashes
+        if (ConcatenatedWishListName == null || ConcatenatedWishListName.isBlank() ||
+                concatenatedWishListID == null || concatenatedWishListID.isBlank()) {
+            return new ArrayList<>();
+        }
+
+
         //Creates an array by splitting the string, based on the "," parameter.
+        String[] wishListIDArray = concatenatedWishListID.split(",");
         String[] wishListNameArray = ConcatenatedWishListName.split(",");
 
-        //same
-        String concatenatedWishListID = rs.getString("wishlistID");
-        String[] wishListIDArray = concatenatedWishListID.split(",");
 
         //if the lenghts of the two arrays don't match, something is wrong:
         if (wishListNameArray.length != wishListIDArray.length) {
