@@ -85,7 +85,7 @@ public class UserController {
 
         model.addAttribute("user", userService.getUser(id));
 
-        return "redirect:user-edit";
+        return "user-edit";
     }
 
     @PostMapping("/{id}/delete")
