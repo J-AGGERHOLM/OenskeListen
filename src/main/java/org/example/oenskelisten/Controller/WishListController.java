@@ -15,13 +15,9 @@ import java.util.List;
 @RequestMapping("wishlist")
 public class WishListController {
     private final WishListService wishListService;
-    private final UserController userController;
-    private final UserService userService;
 
-    public WishListController(WishListService service, UserController userController, UserService userService) {
+    public WishListController(WishListService service) {
         this.wishListService = service;
-        this.userController = userController;
-        this.userService = userService;
     }
 
     @GetMapping("/")
