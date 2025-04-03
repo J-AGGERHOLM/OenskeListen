@@ -4,7 +4,6 @@ import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.UserService;
-import org.example.oenskelisten.Service.WishListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService, WishListService wishListService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
