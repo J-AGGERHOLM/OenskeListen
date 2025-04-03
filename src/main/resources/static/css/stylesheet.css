@@ -34,4 +34,11 @@ body {
     flex: 1;
 }
 
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 20px; /* Space below the buttons */
+    justify-content: center;
+}
+
 

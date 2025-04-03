@@ -12,14 +12,14 @@
 <body>
 
 <h1 th:text="${User.name}"></h1>
-<div>
-<form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
-<button type="submit"> Edit Information</button>
-</form>
+<div class = "button-container">
+    <form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
+        <button type="submit"> Edit Information</button>
+    </form>
     <form th:action="@{/create/{userID}(userID=${User.userID})}" method="get">
         <button type="submit">Oprette en WishList</button>
     </form>
-<div></div>
+</div><div>
 
 <ul class = "grid-container">
     <li th:each="wishList : ${User.getWishListList()}" class="wishlist-box">
