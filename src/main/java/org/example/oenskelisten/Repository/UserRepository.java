@@ -3,8 +3,6 @@ package org.example.oenskelisten.Repository;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
-import org.example.oenskelisten.Model.Wish;
-import org.example.oenskelisten.Model.WishList;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
