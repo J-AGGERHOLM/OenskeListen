@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/starry-night.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <meta charset="UTF-8">
+    <title >Title</title>
+</head>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <main >
+        <div id="wishlists">
+
+
+         <h1 th:text="${wishList.name}">PAGE TITLE</h1>
+            <div class="grid-container">
+                <div th:each="wish : ${wishList.wishes}" class="wishlist-box">
+                    <h2 th:text="${wish.name}"></h2>
+                    <h3 th:text="${wish.description}"></h3>
+                    <a th:href="${wish.productLink}"><button>Link To Wish</button></a>
+                    <img th:src="${wish.imageLink}">
+                    
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

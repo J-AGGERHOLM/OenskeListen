@@ -2,10 +2,14 @@ package org.example.oenskelisten.Repository;
 
 import org.example.oenskelisten.Interface.IWishListRepository;
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
+import org.example.oenskelisten.Model.WishListRowMapper;
 import org.example.oenskelisten.Model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -18,9 +22,11 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public List<Wish> getAll() {
-//        String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
-//        return jdbcTemplate.query(sql, new WishRowMapper());
-        return null;
+        System.out.println("hello from getall");
+        //String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
+        String sql = "SELECT * FROM wishes";
+        return jdbcTemplate.query(sql, new WishRowMapper());
+        //return null;
     }
 
     @Override
@@ -77,6 +83,38 @@ public class WishListRepository implements IWishListRepository {
     public void deleteById(int id) {
 //        String sql ="DELETE FROM wishes WHERE id = ?";
 //        jdbcTemplate.update(sql, id);
+
+    }
+
+    //---------------WISHLIST METHODS----------------------
+    @Override
+    public List<WishList> getAllWishLists(){
+        String sql = "SELECT * FROM wishlist";
+        ArrayList allWishLists = new ArrayList<WishList>();
+
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while(rowSet.next()){
+            WishList currentList = new WishList(
+                    rowSet.getInt("wishlistID"),
+                    rowSet.getString("name"),
+                    rowSet.getInt("userID"));
+            allWishLists.add(currentList);
+        }
+        return allWishLists;
+    }
+
+    @Override
+    public WishList getWishListByID(int id){
+        String sql = "SELECT \n" +
+                "    wishlist.name AS wishlist_name, \n" +
+                "    wishes.name AS wish_name, \n" +
+                "    wishlist.*, \n" +
+                "    wishes.*\n" +
+                "FROM wishlist \n" +
+                "RIGHT JOIN wishes \n" +
+                "ON wishlist.wishlistID = wishes.wishlistID \n" +
+                "WHERE wishlist.wishlistID = ?;";
+        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);
 
     }
 }

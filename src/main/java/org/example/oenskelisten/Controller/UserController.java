@@ -2,7 +2,9 @@ package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
+import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.UserService;
+import org.example.oenskelisten.Service.WishListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +14,22 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
     private final UserService userService;
+    private final WishListService wishListService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, WishListService wishListService) {
         this.userService = userService;
+        this.wishListService = wishListService;
     }
 
     @GetMapping("")
-    public String index() {
+    public String index(Model model) {
+
+
+        List<WishList> allWishLists = wishListService.getAllWishlists();
+        model.addAttribute(allWishLists);
+        //to start off with the user id will simply be one, we will add functionality
+        //for multiple users later
+
         return "index";
     }
 
