@@ -3,6 +3,7 @@ package org.example.oenskelisten.Repository;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
+import org.example.oenskelisten.Model.WishList;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -100,6 +101,14 @@ public class UserRepository implements IUserRepository {
         } catch (DataAccessException e) {
             return null;
         }
+    }
+
+    @Transactional
+    @Override
+    public void createWishList(WishList wishList) {
+        String sql = "INSERT INTO wishList(name) VALUES (?)";
+        jdbcTemplate.update(sql, wishList.getName());
+
     }
 
     @Transactional
