@@ -14,11 +14,11 @@ public class WishList {
 
     }
 
-    public WishList(int id,String name, int personID) {
+    public WishList(int id,String name, int userID) {
         this.id = id;
         this.name = name;
         this.wishes = new ArrayList<>();
-        this.userID = personID;
+        this.userID = userID;
     }
 
     public String getName() {

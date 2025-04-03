@@ -16,7 +16,7 @@
 <form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
 <button type="submit"> Edit Information</button>
 </form>
-    <form th:action="@{/create}" method="get">
+    <form th:action="@{/create/{userID}(userID=${User.userID})}" method="get">
         <button type="submit">Oprette en WishList</button>
     </form>
 <div></div>
