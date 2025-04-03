@@ -103,11 +103,11 @@ public class UserController {
     public String createWishList(Model model) {
         WishList wishlist = new WishList();
         model.addAttribute("wishlist", wishlist);
-        return "create-wishList";
+        return "create-wishlist";
     }
 
     @PostMapping("/save")
-    public String saveWishList(@ModelAttribute("attraction") WishList wishList) {
+    public String saveWishList(@ModelAttribute("wishlist") WishList wishList) {
         userService.createWishList(wishList);
         return "redirect:user-page";
     }
