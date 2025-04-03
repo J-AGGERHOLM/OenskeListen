@@ -76,4 +76,58 @@ class UserControllerTest {
         verify(userService, times(1))
                 .deleteUser(1);
     }
-}
+
+
+    @Test
+    void deleteWishList() throws Exception{
+        when(userService.getUserIDByWishListID(1)).thenReturn(1);
+
+        mockMvc.perform(post("/wishList/{wishListID}/delete",1))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/1/user"));
+
+        verify(userService,times(1)).deleteWishList(1);
+    }
+
+    @Test
+    void getHandleUser() throws Exception{
+
+        when(userService.getUser(1)).thenReturn(users.get(0));
+
+
+        mockMvc.perform(get("/{id}/edit",1)
+                .param("id", String.valueOf(1)))
+                .andExpect(view().name("user-edit"))
+                .andExpect(model().attributeExists("user"));
+
+        verify(userService,times(1)).getUser(1);
+    }
+
+    @Test
+    void updateUser() throws Exception{
+
+        //we need a user from our testRepo:
+        //this is supposed to simulate recieving a userForm
+        User mockUser = users.get(0);
+
+        //When we call on the userService.editUser method, and it manages to reach the DB we get a succes(true)
+        when(userService.editUser(any(User.class))).thenReturn(true);
+
+
+        //performing the post update method with variables:
+        mockMvc.perform(post("/update")
+                        .param("userID", String.valueOf(mockUser.getUserID()))
+                        .param("name", mockUser.getName())
+                        .param("email", mockUser.getEmail())
+                        .param("password", mockUser.getPassword()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users"));
+
+
+        verify(userService, times(1)).editUser(any(User.class));
+
+    }
+
+
+
+    }
