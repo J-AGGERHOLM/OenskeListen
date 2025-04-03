@@ -4,51 +4,62 @@ body {
     background-size: cover;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
-    text-align: center;
     display: grid;
-    /* indstillinger: nav, indhold, footer, altså 3 rows */
+    grid-template-areas:
+        "nav"
+        "main"
+        "footer";
     grid-template-rows: auto 1fr auto;
-    grid-template-areas: /* giver variable navne for de forskellige elementer */
-            'nav nav'
-                'main'
-                'footer footer';
+    height: 100vh;
 }
 
 nav {
     display: flex;
-    flex-direction: column;
-    background-color: rgba(107, 194, 255, 0.65); /* sidste tal er gennemsigtighed*/
-    grid-area: nav; /* Bliver nr 2 i strukturen. Pga. variabel navn */
+    justify-content: center; /* Centrerer elementerne i navbaren */
+    background-color: rgba(107, 194, 255, 0.65); /* Farven på navbaren */
+    grid-area: nav; /* Placerer navbaren i den ønskede grid area */
     padding: 1em 1em 1em;
     align-items: center;
     position: sticky;
     top: 0;
-    z-index: 1000; /*nav bar ligger over resterende elementer når scroll*/
+    z-index: 1000; /* Navbaren er ovenpå når du scroller */
+}
+
+nav ul {
+    display: flex; /* Brug flexbox til at arrangere list items vandret */
+    list-style: none; /* Fjerner de normale bullets fra listen */
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0 15px; /* Giver mellemrum mellem hvert link */
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin: 0 15px;
     font-size: 20px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* Tilføjer et glødende skær til teksten */
 }
 
 nav a:hover {
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 1);
+    color: #ffd700; /* Farveændring på hover */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 1); /* Øget glød på hover */
 }
 
 main {
-    grid-area: main; /* Bliver nr 3 i strukturen. Pga. variabel navn */
+    grid-area: main;
     justify-self: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1em; /* Giver mellemrum mellem rækkerne */
     margin-top: 1em;
 }
 
+
 footer {
-    grid-area: footer; /* Bliver nr 4 i strukturen. Pga. variabel navn */
+    grid-area: footer; /* Bliver nr 3 i strukturen. Pga. variabel navn */
     /* Giver luft imellem section og footer */
     margin-top: 1em;
     background-color: rgba(107, 194, 255, 0.65);
@@ -63,20 +74,20 @@ footer {
 /* GitHub icon and text container */
 .github-icon {
     display: flex;
-    align-items: center;  /* Vertically align items */
-    justify-content: center;  /* Center items horizontally */
-    gap: 10px;  /* Space between the icon and the text */
+    align-items: center; /* Vertically align items */
+    justify-content: center; /* Center items horizontally */
+    gap: 10px; /* Space between the icon and the text */
 }
 
 /* Styling for the GitHub icon */
 .github-icon i {
-    font-size: 40px;  /* Adjust the size of the icon */
+    font-size: 40px; /* Adjust the size of the icon */
 }
 
 /* Styling for the text */
 .github-icon span {
-    font-size: 18px;  /* Adjust the font size for the text */
-    color: white;  /* Make the text white (or whatever color fits your design) */
+    font-size: 18px; /* Adjust the font size for the text */
+    color: white; /* Make the text white (or whatever color fits your design) */
 }
 
 
