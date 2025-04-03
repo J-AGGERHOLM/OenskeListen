@@ -18,6 +18,9 @@
                     <h2 th:text="${wish.name}"></h2>
                     <h3 th:text="${wish.description}"></h3>
                     <a th:href="${wish.productLink}"><button>Link To Wish</button></a>
+                    <form th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}" method="get">
+                        <button type="submit">Edit Wish</button>
+                    </form>
                     <img th:src="${wish.imageLink}">
                     
                 </div>
