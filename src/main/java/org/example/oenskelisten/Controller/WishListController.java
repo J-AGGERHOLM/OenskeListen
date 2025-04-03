@@ -19,7 +19,7 @@ public class WishListController {
         this.wishListService = service;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String getAllWishListItems(Model model) {
         List<Wish> wishListItems = wishListService.getAllWishListItems();
         model.addAttribute("wishListItems", wishListItems);
