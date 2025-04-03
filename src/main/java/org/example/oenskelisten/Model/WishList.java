@@ -3,7 +3,7 @@ package org.example.oenskelisten.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class        WishList {
+public class WishList {
     private int id;
 
 
