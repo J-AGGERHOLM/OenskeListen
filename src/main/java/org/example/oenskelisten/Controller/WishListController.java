@@ -19,14 +19,23 @@ public class WishListController {
         this.wishListService = service;
     }
 
-
-
     @GetMapping("/")
     public String getAllWishListItems(Model model) {
         List<Wish> wishListItems = wishListService.getAllWishListItems();
         model.addAttribute("wishListItems", wishListItems);
         return "wishlist";
     }
+
+    @GetMapping("/{id}/wishList")
+    public String getWishListByUserID(@PathVariable int id, Model model ){
+        List<Wish> wishList = wishListService.getWishListByID(id);
+        List<Wish> wishListItems = wishListService.getAllWishListItems();
+        model.addAttribute("wishList", wishList);
+        model.addAttribute("wishListItems", wishListItems);
+        return "wishlist";
+    }
+
+
 
     @GetMapping("/list/{id}")
     public String getWishList(@PathVariable("id") int id, Model model){

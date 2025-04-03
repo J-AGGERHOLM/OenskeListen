@@ -83,6 +83,13 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
+    public List<Wish> getWishListById(int id) {
+        String sql = "SELECT * FROM wishes WHERE wishes.wishListID = ?";
+
+        return jdbcTemplate.query(sql, new WishRowMapper(), id);
+    }
+
+    @Override
     public void deleteById(int id) {
 //        String sql ="DELETE FROM wishes WHERE id = ?";
 //        jdbcTemplate.update(sql, id);
@@ -108,7 +115,7 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
 
-    public WishList getWishListByID(int id){
+    public WishList getWishListModelByID(int id){
         String sql = "SELECT \n" +
                 "    wishlist.name AS wishlist_name, \n" +
                 "    wishes.name AS wish_name, \n" +

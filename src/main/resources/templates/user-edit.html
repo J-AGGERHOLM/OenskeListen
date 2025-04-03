@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit user</title>
+    <link rel="stylesheet" th:href="@{/css/general.css}">
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<main>
+    <form th:action="@{/update}" method="post" th:object="${user}">
+        <input type="text" hidden
+               th:value="${user.userID}"
+               th:name="${user.userID}"
+               th:field="*{userID}"/>
+
+        <div>
+            <label for="name">Navn:</label>
+            <input type="text" id="name"
+                   th:value="${user.name}"
+                   th:name="${user.name}"
+                   th:field="*{name}"/>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email"
+                   th:value="${user.email}"
+                   th:name="${user.email}"
+                   th:field="*{email}"/>
+        </div>
+
+        <div>
+            <label for="password">Passord:</label>
+            <input type="text" id="password"
+                   th:value="${user.password}"
+                   th:name="${user.password}"
+                   th:field="*{password}"/>
+        </div>
+
+        <button type="submit">Opdater</button>
+    </form>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

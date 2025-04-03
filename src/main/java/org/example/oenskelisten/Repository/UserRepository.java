@@ -67,7 +67,7 @@ public class UserRepository implements IUserRepository {
             return jdbcTemplate.update(sql, newUser.getName(),
                     newUser.getEmail(),
                     newUser.getPassword(),
-                    newUser.getPersonId()) > 0;
+                    newUser.getUserID()) > 0;
         } catch (Exception e) {
             return false;
         }
@@ -100,6 +100,22 @@ public class UserRepository implements IUserRepository {
         } catch (DataAccessException e) {
             return null;
         }
+    }
+
+    @Transactional
+    @Override
+    public void deleteWishList(int wishListID) {
+        String sql = "DELETE FROM wishList WHERE wishListID = ?";
+        jdbcTemplate.update(sql, wishListID);
+    }
+
+
+    @Transactional
+    @Override
+    public int getUserIDByWishListID(int wishListID){
+        String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
+        return jdbcTemplate.queryForObject(sql,Integer.class, wishListID);
+
     }
 
 

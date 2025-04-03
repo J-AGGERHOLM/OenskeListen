@@ -11,13 +11,15 @@
 
 <header>En header</header>
 
-<nav th:replace="/fragments/navbar :: navbar"></nav>
+<nav th:replace="~{/fragments/navbar :: navbar}"></nav>
 
 <main>
     <form th:object="${newUser}" th:action="@{/user-create}" th:method="post">
-        <input type="text" hidden name="id" th:value="*{personId}">
+        <input type="text" hidden name="id" th:value="*{userID}">
 
         <div>
+            <p th:if="${emailTaken}" class="error">Email er allerede taget</p>
+
             <label for="email">Email:</label>
             <input type="text" name="email" id="email" th:value="*{email}" required>
         </div>
@@ -41,6 +43,6 @@
     </form>
 </main>
 
-<footer th:replace="/fragments/footer :: footer"></footer>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>

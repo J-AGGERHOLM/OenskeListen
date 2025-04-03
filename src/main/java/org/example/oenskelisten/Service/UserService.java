@@ -2,7 +2,6 @@ package org.example.oenskelisten.Service;
 
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
-import org.example.oenskelisten.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public class UserService {
 
     private final IUserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -28,11 +27,11 @@ public class UserService {
     // edit user
     public boolean editUser(User newUser) {
         // Kontrollere om der er en user.
-        var oldUser = userRepository.getById(newUser.getPersonId());
-        if (oldUser == null) throw new NullPointerException("Id findes ikke: " + newUser.getPersonId());
+        var oldUser = userRepository.getById(newUser.getUserID());
+        if (oldUser == null) throw new NullPointerException("Id findes ikke: " + newUser.getUserID());
 
         // indsætter user
-        return userRepository.edit(new User(oldUser.getPersonId(),
+        return userRepository.edit(new User(oldUser.getUserID(),
                 newUser.getName(),
                 newUser.getEmail(),
                 newUser.getPassword(),
@@ -73,4 +72,19 @@ public class UserService {
     }
 
 
+    public User checkEmail(String email){
+        return userRepository.getByEmail(email);
+
+
+    }
+
+
+    public void deleteWishList(int wishListID) {
+         userRepository.deleteWishList(wishListID);
+    }
+
+
+    public int getUserIDByWishListID(int wishListID){
+        return userRepository.getUserIDByWishListID(wishListID);
+    }
 }

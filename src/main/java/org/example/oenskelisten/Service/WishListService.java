@@ -12,7 +12,7 @@ import java.util.List;
 public class WishListService {
     private final IWishListRepository wishListRepository;
 
-    public WishListService(WishListRepository repository) {
+    public WishListService(IWishListRepository repository) {
         this.wishListRepository = repository;
     }
 
@@ -44,15 +44,16 @@ public class WishListService {
         return wishListRepository.getAllWishLists();
     }
 
-    public WishList getWishListByID(int id){
-        return wishListRepository.getWishListByID(id);
+    public WishList getWishListModelByID(int id){
+        return wishListRepository.getWishListModelByID(id);
     }
 
 
+    public List<Wish> getWishListByID(int id) {
+        return wishListRepository.getWishListById(id);
+    }
 
-
-
-
-
-
+    public void deleteWishList(int wishListID) {
+        wishListRepository.deleteById(wishListID);
+    }
 }
