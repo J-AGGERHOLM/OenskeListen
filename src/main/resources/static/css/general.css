@@ -1,8 +1,18 @@
+/* Global reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 /* Fortæller strukturen på siden. */
 body {
     display: grid;
     /* indstillinger: header, nav, indhold, footer, altså 4 rows */
     grid-template-rows: auto 1fr auto;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     grid-template-areas: /* giver variable navne for de forskellige elementer */
                 'nav nav'
                 'main main'
@@ -10,13 +20,13 @@ body {
 }
 
 nav {
+    max-height: 100px;
     display: flex;
     flex-direction: column;
     background-color: rgba(107, 194, 255, 0.65); /* sidste tal er gennemsigtighed*/
     grid-area: nav; /* Bliver nr 2 i strukturen. Pga. variabel navn */
     padding: 1em 1em 1em;
     align-items: center;
-    position: sticky;
     top: 0;
     z-index: 1000; /*nav bar ligger over resterende elementer når scroll*/
 }
@@ -27,6 +37,14 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 1em;
+    flex: 1;
+    padding: 2rem;
+}
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 80px; /* height of your navbar */
 }
 
 footer {
@@ -59,6 +77,10 @@ footer {
 .github-icon span {
     font-size: 18px;  /* Adjust the font size for the text */
     color: white;  /* Make the text white (or whatever color fits your design) */
+}
+.logo-img {
+    height: 40px;
+    width: auto;
 }
 
 

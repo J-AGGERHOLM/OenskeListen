@@ -8,10 +8,11 @@
     <title>Wish Upon A Star!</title>
 </head>
 <body>
-<header>Velkommen til ønskelisten</header>
 <nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
-<main>
+<main class = "page-wrapper">
+    <header>Velkommen til ønskelisten</header>
+
     <div>
     <label for="userForm">Opret</label><br>
     <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
