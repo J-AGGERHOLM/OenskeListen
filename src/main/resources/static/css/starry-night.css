@@ -79,6 +79,15 @@ button:hover, a.button-link:hover {
     line-height: 1.5;
 }
 
+.wishlist-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
+}
+
 th {
 
 }

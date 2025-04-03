@@ -82,14 +82,14 @@ public class WishListController {
         return "redirect:/" + "wishlist/list/" + wish.getWishlistID();
     }
 
-    @PostMapping("/delete/{name}")
-    public String deleteWish(@PathVariable String name) {
-        Wish wish = wishListService.getByName(name);
+    @PostMapping("/delete/{id}/{wishlistID}")
+    public String deleteWish(@PathVariable int id, @PathVariable int wishlistID) {
+        Wish wish = wishListService.getWishById(id);
         if(wish == null) {
             throw new IllegalArgumentException("Wish does not exist");
         }
         wishListService.deleteWishById(wish.getId());
-        return "redirect:/wishlist";
+        return "redirect:/wishlist/list/" + wishlistID;
     }
 
 

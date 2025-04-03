@@ -89,7 +89,7 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public void deleteById(int id) {
-        String sql ="DELETE FROM wishes WHERE id = ?";
+        String sql ="DELETE FROM wishes WHERE wishID = ?";
         jdbcTemplate.update(sql, id);
 
     }

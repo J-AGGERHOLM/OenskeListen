@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/starry-night.css">
     <link rel="stylesheet" href="/css/general.css">
     <meta charset="UTF-8">
-    <title >Title</title>
+    <title th:text="${wishList.name}"></title>
 </head>
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
@@ -15,13 +15,21 @@
          <h1 th:text="${wishList.name}">PAGE TITLE</h1>
             <div class="grid-container">
                 <div th:each="wish : ${wishList.wishes}" class="wishlist-box">
+                    <img class="wishlist-image" th:src="${wish.imageLink}">
                     <h2 th:text="${wish.name}"></h2>
                     <h3 th:text="${wish.description}"></h3>
-                    <a th:href="${wish.productLink}"><button>Link To Wish</button></a>
-                    <form th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}" method="get">
-                        <button type="submit">Edit Wish</button>
-                    </form>
-                    <img th:src="${wish.imageLink}">
+                    <h4 th:text="'Pris: ' + ${wish.price} + ' kr'"></h4>
+                    <div class="grid-container">
+                        <a th:href="${wish.productLink}"><button>Link To Wish</button></a>
+                        <form th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}" method="get">
+                            <button type="submit">Edit Wish</button>
+                        </form>
+                        <form th:action="@{/wishlist/delete/{wishID}/{wishlistID}(wishID=${wish.id}, wishlistID=${wishList.id})}" method="post">
+                            <button type="submit">DELETE WISH</button>
+                        </form>
+                    </div>
+
+
                     
                 </div>
 
