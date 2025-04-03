@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" th:href="@{/css/general.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/starry-night.css">
+    <title>Wish Upon A Star!</title>
 </head>
 <body>
 <header>Velkommen til ønskelisten</header>
@@ -14,12 +14,25 @@
 <main>
     <div>
     <label for="userForm">Opret</label><br>
-    <a th:href="@{/user-add}" id="userForm">Opret</a>
+    <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
     </div>
 
     <div>
     <label for="userLogin">Login</label>
-    <a th:href="@{/session/user-login}" id="userLogin">Login</a>
+    <a class="button-link" th:href="@{/session/user-login}" id="userLogin">Login</a>
+    </div>
+
+    <div id="wishlists">
+        <h1>All Wishlists:</h1>
+        <div class="grid-container">
+            <div th:each="wishlist : ${wishListList}" class="wishlist-box">
+                <a th:href="'wishlist/list/' + ${wishlist.id}">
+                    <h2 th:text="${wishlist.name}"></h2>
+                    <h3 th:text="${wishlist.personID}"></h3>
+                </a>
+            </div>
+
+        </div>
     </div>
 </main>
 
