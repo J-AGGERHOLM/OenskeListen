@@ -15,18 +15,16 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
     private final UserService userService;
-    private final WishListService wishListService;
 
     public UserController(UserService userService, WishListService wishListService) {
         this.userService = userService;
-        this.wishListService = wishListService;
     }
 
     @GetMapping("")
     public String index(Model model) {
 
 
-        List<WishList> allWishLists = wishListService.getAllWishlists();
+        List<WishList> allWishLists = userService.getAllWishlists();
         model.addAttribute(allWishLists);
         //to start off with the user id will simply be one, we will add functionality
         //for multiple users later
