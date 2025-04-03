@@ -1,7 +1,7 @@
 /* Fortæller strukturen på siden. */
 body {
     display: grid;
-    /* indstillinger: header, nav, indhold, footer, altså 4 rows */
+    /* indstillinger: nav, indhold, footer, altså 3 rows */
     grid-template-rows: auto 1fr auto;
     grid-template-areas: /* giver variable navne for de forskellige elementer */
                 'nav nav'
