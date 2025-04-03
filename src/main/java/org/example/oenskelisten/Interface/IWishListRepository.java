@@ -1,7 +1,6 @@
 package org.example.oenskelisten.Interface;
 
 import org.example.oenskelisten.Model.Wish;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
