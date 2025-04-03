@@ -80,8 +80,6 @@ public class UserController {
         User savedUser = userService.checkEmail(newUser.getEmail());
 
         return "redirect:/"+savedUser.getUserID()+"/user";
-
-
     }
 
     @GetMapping("/user-page")
@@ -107,8 +105,9 @@ public class UserController {
     }
 
     @GetMapping("/create")
-    public String createWishList(Model model) {
+    public String createWishList(Model model, @RequestParam("userID") int userID) {
         WishList wishlist = new WishList();
+        model.addAttribute("userID", userID);
         model.addAttribute("wishlist", wishlist);
         return "create-wishlist";
     }
@@ -126,7 +125,5 @@ public class UserController {
         userService.deleteWishList(wishListID);
         return "redirect:/" + userID+ "/user";
     }
-
-
 
 }
