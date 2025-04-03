@@ -51,7 +51,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="wish : ${wishListItems}">
+    <tr th:each="wish : ${wishList}">
         <th></th>
         <td> <a th:href="@{wishlist/{name}(name=${wish.name})}" th:text="${wish.name}"></a></td>
         <td th:text="${wish.description}"></td>

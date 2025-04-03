@@ -18,6 +18,7 @@
             <th>Email</th>
             <th>Slet bruger</th>
             <th>Opdater bruger</th>
+            <th>Brugerside</th>
         </tr>
         </thead>
         <tbody>
@@ -30,7 +31,9 @@
                     <button type="submit">Slet</button>
                 </form>
             </td>
-            <td><a th:href="@{/{id}/user(id=${user.userID})}">Opdater</a></td>
+            <td><a th:href="@{/{id}/edit(id=${user.userID})}">Opdater</a></td>
+            <td><a th:href="@{/{id}/user(id=${user.userID})}">Bruger</a></td>
+
         </tr>
         </tbody>
     </table>

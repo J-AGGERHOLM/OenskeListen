@@ -2,6 +2,7 @@ package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
+import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,11 +28,11 @@ public class UserController {
     public String userMedID(@PathVariable("id") int id, Model model) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
 
-        model.addAttribute("user",
-                userService.getUser(id));
+        model.addAttribute("User", userService.getUser(id));
 
-        return "user-edit";
+        return "user-page";
     }
+
     // opdaterer en user
     @PostMapping("update")
     public String updateUser(@ModelAttribute("user") User newUser) {
@@ -67,12 +68,28 @@ public class UserController {
         }
 
         userService.addUser(newUser);
-        return "redirect:/user-page";
+
+        //makes sure we get the auto incremented id:
+        User savedUser = userService.checkEmail(newUser.getEmail());
+
+        return "redirect:/"+savedUser.getUserID()+"/user";
+
+
     }
 
     @GetMapping("/user-page")
     public String userPage() {
         return "user-page";
+    }
+
+    // henter layout for edit
+    @GetMapping("{id}/edit")
+    public String getHandleUser(@PathVariable("id") int id, Model model) {
+        if (id == 0) throw new IllegalArgumentException();
+
+        model.addAttribute("user", userService.getUser(id));
+
+        return "user-edit";
     }
 
     @PostMapping("/{id}/delete")
@@ -81,4 +98,14 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
+
+    @PostMapping("/wishList/{wishListID}/delete")
+    public String deleteWishList(@PathVariable int wishListID){
+        int userID=userService.getUserIDByWishListID(wishListID);
+        userService.deleteWishList(wishListID);
+        return "redirect:/" + userID+ "/user";
+    }
+
+
+
 }

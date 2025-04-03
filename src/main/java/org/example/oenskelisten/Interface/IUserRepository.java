@@ -6,4 +6,8 @@ import org.example.oenskelisten.Model.User;
 // Hvis vi nu har metoder, som ikke er fælles indsættes de her
 public interface IUserRepository extends IRepository<User> {
     User getByEmail(String email);
+
+    void deleteWishList(int wishListID);
+
+    int getUserIDByWishListID(int wishlistID);
 }

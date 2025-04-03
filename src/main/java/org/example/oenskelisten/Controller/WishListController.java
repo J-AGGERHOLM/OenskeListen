@@ -1,6 +1,8 @@
 package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
+import org.example.oenskelisten.Service.UserService;
 import org.example.oenskelisten.Service.WishListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,17 @@ public class WishListController {
         model.addAttribute("wishListItems", wishListItems);
         return "wishlist";
     }
+
+    @GetMapping("/{id}/wishList")
+    public String getWishListByUserID(@PathVariable int id, Model model ){
+        List<Wish> wishList = wishListService.getWishListByID(id);
+        List<Wish> wishListItems = wishListService.getAllWishListItems();
+        model.addAttribute("wishList", wishList);
+        model.addAttribute("wishListItems", wishListItems);
+        return "wishlist";
+    }
+
+
 
     @GetMapping("/{id}/wishListItem")
     public String getWishListItem(@PathVariable int id, Model model) {
