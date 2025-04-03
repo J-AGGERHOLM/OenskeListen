@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<link rel="stylesheet" href="/css/stylesheet.css">
+<link rel="stylesheet" href="/css/starry-night.css">
 <head>
 <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/general.css">
-    <link rel="stylesheet" href="/css/stylesheet.css">
+
 <title>Profile page</title>
  <nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
@@ -12,13 +12,14 @@
 <body>
 
 <h1 th:text="${User.name}"></h1>
+<div>
 <form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
 <button type="submit"> Edit Information</button>
 </form>
-<div class="imageBox"></div>
+<div></div>
 
-<ul class = "ListOfWishLists">
-    <li th:each="wishList : ${User.getWishListList()}">
+<ul class = "grid-container">
+    <li th:each="wishList : ${User.getWishListList()}" class="wishlist-box">
         <a th:href="@{/wishlist/list/{id}(id=${wishList.id})}">
             <span th:text="${wishList.getName()}"> WishList Name </span>
         </a>
@@ -26,8 +27,9 @@
             <button type="submit">Delete</button>
         </form>
     </li>
-</ul>
 
+</ul>
+</div>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 
