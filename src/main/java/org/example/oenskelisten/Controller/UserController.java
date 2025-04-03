@@ -2,7 +2,7 @@ package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
-import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,14 @@ public class UserController {
     }
 
     @GetMapping("")
-    public String index() {
+    public String index(Model model) {
+
+
+        List<WishList> allWishLists = userService.getAllWishlists();
+        model.addAttribute(allWishLists);
+        //to start off with the user id will simply be one, we will add functionality
+        //for multiple users later
+
         return "index";
     }
 

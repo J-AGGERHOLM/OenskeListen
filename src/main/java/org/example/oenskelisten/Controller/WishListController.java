@@ -2,7 +2,6 @@ package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Model.WishList;
-import org.example.oenskelisten.Service.UserService;
 import org.example.oenskelisten.Service.WishListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,7 @@ public class WishListController {
         this.wishListService = service;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String getAllWishListItems(Model model) {
         List<Wish> wishListItems = wishListService.getAllWishListItems();
         model.addAttribute("wishListItems", wishListItems);
@@ -38,30 +37,36 @@ public class WishListController {
 
 
 
+    @GetMapping("/list/{id}")
+    public String getWishList(@PathVariable("id") int id, Model model){
+        System.out.println("wishlist list id: " + id);
+        model.addAttribute("pageID", id);
+        WishList wishList = wishListService.getWishListModelByID(id);
+        model.addAttribute(wishList);
+        return "grid-wishlist";
+    }
+
     @GetMapping("/{id}/wishListItem")
     public String getWishListItem(@PathVariable int id, Model model) {
         model.addAttribute("wishListItem", wishListService.getWishById(id));
         return "wish-list-item";
     }
 
-    @GetMapping("/add")
-    public String addWish(Model model) {
+    @GetMapping("/add/{wishlistID}")
+    public String addWish(@PathVariable int wishlistID, Model model) {
+
         Wish wish = new Wish();
+        wish.setWishlistID(wishlistID);
         model.addAttribute("wish", wish);
         return "add-wish";
-
-
-
     }
 
     @PostMapping("/save")
     public String addWish(@ModelAttribute("wish") Wish wish) {
 
-        //add functionality for binding a wishlist to the
-        //wish later, for now set the wishlistID to be 1:
-        wish.setWishlistID(1);
+        String destination = "wishlist/list/" + wish.getWishlistID();
         wishListService.addWish(wish);
-        return "redirect:/wishlist";
+        return "redirect:/" + destination;
     }
 
     @GetMapping("/{id}/edit")
