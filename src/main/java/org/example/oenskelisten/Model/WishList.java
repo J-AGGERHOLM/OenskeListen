@@ -13,14 +13,6 @@ public class        WishList {
     private int personID;
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public WishList() {
 
     }

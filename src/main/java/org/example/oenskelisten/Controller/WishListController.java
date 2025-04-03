@@ -41,7 +41,7 @@ public class WishListController {
     public String getWishList(@PathVariable("id") int id, Model model){
         System.out.println("wishlist list id: " + id);
         model.addAttribute("pageID", id);
-        WishList wishList = wishListService.getWishListByID(id);
+        WishList wishList = wishListService.getWishListModelByID(id);
         model.addAttribute(wishList);
         return "grid-wishlist";
     }
