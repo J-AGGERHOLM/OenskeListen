@@ -3,6 +3,7 @@ package org.example.oenskelisten.Service;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -78,6 +79,10 @@ public class UserService {
         return userRepository.getByEmail(email);
 
 
+    }
+
+    public void createWishList(WishList wishList) {
+        userRepository.createWishList(wishList);
     }
 
 

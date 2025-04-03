@@ -3,6 +3,7 @@ package org.example.oenskelisten.Controller;
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,6 +106,21 @@ public class UserController {
         userService.deleteWishList(wishListID);
         return "redirect:/" + userID+ "/user";
     }
+
+    @GetMapping("/create")
+    public String createWishList(Model model) {
+        WishList wishlist = new WishList();
+        model.addAttribute("wishlist", wishlist);
+        return "create-wishList";
+    }
+
+    @PostMapping("/save")
+    public String saveWishList(@ModelAttribute("attraction") WishList wishList) {
+        userService.createWishList(wishList);
+        return "redirect:user-page";
+    }
+
+
 
 
 

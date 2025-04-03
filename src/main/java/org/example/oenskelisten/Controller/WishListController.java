@@ -49,9 +49,6 @@ public class WishListController {
         Wish wish = new Wish();
         model.addAttribute("wish", wish);
         return "add-wish";
-
-
-
     }
 
     @PostMapping("/save")
