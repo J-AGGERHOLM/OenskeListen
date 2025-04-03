@@ -2,7 +2,6 @@ package org.example.oenskelisten.Service;
 
 import org.example.oenskelisten.Interface.IWishListRepository;
 import org.example.oenskelisten.Model.Wish;
-import org.example.oenskelisten.Repository.WishListRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 public class WishListService {
     private final IWishListRepository wishListRepository;
 
-    public WishListService(WishListRepository repository) {
+    public WishListService(IWishListRepository repository) {
         this.wishListRepository = repository;
     }
 

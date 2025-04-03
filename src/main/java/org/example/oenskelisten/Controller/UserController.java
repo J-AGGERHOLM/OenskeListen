@@ -2,7 +2,6 @@ package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
-import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
