@@ -2,8 +2,6 @@ package org.example.oenskelisten.Service;
 
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
-import org.example.oenskelisten.Model.Wish;
-import org.example.oenskelisten.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +11,7 @@ public class UserService {
 
     private final IUserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
