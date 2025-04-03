@@ -106,6 +106,20 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/create")
+    public String createWishList(Model model) {
+        WishList wishlist = new WishList();
+        model.addAttribute("wishlist", wishlist);
+        return "create-wishlist";
+    }
+
+    @PostMapping("/save")
+    public String saveWishList(@ModelAttribute("wishlist") WishList wishList) {
+        userService.createWishList(wishList);
+        return "redirect:user-page";
+    }
+
+
     @PostMapping("/wishList/{wishListID}/delete")
     public String deleteWishList(@PathVariable int wishListID){
         int userID=userService.getUserIDByWishListID(wishListID);

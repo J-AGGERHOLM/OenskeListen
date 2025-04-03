@@ -95,4 +95,8 @@ public class UserService {
     public int getUserIDByWishListID(int wishListID){
         return userRepository.getUserIDByWishListID(wishListID);
     }
+
+    public void createWishList(WishList wishList) {
+        userRepository.createWishList(wishList);
+    }
 }
