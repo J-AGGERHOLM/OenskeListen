@@ -18,9 +18,8 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public List<Wish> getAll() {
-//        String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
-//        return jdbcTemplate.query(sql, new WishRowMapper());
-        return null;
+        String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
+        return jdbcTemplate.query(sql, new WishRowMapper());
     }
 
     @Override
@@ -63,14 +62,12 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public Wish getByName(String name) {
-//        String sql = "SELECT * FROM wish WHERE name = ?";
-//        try {
-//            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
-//        } catch (Exception e){
-//            return null;
-//        }
-
-        return null;
+        String sql = "SELECT * FROM wish WHERE name = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -82,8 +79,8 @@ public class WishListRepository implements IWishListRepository {
 
     @Override
     public void deleteById(int id) {
-//        String sql ="DELETE FROM wishes WHERE id = ?";
-//        jdbcTemplate.update(sql, id);
+        String sql ="DELETE FROM wishes WHERE id = ?";
+        jdbcTemplate.update(sql, id);
 
     }
 
