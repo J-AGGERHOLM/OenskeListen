@@ -36,7 +36,6 @@ public class WishListController {
     }
 
 
-
     @GetMapping("/list/{id}")
     public String getWishList(@PathVariable("id") int id, Model model){
         System.out.println("wishlist list id: " + id);

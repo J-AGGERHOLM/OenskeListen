@@ -19,7 +19,7 @@
 
 <ul class = "ListOfWishLists">
     <li th:each="wishList : ${User.getWishListList()}">
-        <a th:href="@{/wishlist/{id}/wishList(id=${wishList.id})}">
+        <a th:href="@{/wishlist/list/{id}(id=${wishList.id})}">
             <span th:text="${wishList.getName()}"> WishList Name </span>
         </a>
         <form th:action="@{/wishList/{wishListID}/delete(wishListID = ${wishList.getId()})}" method="post">
