@@ -14,6 +14,9 @@
         <h1>Add a wish</h1>
          <form role="form" action="#" method="post" th:action="@{/wishlist/save}"
             th:object="${wish}">
+
+             <input hidden type="number" th:field="*{wishlistID}"  readonly />
+
             <label>Wish Name</label>
             <input type="text" th:field="*{name}"/>
 

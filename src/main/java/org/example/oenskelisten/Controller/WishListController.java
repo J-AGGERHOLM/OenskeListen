@@ -43,9 +43,11 @@ public class WishListController {
         return "wish-list-item";
     }
 
-    @GetMapping("/add")
-    public String addWish(Model model) {
+    @GetMapping("/add/{wishlistID}")
+    public String addWish(@PathVariable int wishlistID, Model model) {
+
         Wish wish = new Wish();
+        wish.setWishlistID(wishlistID);
         model.addAttribute("wish", wish);
         return "add-wish";
     }
@@ -53,11 +55,9 @@ public class WishListController {
     @PostMapping("/save")
     public String addWish(@ModelAttribute("wish") Wish wish) {
 
-        //add functionality for binding a wishlist to the
-        //wish later, for now set the wishlistID to be 1:
-        wish.setWishlistID(1);
+        String destination = "wishlist/list/" + wish.getWishlistID();
         wishListService.addWish(wish);
-        return "redirect:/wishlist";
+        return "redirect:/" + destination;
     }
 
     @GetMapping("/{id}/edit")

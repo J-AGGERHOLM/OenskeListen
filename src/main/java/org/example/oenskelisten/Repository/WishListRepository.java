@@ -8,6 +8,7 @@ import org.example.oenskelisten.Model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
+    @Transactional
     public void add(Wish wish) {
         String sql = "INSERT INTO wishes (name, description, productlink, imagelink, price, wishlistID, reserved, reserveeID ) VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,
@@ -55,6 +57,7 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
+    @Transactional
     public boolean edit(Wish wish) {
         String sql = "UPDATE wishes SET name = ?, description = ?, productlink = ?, imagelink = ?, price = ? " +
                 "WHERE wishID = ?";
@@ -104,6 +107,7 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
+
     public WishList getWishListByID(int id){
         String sql = "SELECT \n" +
                 "    wishlist.name AS wishlist_name, \n" +
