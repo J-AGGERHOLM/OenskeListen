@@ -1,6 +1,7 @@
 package org.example.oenskelisten.Service;
 
 import org.example.oenskelisten.Interface.IUserRepository;
+import org.example.oenskelisten.Interface.IWishListRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.WishList;
 import org.springframework.stereotype.Service;
@@ -11,12 +12,18 @@ import java.util.List;
 public class UserService {
 
     private final IUserRepository userRepository;
-
-    public UserService(IUserRepository userRepository) {
+    private final IWishListRepository wishListRepository;
+    public UserService(IUserRepository userRepository, IWishListRepository wishListRepository) {
         this.userRepository = userRepository;
+        this.wishListRepository = wishListRepository;
     }
 
     // get specific user
+
+    public List<WishList> getAllWishlists(){
+       return wishListRepository.getAllWishLists();
+    }
+
     public User getUser(int userId) {
         // kontrollere om der er en user.
         var user = userRepository.getById(userId);

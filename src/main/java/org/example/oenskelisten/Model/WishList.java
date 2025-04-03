@@ -5,9 +5,13 @@ import java.util.List;
 
 public class        WishList {
     private int id;
+
+
+
     private String name;
     private List<Wish> wishes;
     private int personID;
+
 
     public WishList() {
 
