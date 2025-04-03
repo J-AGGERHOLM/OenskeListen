@@ -26,16 +26,6 @@ nav {
     z-index: 1000; /*nav bar ligger over resterende elementer når scroll*/
 }
 
-.navbar {
-    background: rgba(0, 0, 30, 0.7);
-    padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    text-align: center;
-}
-
 nav a {
     color: white;
     text-decoration: none;
@@ -44,7 +34,7 @@ nav a {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
-.navbar a:hover {
+nav a:hover {
     color: #ffd700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 1);
 }
