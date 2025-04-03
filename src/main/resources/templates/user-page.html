@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h1 th:text="${User.name}"></h1>
+<h1 th:text="${User.name}" ></h1>
 <div class = "button-container">
     <form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
         <button type="submit"> Edit Information</button>
@@ -24,10 +24,11 @@
 <ul class = "grid-container">
     <li th:each="wishList : ${User.getWishListList()}" class="wishlist-box">
         <a th:href="@{/wishlist/list/{id}(id=${wishList.id})}">
-            <span th:text="${wishList.getName()}"> WishList Name </span>
+            <span th:text="${wishList.getName()}" class ="wishlistname-text"> WishList Name </span>
         </a>
+        <br>
         <form th:action="@{/wishList/{wishListID}/delete(wishListID = ${wishList.getId()})}" method="post">
-            <button type="submit">Delete</button>
+            <button type="submit" class="wishlistcentered-button">Delete</button>
         </form>
     </li>
 
