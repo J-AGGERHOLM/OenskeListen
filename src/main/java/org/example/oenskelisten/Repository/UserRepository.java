@@ -106,9 +106,8 @@ public class UserRepository implements IUserRepository {
     @Transactional
     @Override
     public void createWishList(WishList wishList) {
-        String sql = "INSERT INTO wishList(name) VALUES (?)";
-        jdbcTemplate.update(sql, wishList.getName());
-
+        String sql = "INSERT INTO wishList(name, userID) VALUES (?,?)";
+        jdbcTemplate.update(sql, wishList.getName(), wishList.getUserID());
     }
 
     @Transactional
