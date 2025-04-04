@@ -60,7 +60,6 @@ public class UserController {
 
     @GetMapping("/user-add")
     public String addUser(Model model) {
-        User user = new User();
         model.addAttribute("newUser", new User());
         return "user-form";
     }
@@ -104,7 +103,6 @@ public class UserController {
 
     @GetMapping("/create/{userID}")
     public String createWishList(Model model, @PathVariable int userID) {
-        System.out.println("Creating wish list for user ID: " + userID);
         WishList wishlist = new WishList();
         model.addAttribute("userID", userID);
         model.addAttribute("wishlist", wishlist);
