@@ -94,11 +94,4 @@ public class WishListController {
         wishListService.deleteWishById(wish.getId());
         return "redirect:/wishlist/list/" + formWish.getWishlistID();
     }
-
-
-
-
-
-
-
 }

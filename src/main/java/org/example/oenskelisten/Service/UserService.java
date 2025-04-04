@@ -10,18 +10,12 @@ import java.util.List;
 
 @Service
 public class UserService {
-
     private final IUserRepository userRepository;
     private final IWishListRepository wishListRepository;
+
     public UserService(IUserRepository userRepository, IWishListRepository wishListRepository) {
         this.userRepository = userRepository;
         this.wishListRepository = wishListRepository;
-    }
-
-    // get specific user
-
-    public List<WishList> getAllWishlists(){
-       return wishListRepository.getAllWishLists();
     }
 
     public User getUser(int userId) {
@@ -79,24 +73,24 @@ public class UserService {
                 : null;
     }
 
-
     public User checkEmail(String email){
         return userRepository.getByEmail(email);
-
-
     }
-
 
     public void deleteWishList(int wishListID) {
-         userRepository.deleteWishList(wishListID);
+         wishListRepository.deleteById(wishListID);
     }
-
 
     public int getUserIDByWishListID(int wishListID){
         return userRepository.getUserIDByWishListID(wishListID);
     }
 
     public void createWishList(WishList wishList) {
-        userRepository.createWishList(wishList);
+        wishListRepository.add(wishList);
+    }
+
+    // get specific user
+    public List<WishList> getAllWishlists(){
+        return wishListRepository.getAll();
     }
 }
