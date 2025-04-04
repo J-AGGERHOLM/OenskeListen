@@ -78,17 +78,21 @@ public class WishListController {
     @PostMapping("/update")
     public String editWish(@ModelAttribute("wish") Wish wish) {
         wishListService.updateWish(wish);
-        return "redirect:/wishlist";
+
+        return "redirect:/" + "wishlist/list/" + wish.getWishlistID();
     }
 
-    @PostMapping("/delete/{name}")
-    public String deleteWish(@PathVariable String name) {
-        Wish wish = wishListService.getByName(name);
+    //the only things sent to deletion correctly are wish id and wishlist id. if you need more
+    //you have to change the grid-wishlist html code
+    @PostMapping("/delete")
+    public String deleteWish(@ModelAttribute("wish") Wish formWish) {
+        System.out.println(formWish.getId());
+        Wish wish = wishListService.getWishById(formWish.getId());
         if(wish == null) {
             throw new IllegalArgumentException("Wish does not exist");
         }
         wishListService.deleteWishById(wish.getId());
-        return "redirect:/wishlist";
+        return "redirect:/wishlist/list/" + formWish.getWishlistID();
     }
 
 

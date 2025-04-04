@@ -11,7 +11,6 @@ body {
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-
 }
 .page-wrapper {
     display: flex;
@@ -132,12 +131,16 @@ button:hover, a.button-link:hover {
     overflow: hidden;
 }
 
-.wishlist-box img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 10px;
+.wishlist-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
 }
+
+th {
 
 .ListOfWishLists{
     text-align: center;
@@ -200,5 +203,6 @@ button:hover, a.button-link:hover {
 
 .footer-bar .github-icon i.fab.fa-github {
     font-size: 28px;
+}
 }
 
