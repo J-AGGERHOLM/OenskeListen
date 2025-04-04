@@ -19,7 +19,7 @@ public class WishListRowMapper implements RowMapper<WishList> {
             return wishList;
         }
 
-        //now that weve checked that the wishlist isnt empty:
+        //now that we've checked that the wishlist isn't empty:
             wishes.add(mapWish(rs));
             while(rs.next()){
                 wishes.add(mapWish(rs));

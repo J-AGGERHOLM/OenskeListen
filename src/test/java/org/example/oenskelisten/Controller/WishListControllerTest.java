@@ -63,7 +63,7 @@ class WishListControllerTest {
                         .param("reserved", String.valueOf(true))
                         .param("reerveeID", String.valueOf(mockId)))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/wishlist"));
+                .andExpect(redirectedUrl("/wishlist/list/" + -1));
 
         // any(Wish.class) betyder:
         // den bare skal tage imod hvilken som helst Wish object.
