@@ -1,3 +1,10 @@
+/* Global reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-image: url('https://cdn.pixabay.com/photo/2017/10/20/01/06/north-star-2869817_1280.jpg');
     background-size: cover;
@@ -5,6 +12,13 @@ body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
 }
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    padding-top: 80px; /* height of your navbar */
+}
+
 
 h1, h2, h3 {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
@@ -30,13 +44,28 @@ button:hover, a.button-link:hover {
 }
 
 .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: rgba(0, 0, 30, 0.7);
-    padding: 15px 0;
-    position: fixed;
+    padding: 15px 30px;
     width: 100%;
     top: 0;
     left: 0;
-    text-align: center;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.navbar-left,
+.navbar-right {
+    flex: 1;
+}
+
+.navbar-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
 .navbar a {
@@ -52,6 +81,25 @@ button:hover, a.button-link:hover {
     text-shadow: 0 0 10px rgba(255, 215, 0, 1);
 }
 
+.logo-button {
+    display: flex;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease-in-out;
+}
+
+.logo-button:hover {
+    background: linear-gradient(90deg, #2a5298, #1e3c72);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 1);
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
 @keyframes twinkle {
     0% { opacity: 0.6; }
     50% { opacity: 1; }
@@ -77,6 +125,10 @@ button:hover, a.button-link:hover {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     font-size: 16px;
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
 }
 
 .wishlist-image {
@@ -90,18 +142,66 @@ button:hover, a.button-link:hover {
 
 th {
 
+.ListOfWishLists{
+    text-align: center;
+    font-palette: light;
+    max-width: 50vw;
+    align-items: center;
+    justify-items: center;
+}
+.ListOfWishLists.a{
+    font-palette: light;
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     background: rgba(0, 0, 30, 0.7);
-    color: white;
-    padding: 15px;
-    font-size: 18px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+
+.footer-bar {
+    background: rgba(0, 0, 30, 0.7);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 18px;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.footer-bar .github-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer-bar .github-icon a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-bar .github-icon a:hover {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 1);
+}
+
+.footer-bar .github-icon i.fab.fa-github {
+    font-size: 28px;
+}
+
