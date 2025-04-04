@@ -13,14 +13,23 @@ public class WishListRowMapper implements RowMapper<WishList> {
     public WishList mapRow(ResultSet rs, int rownum) throws SQLException {
         WishList wishList = new WishList(rs.getInt("wishlistID"), rs.getString("wishlist_name"),rs.getInt("userID"));
         List<Wish> wishes = new ArrayList<Wish>();
-        wishes.add(mapWish(rs));
-        while(rs.next()){
-            wishes.add(mapWish(rs));
+        //assuming that if wishes are emtpy we only have one row and the wish columns are null.
+        //god help us if someone puts bad data in this somehow
+        if(rs.getString("wishID") == null) {
+            return wishList;
         }
-        wishList.setWishes(wishes);
+
+        //now that weve checked that the wishlist isnt empty:
+            wishes.add(mapWish(rs));
+            while(rs.next()){
+                wishes.add(mapWish(rs));
+            }
+            wishList.setWishes(wishes);
 
 
-        return wishList;
+            return wishList;
+
+
     }
 
     private Wish mapWish(ResultSet rs) throws SQLException{

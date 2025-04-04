@@ -120,7 +120,7 @@ public class WishListRepository implements IWishListRepository {
                 "    wishlist.*, \n" +
                 "    wishes.*\n" +
                 "FROM wishlist \n" +
-                "RIGHT JOIN wishes \n" +
+                "LEFT JOIN wishes \n" +
                 "ON wishlist.wishlistID = wishes.wishlistID \n" +
                 "WHERE wishlist.wishlistID = ?;";
         return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);
