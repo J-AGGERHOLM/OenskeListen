@@ -30,7 +30,7 @@
             <div th:each="wishlist : ${wishListList}" class="wishlist-box">
                 <a th:href="'wishlist/list/' + ${wishlist.id}">
                     <h2 th:text="${wishlist.name}"></h2>
-                    <h3 th:text="${wishlist.personID}"></h3>
+                    <h3 th:text="${wishlist.userID}"></h3>
                 </a>
             </div>
 

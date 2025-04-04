@@ -1,4 +1,3 @@
-
 /* Global reset */
 * {
     box-sizing: border-box;
@@ -12,6 +11,7 @@ body{
     background-size: cover;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
 
 h1, h2, h3 {
@@ -37,7 +37,6 @@ button:hover, a.button-link:hover {
     box-shadow: 0 0 25px rgba(255, 255, 255, 1);
 }
 
-
 .navbar {
     background: rgba(0, 0, 30, 0.7);
     display: flex;
@@ -47,7 +46,6 @@ button:hover, a.button-link:hover {
     padding: 10px;
 
 }
-
 
 .navbar-left,
 .navbar-right {
@@ -60,7 +58,6 @@ button:hover, a.button-link:hover {
     justify-content: center;
     gap: 1.5rem;
 }
-
 
 .navbar a {
     color: white;
@@ -138,11 +135,13 @@ button:hover, a.button-link:hover {
     overflow: hidden;
 }
 
-.wishlist-box img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 10px;
+.wishlist-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
 }
 
 .ListOfWishLists{

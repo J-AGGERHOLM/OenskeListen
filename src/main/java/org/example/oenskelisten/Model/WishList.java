@@ -5,23 +5,20 @@ import java.util.List;
 
 public class WishList {
     private int id;
-
-
-
     private String name;
     private List<Wish> wishes;
-    private int personID;
+    private int userID;
 
 
     public WishList() {
 
     }
 
-    public WishList(int id,String name, int personID) {
+    public WishList(int id,String name, int userID) {
         this.id = id;
         this.name = name;
         this.wishes = new ArrayList<>();
-        this.personID = personID;
+        this.userID = userID;
     }
 
     public String getName() {
@@ -48,11 +45,11 @@ public class WishList {
         this.wishes = wishes;
     }
 
-    public int getPersonID() {
-        return personID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }
