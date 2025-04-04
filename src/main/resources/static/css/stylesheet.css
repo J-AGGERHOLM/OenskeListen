@@ -34,6 +34,11 @@ body {
     flex: 1;
 }
 
+
+button{
+    padding: 10px;
+}
+
 .button-container {
     display: flex;
     gap: 10px; /* Space between buttons */
@@ -57,4 +62,6 @@ body {
     text-align: center; /* Ensure the text is centered inside the button */
 }
 
+.firstHalf{
+}
 

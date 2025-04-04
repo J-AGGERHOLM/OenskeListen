@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 
 
@@ -22,6 +23,11 @@
 
 
          <h1 th:text="${wishList.name}">PAGE TITLE</h1>
+            <div class="buttons">
+            <form th:action="@{/wishlist/add/{wishlistID}(wishlistID=${wishList.id})}" method="get">
+                <button type="submit">Add Wish</button>
+            </form>
+        </div>
             <h2 th:if="${wishList.wishes.isEmpty()}">This wishlist is empty! try adding some wishes!</h2>
             <div th:unless="${wishList.wishes.isEmpty()}" class="grid-container">
                 <div th:each="wish : ${wishList.wishes}" class="wishlist-box">
@@ -42,7 +48,7 @@
                             <button type="submit">Edit Wish</button>
                         </form>
 
-                        <form role="form" action="#" th:action="@{/wishlist/delete}" method="post">
+                        <form role="form" action="#" th:action="@{/wishlist/delete}" method="post" >
                             <input type="number" th:name="id" th:value="${wish.id}" readonly hidden>
                             <input type="number" th:name="wishlistID" th:value="${wish.wishlistID}" hidden readonly>
                             <button type="submit" class="deleteButton">DELETE WISH</button>
@@ -57,11 +63,7 @@
                 </div>
 
             </div>
-                <div class="buttons">
-                    <form th:action="@{/wishlist/add/{wishlistID}(wishlistID=${wishList.id})}" method="get">
-                        <button type="submit">Add Wish</button>
-                    </form>
-        </div>
+
 
 
         </div>
