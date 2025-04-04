@@ -1,0 +1,26 @@
+.button-container{
+    padding-bottom: 30px;
+    padding-top: 15px;
+}
+
+.centeredContent{
+min-height: 81vh
+}
+
+.userTitle{
+padding-top: 20px}
+
+.wishButton-container{
+    background-color: rgba(5, 14, 28, 0.8);
+    justify-items: center;
+    align-content: center;
+    padding: 50px;
+}
+.wishlist-box{
+    justify-items: center;
+    align-content: center;
+}
+
+.button{
+    padding-top: 10px;
+}

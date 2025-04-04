@@ -44,11 +44,13 @@ public class WishListRepository implements IWishListRepository {
     @Transactional
     public void add(Wish wish) {
         String sql = "INSERT INTO wishes (name, description, productlink, imagelink, price, wishlistID, reserved, reserveeID ) VALUES (?,?,?,?,?,?,?,?)";
+        String imageLink= imagechecker(wish);
+
         jdbcTemplate.update(sql,
                 wish.getName(),
                 wish.getDescription(),
                 wish.getProductLink(),
-                wish.getImageLink(),
+                imageLink,
                 wish.getPrice(),
                 wish.getWishlistID(),
                 wish.isReserved(),
@@ -126,4 +128,17 @@ public class WishListRepository implements IWishListRepository {
         return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);
 
     }
+
+public String imagechecker(Wish wish){
+    String imageLink;
+
+    if(wish.getImageLink().isBlank() || wish.getImageLink().isEmpty() || wish.getImageLink().equalsIgnoreCase("https://example.com/ereader.jpg")){
+        imageLink = "https://images.template.net/75040/Free-Disney-Star-Vector-1.jpg";
+    }else{
+        imageLink = wish.getImageLink();
+    }
+    return imageLink;
 }
+
+}
+
