@@ -30,7 +30,7 @@
                     <h3 th:text="${wish.description}"></h3>
                     <h4 th:text="'Pris: ' + ${wish.price} + ' kr'"></h4>
 
-                    <div class="grid-container">
+                    <div class="wishButton-container">
 
                         <a th:href="@{${wish.productLink}}"><button>Link To Wish</button></a>
 
@@ -45,7 +45,7 @@
                         <form role="form" action="#" th:action="@{/wishlist/delete}" method="post">
                             <input type="number" th:name="id" th:value="${wish.id}" readonly hidden>
                             <input type="number" th:name="wishlistID" th:value="${wish.wishlistID}" hidden readonly>
-                            <button type="submit">DELETE WISH</button>
+                            <button type="submit" class="deleteButton">DELETE WISH</button>
                         </form>
 
                     </div>
