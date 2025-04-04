@@ -1,4 +1,5 @@
-<nav th:fragment="navbar" class="navbar">
+<nav th:fragment="navbar" >
+  <div class = "navbar">
   <div class="navbar-left">
     <a th:href="@{/}" class="logo-button">
       <img th:src="@{/images/logo.png}" alt="Logo" class="logo-img">
@@ -12,6 +13,7 @@
   </div>
 
   <div class="navbar-right">
-    <!-- empty for now, or maybe future profile/settings button -->
+    <!-- Optional future buttons -->
+  </div>
   </div>
 </nav>

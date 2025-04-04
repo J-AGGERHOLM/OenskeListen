@@ -7,81 +7,58 @@
 
 /* Fortæller strukturen på siden. */
 body {
+    /*
+    background-image: url('https://cdn.pixabay.com/photo/2017/10/20/01/06/north-star-2869817_1280.jpg');
+    background-size: cover;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+
+     */
     display: grid;
-    /* indstillinger: header, nav, indhold, footer, altså 4 rows */
+    grid-template-areas:
+        "nav"
+        "main"
+        "footer";
     grid-template-rows: auto 1fr auto;
+    /*
     height: 100%;
     margin: 0;
     padding: 0;
-    grid-template-areas: /* giver variable navne for de forskellige elementer */
-                'nav nav'
-                'main main'
-                'footer footer';
+
+     */
+    height: 100vh;
 }
 
 nav {
-    max-height: 100px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(107, 194, 255, 0.65); /* sidste tal er gennemsigtighed*/
-    grid-area: nav; /* Bliver nr 2 i strukturen. Pga. variabel navn */
-    padding: 1em 1em 1em;
-    align-items: center;
-    top: 0;
-    z-index: 1000; /*nav bar ligger over resterende elementer når scroll*/
+    grid-area: nav;
+
 }
+
+
 
 main {
     grid-area: main; /* Bliver nr 3 i strukturen. Pga. variabel navn */
     justify-self: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 1em;
-    flex: 1;
-    padding: 2rem;
-}
-.page-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    padding-top: 80px; /* height of your navbar */
+    gap: 1em; /* Giver mellemrum mellem rækkerne */
+    margin-top: 1em;
 }
+
+.centeredContent{
+    align-content: center;
+    justify-items: center;
+
+}
+
+
 
 footer {
-    grid-area: footer; /* Bliver nr 4 i strukturen. Pga. variabel navn */
-    /* Giver luft imellem section og footer */
-    margin-top: 1em;
-    background-color: rgba(107, 194, 255, 0.65);
-    color: white;
-    text-align: center;
-    align-content: center;
-    padding: 10px;
-    opacity: 75%;
-    height: 10vh;
+    grid-area: footer; /* Bliver nr 3 i strukturen. Pga. variabel navn */
+
 }
 
-/* GitHub icon and text container */
-.github-icon {
-    display: flex;
-    align-items: center;  /* Vertically align items */
-    justify-content: center;  /* Center items horizontally */
-    gap: 10px;  /* Space between the icon and the text */
-}
 
-/* Styling for the GitHub icon */
-.github-icon i {
-    font-size: 40px;  /* Adjust the size of the icon */
-}
-
-/* Styling for the text */
-.github-icon span {
-    font-size: 18px;  /* Adjust the font size for the text */
-    color: white;  /* Make the text white (or whatever color fits your design) */
-}
-.logo-img {
-    height: 40px;
-    width: auto;
-}
 
 
 

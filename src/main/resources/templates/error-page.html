@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>Error</title>
-  <link rel="stylesheet" th:href="@{/css/error.css}">
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/general.css}">
 </head>
 <body>
 
 <main>
-  <h1>Der skete en fejl</h1><br>
-  <label for="error">Fejl:</label>
-  <p id="error" th:text="${error}"></p>
-  <a th:href="@{/}">Tilbage</a>
+    <div class="error-page">
+        <h1>Der skete en fejl</h1><br>
+        <label for="error">Fejl:</label>
+        <p id="error" th:text="${error}"></p>
+        <a class="button-link" th:href="@{/}">Hjem</a>
+    </div>
 </main>
 
 </body>

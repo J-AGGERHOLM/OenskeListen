@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+
+
+    <link rel="general" href="/css/general.css">
     <link rel="stylesheet" href="/css/starry-night.css">
+
+
 
     <meta charset="UTF-8">
     <title th:text="${wishList.name}"></title>
 </head>
+
+
 <body>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
     <main >
-        <div id="wishlists">
+        <div class="centeredContent">
+        <div class="wishlists">
 
 
          <h1 th:text="${wishList.name}">PAGE TITLE</h1>
@@ -48,14 +57,16 @@
                 </div>
 
             </div>
+                <div class="buttons">
+                    <form th:action="@{/wishlist/add/{wishlistID}(wishlistID=${wishList.id})}" method="get">
+                        <button type="submit">Add Wish</button>
+                    </form>
         </div>
-        <div id="buttons">
-            <form th:action="@{/wishlist/add/{wishlistID}(wishlistID=${wishList.id})}" method="get">
-                <button type="submit">Add Wish</button>
-            </form>
+
 
         </div>
+        </div>
     </main>
-    <footer th:replace="fragments/footer :: footer"></footer>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

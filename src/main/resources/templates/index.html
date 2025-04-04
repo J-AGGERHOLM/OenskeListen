@@ -4,23 +4,24 @@
 >
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/general.css">
     <link rel="stylesheet" href="/css/starry-night.css">
+
+
     <title>Wish Upon A Star!</title>
 </head>
-<body>
-<nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
-<main class = "page-wrapper">
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main >
+    <div class="centeredContent">
     <header>Velkommen til ønskelisten</header>
 
-    <div>
-    <label for="userForm">Opret</label><br>
-    <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
-    </div>
-
-    <div>
-    <label for="userLogin">Login</label>
-    <a class="button-link" th:href="@{/session/user-login}" id="userLogin">Login</a>
+    <div class="buttons">
+        <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
+        <a class="button-link" th:href="@{/session/user-login}" id="userLogin">Login</a>
     </div>
 
     <div id="wishlists">
@@ -35,8 +36,9 @@
 
         </div>
     </div>
+    </div>
 </main>
 
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
