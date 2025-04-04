@@ -30,16 +30,11 @@ body {
 }
 
 nav {
-    max-height: 100px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(107, 194, 255, 0.65); /* sidste tal er gennemsigtighed*/
-    grid-area: nav; /* Bliver nr 2 i strukturen. Pga. variabel navn */
-    padding: 1em 1em 1em;
-    align-items: center;
-    top: 0;
-    z-index: 1000; /*nav bar ligger over resterende elementer når scroll*/
+    grid-area: nav;
+
 }
+
+
 
 main {
     grid-area: main; /* Bliver nr 3 i strukturen. Pga. variabel navn */
@@ -50,49 +45,20 @@ main {
     margin-top: 1em;
 }
 
-.page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding-top: 80px; /* height of your navbar */
+.centeredContent{
+    align-content: center;
+    justify-items: center;
+
 }
+
 
 
 footer {
     grid-area: footer; /* Bliver nr 3 i strukturen. Pga. variabel navn */
-    /* Giver luft imellem section og footer */
-    margin-top: 1em;
-    background-color: rgba(107, 194, 255, 0.65);
-    color: white;
-    text-align: center;
-    align-content: center;
-    padding: 10px;
-    opacity: 75%;
-    height: 10vh;
+
 }
 
-/* GitHub icon and text container */
-.github-icon {
-    display: flex;
-    align-items: center;  /* Vertically align items */
-    justify-content: center;  /* Center items horizontally */
-    gap: 10px;  /* Space between the icon and the text */
-}
 
-/* Styling for the GitHub icon */
-.github-icon i {
-    font-size: 40px;  /* Adjust the size of the icon */
-}
-
-/* Styling for the text */
-.github-icon span {
-    font-size: 18px;  /* Adjust the font size for the text */
-    color: white;  /* Make the text white (or whatever color fits your design) */
-}
-.logo-img {
-    height: 40px;
-    width: auto;
-}
 
 
 
