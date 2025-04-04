@@ -34,4 +34,27 @@ body {
     flex: 1;
 }
 
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 20px; /* Space below the buttons */
+    justify-content: center;
+}
+
+.wishlistname-text {
+    color: #FFFFFF; /* Darker text color */
+    font-weight: bold; /* Makes the text bold */
+    text-align: center; /* Centers the text */
+    display: block; /* Ensures the span behaves like a block element for centering */
+    margin: 0 auto; /* Optional: adds margin to center it within its container */
+}
+
+.wishlistcentered-button {
+    font-size: 14px; /* Make the text smaller */
+    padding: 5px 10px; /* Reduce the padding to make the button smaller */
+    margin: 0 auto; /* Center the button horizontally */
+    display: block; /* Make the button a block element to center it */
+    text-align: center; /* Ensure the text is centered inside the button */
+}
+
 

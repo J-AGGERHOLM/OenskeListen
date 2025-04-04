@@ -80,8 +80,6 @@ public class UserController {
         User savedUser = userService.checkEmail(newUser.getEmail());
 
         return "redirect:/"+savedUser.getUserID()+"/user";
-
-
     }
 
     @GetMapping("/user-page")
@@ -106,9 +104,11 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/create")
-    public String createWishList(Model model) {
+    @GetMapping("/create/{userID}")
+    public String createWishList(Model model, @PathVariable int userID) {
+        System.out.println("Creating wish list for user ID: " + userID);
         WishList wishlist = new WishList();
+        model.addAttribute("userID", userID);
         model.addAttribute("wishlist", wishlist);
         return "create-wishlist";
     }
@@ -116,7 +116,8 @@ public class UserController {
     @PostMapping("/save")
     public String saveWishList(@ModelAttribute("wishlist") WishList wishList) {
         userService.createWishList(wishList);
-        return "redirect:user-page";
+        int userID = wishList.getUserID();
+        return "redirect:/" + userID + "/user";
     }
 
 
@@ -126,7 +127,5 @@ public class UserController {
         userService.deleteWishList(wishListID);
         return "redirect:/" + userID+ "/user";
     }
-
-
 
 }
