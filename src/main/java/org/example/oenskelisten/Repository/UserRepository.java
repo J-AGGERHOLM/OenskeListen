@@ -3,7 +3,6 @@ package org.example.oenskelisten.Repository;
 import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
-import org.example.oenskelisten.Model.WishList;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -54,8 +53,6 @@ public class UserRepository implements IUserRepository {
         }
     }
 
-
-
     @Override
     @Transactional
     public boolean edit(User newUser) {
@@ -86,7 +83,6 @@ public class UserRepository implements IUserRepository {
     @Transactional
     public void deleteById(int id) {
         String sql = "DELETE FROM users WHERE userID = ?";
-
         jdbcTemplate.update(sql, id);
     }
 
@@ -105,26 +101,10 @@ public class UserRepository implements IUserRepository {
 
     @Transactional
     @Override
-    public void createWishList(WishList wishList) {
-        String sql = "INSERT INTO wishList(name, userID) VALUES (?,?)";
-        jdbcTemplate.update(sql, wishList.getName(), wishList.getUserID());
-    }
-
-    @Transactional
-    @Override
-    public void deleteWishList(int wishListID) {
-        String sql = "DELETE FROM wishList WHERE wishListID = ?";
-        jdbcTemplate.update(sql, wishListID);
-    }
-
-
-    @Transactional
-    @Override
     public int getUserIDByWishListID(int wishListID){
         String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
         return jdbcTemplate.queryForObject(sql,Integer.class, wishListID);
 
     }
-
 
 }
