@@ -77,12 +77,14 @@ public class UserService {
         return userRepository.getByEmail(email);
     }
 
-    public void deleteWishList(int wishListID) {
-         wishListRepository.deleteById(wishListID);
-    }
-
     public int getUserIDByWishListID(int wishListID){
         return userRepository.getUserIDByWishListID(wishListID);
+    }
+
+    // ------- WISHLIST RELATED ----------
+
+    public void deleteWishList(int wishListID) {
+         wishListRepository.deleteById(wishListID);
     }
 
     public void createWishList(WishList wishList) {

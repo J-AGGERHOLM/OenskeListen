@@ -53,7 +53,6 @@ public class WishListController {
 
     @GetMapping("/add/{wishlistID}")
     public String addWish(@PathVariable int wishlistID, Model model) {
-
         Wish wish = new Wish();
         wish.setWishlistID(wishlistID);
         model.addAttribute("wish", wish);
@@ -62,7 +61,6 @@ public class WishListController {
 
     @PostMapping("/save")
     public String addWish(@ModelAttribute("wish") Wish wish) {
-
         String destination = "wishlist/list/" + wish.getWishlistID();
         wishListService.addWish(wish);
         return "redirect:/" + destination;

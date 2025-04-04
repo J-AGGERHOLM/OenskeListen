@@ -21,8 +21,6 @@ public class UserController {
 
     @GetMapping("")
     public String index(Model model) {
-
-
         List<WishList> allWishLists = userService.getAllWishlists();
         model.addAttribute(allWishLists);
         //to start off with the user id will simply be one, we will add functionality
@@ -63,7 +61,7 @@ public class UserController {
     @GetMapping("/user-add")
     public String addUser(Model model) {
         User user = new User();
-        model.addAttribute("newUser", user);
+        model.addAttribute("newUser", new User());
         return "user-form";
     }
 
@@ -79,7 +77,7 @@ public class UserController {
         //makes sure we get the auto incremented id:
         User savedUser = userService.checkEmail(newUser.getEmail());
 
-        return "redirect:/"+savedUser.getUserID()+"/user";
+        return "redirect:/" + savedUser.getUserID() + "/user";
     }
 
     @GetMapping("/user-page")
@@ -122,10 +120,10 @@ public class UserController {
 
 
     @PostMapping("/wishList/{wishListID}/delete")
-    public String deleteWishList(@PathVariable int wishListID){
-        int userID=userService.getUserIDByWishListID(wishListID);
+    public String deleteWishList(@PathVariable int wishListID) {
+        int userID = userService.getUserIDByWishListID(wishListID);
         userService.deleteWishList(wishListID);
-        return "redirect:/" + userID+ "/user";
+        return "redirect:/" + userID + "/user";
     }
 
 }
