@@ -13,8 +13,6 @@ public class Wish {
     private int reserveeID;
 
 
-
-
     public Wish(int id,
                 String name,
                 String description,
@@ -23,7 +21,7 @@ public class Wish {
                 int price,
                 int wishlistID,
                 boolean reserved,
-                int reserveeID){
+                int reserveeID) {
 
         this.id = id;
         this.name = name;
@@ -36,7 +34,7 @@ public class Wish {
         this.reserveeID = reserveeID;
     }
 
-    public Wish(){
+    public Wish() {
         this.id = -1;
         this.name = null;
         this.description = null;
@@ -99,10 +97,10 @@ public class Wish {
 
     }
 
-    public String getReserveeIDAsString(){
-        if(!reserved){
+    public String getReserveeIDAsString() {
+        if (!reserved) {
             return null;
-        }else{
+        } else {
             return Integer.toString(reserveeID);
         }
     }

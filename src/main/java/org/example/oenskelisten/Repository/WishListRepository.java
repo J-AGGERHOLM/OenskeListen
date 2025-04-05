@@ -20,12 +20,12 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
-    public List<WishList> getAll(){
+    public List<WishList> getAll() {
         String sql = "SELECT * FROM wishlist";
         ArrayList allWishLists = new ArrayList<WishList>();
 
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
-        while(rowSet.next()){
+        while (rowSet.next()) {
             WishList currentList = new WishList(
                     rowSet.getInt("wishlistID"),
                     rowSet.getString("name"),
@@ -36,7 +36,7 @@ public class WishListRepository implements IWishListRepository {
     }
 
     @Override
-    public WishList getById(int id){
+    public WishList getById(int id) {
         String sql = "SELECT \n" +
                 "    wishlist.name AS wishlist_name, \n" +
                 "    wishes.name AS wish_name, \n" +

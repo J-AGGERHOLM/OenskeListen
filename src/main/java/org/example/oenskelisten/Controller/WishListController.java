@@ -27,7 +27,7 @@ public class WishListController {
     }
 
     @GetMapping("/{id}/wishList")
-    public String getWishListByUserID(@PathVariable int id, Model model ){
+    public String getWishListByUserID(@PathVariable int id, Model model) {
         List<Wish> wishList = wishListService.getWishListByID(id);
         List<Wish> wishListItems = wishListService.getAllWishListItems();
         model.addAttribute("wishList", wishList);
@@ -37,7 +37,7 @@ public class WishListController {
 
 
     @GetMapping("/list/{id}")
-    public String getWishList(@PathVariable("id") int id, Model model){
+    public String getWishList(@PathVariable("id") int id, Model model) {
         System.out.println("wishlist list id: " + id);
         model.addAttribute("pageID", id);
         WishList wishList = wishListService.getWishListModelByID(id);
@@ -86,7 +86,7 @@ public class WishListController {
     public String deleteWish(@ModelAttribute("wish") Wish formWish) {
         System.out.println(formWish.getId());
         Wish wish = wishListService.getWishById(formWish.getId());
-        if(wish == null) {
+        if (wish == null) {
             throw new IllegalArgumentException("Wish does not exist");
         }
         wishListService.deleteWishById(wish.getId());

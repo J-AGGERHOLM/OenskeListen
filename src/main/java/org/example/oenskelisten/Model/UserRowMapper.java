@@ -36,7 +36,6 @@ public class UserRowMapper implements RowMapper<User> {
     }
 
 
-
     //The helper method to check if a column exists.
     private boolean hasColumn(ResultSet rs, String columnName) {
         try {

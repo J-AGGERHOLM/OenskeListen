@@ -32,7 +32,7 @@ public class WishRepository implements IWishRepository {
         String sql = "SELECT * FROM wishes WHERE wishID = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new WishRowMapper(), id);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -72,10 +72,11 @@ public class WishRepository implements IWishRepository {
         String sql = "SELECT * FROM wish WHERE name = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
+
     @Override
     public List<Wish> getWishListById(int id) {
         String sql = "SELECT * FROM wishes WHERE wishes.wishListID = ?";
@@ -84,17 +85,17 @@ public class WishRepository implements IWishRepository {
 
     @Override
     public void deleteById(int id) {
-        String sql ="DELETE FROM wishes WHERE wishID = ?";
+        String sql = "DELETE FROM wishes WHERE wishID = ?";
         jdbcTemplate.update(sql, id);
     }
 
 
-    public String imagechecker(Wish wish){
+    public String imagechecker(Wish wish) {
         String imageLink;
 
-        if(wish.getImageLink().isBlank() || wish.getImageLink().isEmpty() || wish.getImageLink().equalsIgnoreCase("https://example.com/ereader.jpg")){
+        if (wish.getImageLink().isBlank() || wish.getImageLink().isEmpty() || wish.getImageLink().equalsIgnoreCase("https://example.com/ereader.jpg")) {
             imageLink = "https://images.template.net/75040/Free-Disney-Star-Vector-1.jpg";
-        }else{
+        } else {
             imageLink = wish.getImageLink();
         }
         return imageLink;

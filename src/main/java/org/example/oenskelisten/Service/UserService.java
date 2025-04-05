@@ -36,14 +36,13 @@ public class UserService {
         return userRepository.edit(new User(oldUser.getUserID(),
                 newUser.getName(),
                 newUser.getEmail(),
-                newUser.getPassword(),
-                newUser.getWishListList()));
+                newUser.getPassword()));
     }
 
     //returning all users
     public List<User> getAllUsers() {
         //checks if the list is empty:
-        if(userRepository.getAll().isEmpty()){
+        if (userRepository.getAll().isEmpty()) {
             throw new NullPointerException("Der er ikke nogen brugere endnu");
         }
         //returns list of users:
@@ -54,7 +53,7 @@ public class UserService {
         userRepository.add(newUser);
     }
 
-    public void deleteUser(int id){
+    public void deleteUser(int id) {
         var user = userRepository.getById(id);
 
         if (user == null) throw new NullPointerException("Bruger findes ikke" + id);
@@ -65,7 +64,7 @@ public class UserService {
     public User login(String email, String password) {
         // Tjekker om user eksisterer
         var user = userRepository.getByEmail(email);
-        if(user == null) return null;
+        if (user == null) return null;
 
         // tjekker om password passer.
         return user.getPassword().equals(password)
@@ -73,18 +72,18 @@ public class UserService {
                 : null;
     }
 
-    public User checkEmail(String email){
+    public User checkEmail(String email) {
         return userRepository.getByEmail(email);
     }
 
-    public int getUserIDByWishListID(int wishListID){
+    public int getUserIDByWishListID(int wishListID) {
         return userRepository.getUserIDByWishListID(wishListID);
     }
 
     // ------- WISHLIST RELATED ----------
 
     public void deleteWishList(int wishListID) {
-         wishListRepository.deleteById(wishListID);
+        wishListRepository.deleteById(wishListID);
     }
 
     public void createWishList(WishList wishList) {
@@ -92,7 +91,7 @@ public class UserService {
     }
 
     // get specific user
-    public List<WishList> getAllWishlists(){
+    public List<WishList> getAllWishlists() {
         return wishListRepository.getAll();
     }
 }

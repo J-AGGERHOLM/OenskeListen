@@ -9,21 +9,14 @@ public class User {
     private String password;
     private List<WishList> wishListList;
 
-    public User(int userID, String name, String email, String password, List<WishList> wishListList){
-        this.userID = userID;
-        this.name=name;
-        this.email=email;
-        this.password = password;
-    }
-
-    public User(int userID, String name, String email, String password){
+    public User(int userID, String name, String email, String password) {
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public User(){
+    public User() {
     }
 
     public int getUserID() {
@@ -68,7 +61,7 @@ public class User {
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return "ID: " + userID + " name: " + name + " email: " + email + " Password: " + password;
     }
 

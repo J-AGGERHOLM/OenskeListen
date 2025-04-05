@@ -37,13 +37,7 @@ class UserControllerTest {
         users = List.of(new User(1,
                 "Mathias",
                 "test1@test.dk",
-                "test1",
-                List.of(new WishList())),
-                new User(2,
-                        "Claus",
-                        "test2@test.dk",
-                        "test2",
-                        List.of(new WishList())));
+                "test1"));
     }
 
     @Test
