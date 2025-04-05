@@ -4,10 +4,8 @@
 <head>
 
 
-
     <link rel="general" href="/css/general.css">
     <link rel="stylesheet" href="/css/starry-night.css">
-
 
 
     <meta charset="UTF-8">
@@ -17,17 +15,17 @@
 
 <body>
 <div th:replace="~{fragments/navbar :: navbar}"></div>
-    <main >
-        <div class="centeredContent">
+<main>
+    <div class="centeredContent">
         <div class="wishlists">
 
 
-         <h1 th:text="${wishList.name}">PAGE TITLE</h1>
+            <h1 th:text="${wishList.name}">PAGE TITLE</h1>
             <div class="buttons">
-            <form th:action="@{/wishlist/add/{wishlistID}(wishlistID=${wishList.id})}" method="get">
-                <button type="submit">Add Wish</button>
-            </form>
-        </div>
+                <form th:action="@{/wishlist/add/{wishlistID}(wishlistID=${wishList.id})}" method="get">
+                    <button type="submit">Add Wish</button>
+                </form>
+            </div>
             <h2 th:if="${wishList.wishes.isEmpty()}">This wishlist is empty! try adding some wishes!</h2>
             <div th:unless="${wishList.wishes.isEmpty()}" class="grid-container">
                 <div th:each="wish : ${wishList.wishes}" class="wishlist-box">
@@ -38,17 +36,20 @@
 
                     <div class="wishButton-container">
 
-                        <a th:href="@{${wish.productLink}}"><button>Link To Wish</button></a>
+                        <a th:href="@{${wish.productLink}}">
+                            <button>Link To Wish</button>
+                        </a>
 
                         <!-- This little trick allows for a more secure deletion. the form only sends the wish id
                         and wishlist id-->
 
 
-                        <form th:object="${wish}" th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}" method="get">
+                        <form th:object="${wish}" th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}"
+                              method="get">
                             <button type="submit">Edit Wish</button>
                         </form>
 
-                        <form role="form" action="#" th:action="@{/wishlist/delete}" method="post" >
+                        <form role="form" action="#" th:action="@{/wishlist/delete}" method="post">
                             <input type="number" th:name="id" th:value="${wish.id}" readonly hidden>
                             <input type="number" th:name="wishlistID" th:value="${wish.wishlistID}" hidden readonly>
                             <button type="submit" class="deleteButton">DELETE WISH</button>
@@ -57,18 +58,14 @@
                     </div>
 
 
-
-
-                    
                 </div>
 
             </div>
 
 
-
         </div>
-        </div>
-    </main>
-    <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</main>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

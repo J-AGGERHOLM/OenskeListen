@@ -3,32 +3,31 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <head>
-  <meta charset="UTF-8">
-  <title>Create WishList</title>
-  <link rel="general" href="/css/general.css">
-  <link rel="stylesheet" href="/css/starry-night.css">
-
+    <meta charset="UTF-8">
+    <title>Create WishList</title>
+    <link rel="general" href="/css/general.css">
+    <link rel="stylesheet" href="/css/starry-night.css">
 
 
 </head>
-<body class = "addWish-body">
+<body class="addWish-body">
 <nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
 <div>
-  <div class="content">
-    <div class="grid-container">
-      <h1>Create WishList</h1>
-      <form role="form" action="#" method="post" th:action="@{/save}" th:object="${wishlist}">
-        <input type="hidden" name="userID" th:value="${userID}"/>
+    <div class="content">
+        <div class="grid-container">
+            <h1>Create WishList</h1>
+            <form role="form" action="#" method="post" th:action="@{/save}" th:object="${wishlist}">
+                <input type="hidden" name="userID" th:value="${userID}"/>
 
-        <label>WishList Name</label>
-        <input type="text" th:field="*{name}"/>
+                <label>WishList Name</label>
+                <input type="text" th:field="*{name}"/>
 
-        <br>
-        <button type="submit">Submit</button>
-      </form>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 

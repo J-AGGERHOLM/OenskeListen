@@ -15,28 +15,28 @@
 <body>
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<main >
+<main>
     <div class="centeredContent">
-        <div class = "firstHalf">
-    <header>Velkommen til ønskelisten</header>
+        <div class="firstHalf">
+            <header>Velkommen til ønskelisten</header>
 
-    <div class="buttons" th:if="${session.user == null}">
-        <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
-        <a class="button-link" th:href="@{/session/user-login}" id="userLogin">Login</a>
-    </div>
-    </div>
-    <div id="wishlists">
-        <h1>All Wishlists:</h1>
-        <div class="grid-container">
-            <div th:each="wishlist : ${wishListList}" class="wishlist-box">
-                <a th:href="'wishlist/list/' + ${wishlist.id}">
-                    <h2 th:text="${wishlist.name}"></h2>
-                    <h3 th:text="${wishlist.userID}"></h3>
-                </a>
+            <div class="buttons" th:if="${session.user == null}">
+                <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
+                <a class="button-link" th:href="@{/session/user-login}" id="userLogin">Login</a>
             </div>
-
         </div>
-    </div>
+        <div id="wishlists">
+            <h1>All Wishlists:</h1>
+            <div class="grid-container">
+                <div th:each="wishlist : ${wishListList}" class="wishlist-box">
+                    <a th:href="'wishlist/list/' + ${wishlist.id}">
+                        <h2 th:text="${wishlist.name}"></h2>
+                        <h3 th:text="${wishlist.userID}"></h3>
+                    </a>
+                </div>
+
+            </div>
+        </div>
     </div>
 </main>
 

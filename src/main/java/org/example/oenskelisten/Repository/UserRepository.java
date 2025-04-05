@@ -89,8 +89,8 @@ public class UserRepository implements IUserRepository {
     @Override
     public User getByEmail(String email) {
         try {
-        String sql = "SELECT * FROM users " +
-                "WHERE email = ?";
+            String sql = "SELECT * FROM users " +
+                    "WHERE email = ?";
             return jdbcTemplate.queryForObject(sql,
                     new UserRowMapper(),
                     email);
@@ -101,9 +101,9 @@ public class UserRepository implements IUserRepository {
 
     @Transactional
     @Override
-    public int getUserIDByWishListID(int wishListID){
+    public int getUserIDByWishListID(int wishListID) {
         String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
-        return jdbcTemplate.queryForObject(sql,Integer.class, wishListID);
+        return jdbcTemplate.queryForObject(sql, Integer.class, wishListID);
 
     }
 

@@ -11,26 +11,26 @@ public class GlobalException {
 
     // Her fortæller vi hvilken Exception den skal gribe
     @ExceptionHandler(IllegalArgumentException.class)
-    public String handleNullException(IllegalArgumentException ex, Model model){
+    public String handleNullException(IllegalArgumentException ex, Model model) {
         model.addAttribute("error", ex.getMessage());
         return "error-page";
     }
 
     // Her fortæller vi hvilken Exception den skal gribe
     @ExceptionHandler(NullPointerException.class)
-    public String handleNullException(NullPointerException ex, Model model){
+    public String handleNullException(NullPointerException ex, Model model) {
         model.addAttribute("error", ex.getMessage());
         return "error-page";
     }
 
     @ExceptionHandler(UnknownErrorException.class)
-    public String handleUnknownErrorException(UnknownErrorException ex, Model model){
+    public String handleUnknownErrorException(UnknownErrorException ex, Model model) {
         model.addAttribute("error", ex.getMessage());
         return "error-page";
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public String handleAccessDeniedException(AccessDeniedException ex, Model model){
+    public String handleAccessDeniedException(AccessDeniedException ex, Model model) {
         model.addAttribute("error", ex.getMessage());
         return "error-page";
     }
