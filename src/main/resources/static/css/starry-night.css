@@ -117,13 +117,49 @@ button:hover, a.button-link:hover {
 .buttons{
     gap: min(50px);
     padding-top: 15px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
+
+
+
+.deleteButton {
+    background: linear-gradient(to right, #e06c6c, crimson);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease-in-out;
+}
+
+.deleteButton:hover {
+    background: linear-gradient(to right, #de6b6b, #da143c);
+    box-shadow: 0 0 25px rgb(236, 224, 224);
+}
+
+.wishButton-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.wishButton-container button,
+.wishButton-container a > button {
+    width: 150px;
+    max-width: 90%;
+    text-align: center;
+}
+
 .wishlist-box {
     background: rgba(30, 60, 114, 0.8);
     border-radius: 20px;
     padding: 20px;
-    width: 250px;
+    width: 200px;
     color: white;
     text-align: left;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
@@ -136,8 +172,8 @@ button:hover, a.button-link:hover {
 }
 
 .wishlist-image {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 15px;
     object-fit: cover;
     display: block;
@@ -168,6 +204,12 @@ button:hover, a.button-link:hover {
     margin: 0 auto;
     padding-bottom: 50px;
     padding-top: 25px;
+    align-self: center;
+    justify-self: center;
+}
+
+.centeredContent{
+    padding: 50px;
 }
 
 

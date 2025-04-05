@@ -5,13 +5,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Create WishList</title>
-  <link rel="stylesheet" href="/css/stylesheet.css">
+  <link rel="general" href="/css/general.css">
+  <link rel="stylesheet" href="/css/starry-night.css">
+
+
 
 </head>
 <body class = "addWish-body">
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
 <div>
   <div class="content">
-    <div class="centered-box">
+    <div class="grid-container">
       <h1>Create WishList</h1>
       <form role="form" action="#" method="post" th:action="@{/save}" th:object="${wishlist}">
         <input type="hidden" name="userID" th:value="${userID}"/>
@@ -25,5 +30,7 @@
     </div>
   </div>
 </div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>

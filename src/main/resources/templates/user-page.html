@@ -28,9 +28,11 @@
             <span th:text="${wishList.getName()}" class ="wishlistname-text"> WishList Name </span>
         </a>
         <br>
-        <form th:action="@{/wishList/{wishListID}/delete(wishListID = ${wishList.getId()})}" method="post">
-            <button type="submit" class="wishlistcentered-button">Delete</button>
+        <div class="button-container">
+        <form th:action="@{/wishList/{wishListID}/delete(wishListID = ${wishList.getId()})}" method="post"  >
+            <button type="submit" class="deleteButton">Delete</button>
         </form>
+        </div>
     </li>
 
 </ul>

@@ -45,7 +45,7 @@ public class WishRepository implements IWishRepository {
                 wish.getName(),
                 wish.getDescription(),
                 wish.getProductLink(),
-                wish.getImageLink(),
+                imagechecker(wish),
                 wish.getPrice(),
                 wish.getWishlistID(),
                 wish.isReserved(),
@@ -86,5 +86,17 @@ public class WishRepository implements IWishRepository {
     public void deleteById(int id) {
         String sql ="DELETE FROM wishes WHERE wishID = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+
+    public String imagechecker(Wish wish){
+        String imageLink;
+
+        if(wish.getImageLink().isBlank() || wish.getImageLink().isEmpty() || wish.getImageLink().equalsIgnoreCase("https://example.com/ereader.jpg")){
+            imageLink = "https://images.template.net/75040/Free-Disney-Star-Vector-1.jpg";
+        }else{
+            imageLink = wish.getImageLink();
+        }
+        return imageLink;
     }
 }
