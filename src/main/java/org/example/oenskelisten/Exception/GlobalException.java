@@ -29,4 +29,10 @@ public class GlobalException {
         return "error-page";
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public String handleAccessDeniedException(AccessDeniedException ex, Model model){
+        model.addAttribute("error", ex.getMessage());
+        return "error-page";
+    }
+
 }

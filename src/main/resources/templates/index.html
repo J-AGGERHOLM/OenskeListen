@@ -20,7 +20,7 @@
         <div class = "firstHalf">
     <header>Velkommen til ønskelisten</header>
 
-    <div class="buttons">
+    <div class="buttons" th:if="${session.user == null}">
         <a class="button-link" th:href="@{/user-add}" id="userForm">Opret</a>
         <a class="button-link" th:href="@{/session/user-login}" id="userLogin">Login</a>
     </div>

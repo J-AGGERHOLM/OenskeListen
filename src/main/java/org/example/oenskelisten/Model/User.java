@@ -9,13 +9,6 @@ public class User {
     private String password;
     private List<WishList> wishListList;
 
-    public User(int userID, String name, String email, String password, List<WishList> wishListList){
-        this.userID = userID;
-        this.name=name;
-        this.email=email;
-        this.password = password;
-    }
-
     public User(int userID, String name, String email, String password){
         this.userID = userID;
         this.name = name;
