@@ -76,14 +76,24 @@ public class UserRepository implements IUserRepository {
     @Transactional
     public void add(User newUser) {
         String sql = "INSERT INTO users (name, email, password) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
+        try {
+            jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Der er skete en fejl",e);
+        }
+
     }
 
     @Override
     @Transactional
     public void deleteById(int id) {
         String sql = "DELETE FROM users WHERE userID = ?";
-        jdbcTemplate.update(sql, id);
+        try {
+            jdbcTemplate.update(sql, id);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Kunne ikke slette id: " + id, e);
+        }
+
     }
 
     @Override
@@ -103,7 +113,12 @@ public class UserRepository implements IUserRepository {
     @Override
     public int getUserIDByWishListID(int wishListID) {
         String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
-        return jdbcTemplate.queryForObject(sql, Integer.class, wishListID);
+        try {
+            return jdbcTemplate.queryForObject(sql, Integer.class, wishListID);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Kunne ikke finde id: " + wishListID,e);
+        }
+
 
     }
 

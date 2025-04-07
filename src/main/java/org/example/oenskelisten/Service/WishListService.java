@@ -42,7 +42,7 @@ public class WishListService {
     public Wish getWishById(int id) {
         Wish wish = wishRepository.getById(id);
         if(wish == null) throw new NullPointerException("Id findes ikke: " + id);
-        return wishRepository.getById(id);
+        return wish;
     }
 
     public void updateWish(Wish wish) {
