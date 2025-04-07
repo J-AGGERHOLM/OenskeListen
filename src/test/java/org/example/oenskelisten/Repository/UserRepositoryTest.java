@@ -32,13 +32,13 @@ class UserRepositoryTest {
     @Test
     void getAll() {
         //Arrange
-        List<User> expected = userRepository.getAll();
+        int expected = 3;
 
         //Act
         List<User> actual = userRepository.getAll();
 
         // Assert
-        assertEquals(expected.size(), actual.size());
+        assertEquals(expected, actual.size());
     }
 
     @Test
