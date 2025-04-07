@@ -69,7 +69,7 @@ public class WishRepository implements IWishRepository {
 
     @Override
     public Wish getByName(String name) {
-        String sql = "SELECT * FROM wish WHERE name = ?";
+        String sql = "SELECT * FROM wishes WHERE name = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
         } catch (Exception e) {
