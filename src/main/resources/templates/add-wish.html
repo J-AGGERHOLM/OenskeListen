@@ -7,46 +7,58 @@
     <title>Add a Wish</title>
     <link rel="general" href="/css/general.css">
     <link rel="stylesheet" href="/css/starry-night.css">
+    <link rel="stylesheet" href="/css/add-wish-edits.css">
+
 
 
 </head>
-<body class="addWish-body">
+<body class>
+<main>
 <div th:replace="~{fragments/navbar :: navbar}"></div>
-
-<div class="grid-container">
+    <h1 class="title">Add a wish</h1>
+<div>
     <div class="content">
-        <div class="centered-box">
-            <h1>Add a wish</h1>
+        <div>
 
+<div>
             <form role="form" action="#" method="post" th:action="@{/wishlist/save}"
                   th:object="${wish}">
-                <ul>
+                <div class="grid-container">
+                <div class = "formSlot">
                     <input hidden type="number" th:field="*{wishlistID}" readonly/>
 
                     <label>Wish Name</label>
                     <input type="text" th:field="*{name}"/>
-                </ul>
-                <ul>
+                </div>
+                <div  class = "formSlot">
                     <br>
                     <label>Description</label>
                     <textarea rows="3" cols="20" th:field="*{description}"></textarea>
-                </ul>
+                </div>
                 <br>
+                    <div  class = "formSlot">
                 <label>Product Link</label>
                 <input type="text" th:field="*{productLink}"/>
-
+                    </div>
+                    <div  class = "formSlot">
                 <label>Image Link</label>
                 <input type="text" th:field="*{imageLink}">
-
+                    </div>
+                    <div  class = "formSlot">
                 <label>Price</label>
                 <input type="number" min="1" th:field="*{price}">
-                <ul>
-                    <button type="submit">Add wish to wishlist</button>
-                </ul>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" >Add wish to wishlist</button>
+                </div>
             </form>
+</div>
         </div>
     </div>
 </div>
 
+<div th:replace="~{fragments/footer :: footer}"></div>
+</main>
 </body>
 </html>

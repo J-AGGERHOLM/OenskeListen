@@ -1,0 +1,51 @@
+main {
+}
+
+/* Soft and centered form box */
+.grid-container {
+    height: 500px;
+    display: block;
+    background-color: rgba(0, 0, 30, 0.7);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.title{
+    padding: 15px;
+}
+
+form label {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    text-align: left;
+    display: block;
+}
+
+form input,
+form textarea {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.formSlot{
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+
+}
+.button-container{
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+
+h1 {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    margin-bottom: -1rem;
+}
