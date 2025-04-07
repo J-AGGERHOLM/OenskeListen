@@ -118,8 +118,6 @@ public class UserRepository implements IUserRepository {
         } catch (DataAccessException e) {
             throw new RuntimeException("Kunne ikke finde id: " + wishListID,e);
         }
-
-
     }
 
 }
