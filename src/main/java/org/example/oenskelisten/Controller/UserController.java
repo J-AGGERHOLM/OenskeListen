@@ -1,9 +1,12 @@
 package org.example.oenskelisten.Controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.example.oenskelisten.Exception.AccessDeniedException;
 import org.example.oenskelisten.Exception.UnknownErrorException;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.UserService;
+import org.example.oenskelisten.Utils.SessionUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +33,9 @@ public class UserController {
     }
 
     @GetMapping("{id}/user")
-    public String userMedID(@PathVariable("id") int id, Model model) {
+    public String userMedID(@PathVariable("id") int id, Model model, HttpSession session) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
+        if (!SessionUtil.getLoggedIn(session)) throw new AccessDeniedException("Du er ikke logget ind");
 
         model.addAttribute("User", userService.getUser(id));
 

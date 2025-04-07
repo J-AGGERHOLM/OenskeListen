@@ -4,39 +4,40 @@
 <link rel="stylesheet" href="/css/starry-night.css">
 <link rel="stylesheet" href="/css/user-page-edits.css">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<title>Profile page</title>
- <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <title>Profile page</title>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
 </head>
 <body>
 <main>
-<h1 th:text="${User.name}" ></h1>
-<div class = "button-container">
-    <form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
-        <button type="submit"> Edit Information</button>
-    </form>
-    <form th:action="@{/create/{userID}(userID=${User.userID})}" method="get">
-        <button type="submit">Oprette en WishList</button>
-    </form>
-</div><div>
-
-<ul class = "grid-container">
-    <li th:each="wishList : ${User.getWishListList()}" class="wishlist-box">
-        <a th:href="@{/wishlist/list/{id}(id=${wishList.id})}">
-            <span th:text="${wishList.getName()}" class ="wishlistname-text"> WishList Name </span>
-        </a>
-        <br>
-        <div class="button-container">
-        <form th:action="@{/wishList/{wishListID}/delete(wishListID = ${wishList.getId()})}" method="post"  >
-            <button type="submit" class="deleteButton">Delete</button>
+    <h1 th:text="${User.name}"></h1>
+    <div class="button-container">
+        <form th:action="@{/{id}/edit(id=${User.userID})}" method="get">
+            <button type="submit"> Edit Information</button>
         </form>
-        </div>
-    </li>
+        <form th:action="@{/create/{userID}(userID=${User.userID})}" method="get">
+            <button type="submit">Oprette en WishList</button>
+        </form>
+    </div>
+    <div>
 
-</ul>
-</div>
+        <ul class="grid-container">
+            <li th:each="wishList : ${User.getWishListList()}" class="wishlist-box">
+                <a th:href="@{/wishlist/list/{id}(id=${wishList.id})}">
+                    <span th:text="${wishList.getName()}" class="wishlistname-text"> WishList Name </span>
+                </a>
+                <br>
+                <div class="button-container">
+                    <form th:action="@{/wishList/{wishListID}/delete(wishListID = ${wishList.getId()})}" method="post">
+                        <button type="submit" class="deleteButton">Delete</button>
+                    </form>
+                </div>
+            </li>
+
+        </ul>
+    </div>
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

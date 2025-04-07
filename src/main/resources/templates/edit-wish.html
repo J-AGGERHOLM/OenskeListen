@@ -7,38 +7,37 @@
     <title th:text="'Editing ' + ${wish.name}"></title>
     <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
-<body class = "addWish-body">
-    <h1 th:text="'Editing ' + ${wish.name}">Editing Wish</h1>
+<body class="addWish-body">
+<h1 th:text="'Editing ' + ${wish.name}">Editing Wish</h1>
 
-    <div class="content">
-        <form role="form" action="#" method="post" th:action="@{/wishlist/update}"
-              th:object="${wish}">
+<div class="content">
+    <form role="form" action="#" method="post" th:action="@{/wishlist/update}"
+          th:object="${wish}">
 
 
+        <input type="number" th:field="*{id}" readonly hidden>
+        <input hidden readonly type="number" th:field="*{wishlistID}">
 
-            <input type="number" th:field="*{id}" readonly hidden>
-            <input hidden readonly type="number" th:field="*{wishlistID}">
+        <label>Wish Name</label>
+        <input type="text" th:field="*{name}"/>
 
-            <label>Wish Name</label>
-            <input type="text" th:field="*{name}"/>
+        <br>
+        <label>Description</label>
+        <textarea rows="3" cols="20" th:field="*{description}"></textarea>
 
-            <br>
-            <label>Description</label>
-            <textarea rows = "3" cols ="20" th:field="*{description}"></textarea>
+        <br>
+        <label>Product Link</label>
+        <input type="text" th:field="*{productLink}"/>
 
-            <br>
-            <label>Product Link</label>
-            <input type="text" th:field="*{productLink}"/>
+        <label>Image Link</label>
+        <input type="text" th:field="*{imageLink}">
 
-            <label>Image Link</label>
-            <input type="text" th:field="*{imageLink}">
+        <label>Price</label>
+        <input type="number" min="1" th:field="*{price}">
 
-            <label>Price</label>
-            <input type="number" min="1" th:field="*{price}">
-
-            <button type="submit">Update Wish</button>
-        </form>
-    </div>
+        <button type="submit">Update Wish</button>
+    </form>
+</div>
 
 
 </body>

@@ -18,7 +18,7 @@ public class WishRowMapper implements RowMapper<Wish> {
         int wishlistID = rs.getInt("wishlistID");
         boolean reserved = rs.getBoolean("reserved");
         int reserveeID = -1;
-        if(reserved){
+        if (reserved) {
             reserveeID = rs.getInt("reserveeID");
         }
 

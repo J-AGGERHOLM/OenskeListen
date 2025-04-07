@@ -8,12 +8,13 @@
 
   <div class="navbar-center nav-links">
     <a th:href="@{/}">Home</a>
-    <a th:href="@{/}">WishList(Virker ikke endnu)</a>
+    <a th:if="${session.user != null}" th:href="@{/{id}/user(id=${session.user.userID})}">WishList</a>
     <a th:href="@{/users}">Alle bruger</a>
   </div>
 
   <div class="navbar-right">
     <!-- Optional future buttons -->
+      <a th:if="${session.user != null}" th:href="@{/session/logout}">Logout</a>
   </div>
   </div>
 </nav>

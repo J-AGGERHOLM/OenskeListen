@@ -23,6 +23,7 @@ public class SessionController {
     public String getLoginPage() {
         return "user-login";
     }
+
     @RequestMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
@@ -30,9 +31,9 @@ public class SessionController {
                         Model redirectAttributes) {
         // kontrollere om der er en user
         var exist = userService.login(email, password);
-        if(exist != null){
+        if (exist != null) {
             // sætter session og hvornår de logges ud ved inaktivitet
-            session.setAttribute("user", exist.getUserID());
+            session.setAttribute("user", exist);
             session.setMaxInactiveInterval(MAX_SESSION_LENGTH);
             return "redirect:/";
         }
@@ -40,5 +41,11 @@ public class SessionController {
         // fortæller, at det indtastede ikke passer
         redirectAttributes.addAttribute("wrongCredentials", true);
         return "user-login";
+    }
+
+    @GetMapping("logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/";
     }
 }

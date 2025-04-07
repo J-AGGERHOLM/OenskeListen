@@ -18,7 +18,7 @@ public class WishListService {
         this.wishRepository = wishRepository;
     }
 
-    public WishList getWishListModelByID(int id){
+    public WishList getWishListModelByID(int id) {
         return wishListRepository.getById(id);
     }
 
@@ -42,6 +42,7 @@ public class WishListService {
     public void updateWish(Wish wish) {
         wishRepository.edit(wish);
     }
+
     public void deleteWishById(int id) {
         wishRepository.deleteById(id);
     }
