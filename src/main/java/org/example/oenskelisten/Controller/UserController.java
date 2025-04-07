@@ -110,7 +110,7 @@ public class UserController {
         WishList wishlist = new WishList();
         model.addAttribute("userID", userID);
         model.addAttribute("wishlist", wishlist);
-        return "create-wishlist";
+        return "index";
     }
 
     @PostMapping("/save")
