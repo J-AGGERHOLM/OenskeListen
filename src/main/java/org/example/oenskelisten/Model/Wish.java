@@ -92,9 +92,7 @@ public class Wish {
     }
 
     public int getReserveeID() {
-
         return reserveeID;
-
     }
 
     public String getReserveeIDAsString() {

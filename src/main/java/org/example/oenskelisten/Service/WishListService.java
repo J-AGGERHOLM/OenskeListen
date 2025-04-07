@@ -19,7 +19,9 @@ public class WishListService {
     }
 
     public WishList getWishListModelByID(int id) {
-        return wishListRepository.getById(id);
+        WishList list = wishListRepository.getById(id);
+        if(list == null) throw new NullPointerException("Id findes ikke: " + id);
+        return list;
     }
 
     // ------------------ WISH ----------------------
@@ -28,7 +30,9 @@ public class WishListService {
     }
 
     public List<Wish> getWishListByID(int id) {
-        return wishRepository.getWishListById(id);
+        List<Wish> list = wishRepository.getWishListById(id);
+        if(list == null) throw new NullPointerException("Id findes ikke: " + id);
+        return list;
     }
 
     public List<Wish> getAllWishListItems() {
@@ -36,6 +40,8 @@ public class WishListService {
     }
 
     public Wish getWishById(int id) {
+        Wish wish = wishRepository.getById(id);
+        if(wish == null) throw new NullPointerException("Id findes ikke: " + id);
         return wishRepository.getById(id);
     }
 
