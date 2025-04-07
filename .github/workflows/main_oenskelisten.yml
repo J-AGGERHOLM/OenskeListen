@@ -4,6 +4,7 @@
 name: Build and deploy JAR app to Azure Web App - oenskelisten
 
 on:
+  push:
   pull_request:
     branches:
       - main
@@ -46,8 +47,6 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-
-          
 
 
 
