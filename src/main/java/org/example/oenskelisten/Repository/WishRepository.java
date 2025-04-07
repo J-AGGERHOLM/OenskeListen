@@ -93,7 +93,10 @@ public class WishRepository implements IWishRepository {
     public String imagechecker(Wish wish) {
         String imageLink;
 
-        if (wish.getImageLink().isBlank() || wish.getImageLink().isEmpty() || wish.getImageLink().equalsIgnoreCase("https://example.com/ereader.jpg")) {
+        if (wish.getImageLink().isBlank()
+                || wish.getImageLink().isEmpty()
+                || wish.getImageLink().equalsIgnoreCase("https://example.com/ereader.jpg" )
+                || wish.getImageLink().length() > 4999) {
             imageLink = "https://images.template.net/75040/Free-Disney-Star-Vector-1.jpg";
         } else {
             imageLink = wish.getImageLink();
