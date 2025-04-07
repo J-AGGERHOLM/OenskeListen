@@ -77,10 +77,7 @@ public class UserController {
 
         userService.addUser(newUser);
 
-        //makes sure we get the auto incremented id:
-        User savedUser = userService.checkEmail(newUser.getEmail());
-
-        return "redirect:/" + savedUser.getUserID() + "/user";
+        return "redirect:/";
     }
 
     @GetMapping("/user-page")
@@ -110,7 +107,7 @@ public class UserController {
         WishList wishlist = new WishList();
         model.addAttribute("userID", userID);
         model.addAttribute("wishlist", wishlist);
-        return "index";
+        return "create-wishlist";
     }
 
     @PostMapping("/save")
