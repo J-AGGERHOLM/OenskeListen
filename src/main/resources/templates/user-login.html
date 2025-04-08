@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/general.css}">
 <link rel="stylesheet" th:href="@{/css/starry-night.css}">
+<link rel="stylesheet" th:href="@{/css/add-wish-edits.css}">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,9 @@
 <main>
     <h1>Login</h1>
 
-    <form th:action="@{/session/login}" method="post">
+    <form th:action="@{/session/login}" method="post" >
+        <div class="button-container">
+            <div class="grid-container">
         <p th:if="${wrongCredentials}" class="error">Forkert email eller password</p>
         <div>
             <label for="email">Email:</label>
@@ -23,6 +26,8 @@
 
         <div><label for="password">Password:</label>
             <input id="password" name="password" type="password" required>
+        </div>
+            </div>
         </div>
         <div>
             <button type="submit">Login</button>
