@@ -5,6 +5,7 @@ import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.WishListService;
+import org.example.oenskelisten.Utils.SessionUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class WishListController {
         WishList wishList = wishListService.getWishListModelByID(id);
 
         //checking to see if we are the owner of the wishlist:
-        boolean userIsOwner = isUserOwner(session, wishList.getUserID());
+        boolean userIsOwner = SessionUtil.isUserOwner(session, wishList.getUserID());
         model.addAttribute("userIsOwner", userIsOwner);
         model.addAttribute(wishList);
         return "grid-wishlist";
@@ -72,7 +73,7 @@ public class WishListController {
         String destination = "wishlist/list/" + wish.getWishlistID();
 
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(isUserOwner(session, wishList.getUserID())){
+        if(SessionUtil.isUserOwner(session, wishList.getUserID())){
             wishListService.addWish(wish);
         }
 
@@ -89,7 +90,7 @@ public class WishListController {
     @PostMapping("/update")
     public String editWish(@ModelAttribute("wish") Wish wish, HttpSession session) {
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(isUserOwner(session, wishList.getUserID())){
+        if(SessionUtil.isUserOwner(session, wishList.getUserID())){
             wishListService.updateWish(wish);
         }
 
@@ -102,7 +103,7 @@ public class WishListController {
     public String deleteWish(@ModelAttribute("wish") Wish formWish, HttpSession session) {
         Wish wish = wishListService.getWishById(formWish.getId());
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(isUserOwner(session, wishList.getUserID())){
+        if(SessionUtil.isUserOwner(session, wishList.getUserID())){
             if (wish == null) {
                 throw new IllegalArgumentException("Wish does not exist");
             }
@@ -112,13 +113,5 @@ public class WishListController {
         return "redirect:/wishlist/list/" + formWish.getWishlistID();
     }
 
-    private boolean isUserOwner(HttpSession session, int ownerID){
-        var hopefullyAUSer = session.getAttribute("user");
-        if(hopefullyAUSer instanceof User loggedInUser){
-            if( loggedInUser.getUserID() == ownerID){
-                return true;
-            }
-        }
-        return false;
-    }
+
 }
