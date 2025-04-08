@@ -55,7 +55,6 @@ public class UserService {
 
     public void deleteUser(int id) {
         var user = userRepository.getById(id);
-
         if (user == null) throw new NullPointerException("Bruger findes ikke" + id);
 
         userRepository.deleteById(id);

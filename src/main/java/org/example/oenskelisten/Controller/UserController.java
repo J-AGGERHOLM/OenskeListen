@@ -26,8 +26,6 @@ public class UserController {
     public String index(Model model) {
         List<WishList> allWishLists = userService.getAllWishlists();
         model.addAttribute(allWishLists);
-        //to start off with the user id will simply be one, we will add functionality
-        //for multiple users later
 
         return "index";
     }
@@ -77,10 +75,7 @@ public class UserController {
 
         userService.addUser(newUser);
 
-        //makes sure we get the auto incremented id:
-        User savedUser = userService.checkEmail(newUser.getEmail());
-
-        return "redirect:/" + savedUser.getUserID() + "/user";
+        return "redirect:/";
     }
 
     @GetMapping("/user-page")
@@ -101,25 +96,25 @@ public class UserController {
     @PostMapping("/{id}/delete")
     public String deleteUser(@PathVariable("id") int id) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
+
         userService.deleteUser(id);
         return "redirect:/users";
     }
 
     @GetMapping("/create/{userID}")
     public String createWishList(Model model, @PathVariable int userID) {
-        WishList wishlist = new WishList();
         model.addAttribute("userID", userID);
-        model.addAttribute("wishlist", wishlist);
+        model.addAttribute("wishlist", new WishList());
         return "create-wishlist";
     }
 
     @PostMapping("/save")
     public String saveWishList(@ModelAttribute("wishlist") WishList wishList) {
         userService.createWishList(wishList);
+
         int userID = wishList.getUserID();
         return "redirect:/" + userID + "/user";
     }
-
 
     @PostMapping("/wishList/{wishListID}/delete")
     public String deleteWishList(@PathVariable int wishListID) {
