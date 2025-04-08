@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/general.css}">
 <link rel="stylesheet" th:href="@{/css/starry-night.css}">
+<link rel="stylesheet" th:href="@{/css/add-wish-edits.css}">
 
 <head>
     <meta charset="UTF-8">
@@ -13,12 +14,13 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <main>
     <form th:action="@{/update}" method="post" th:object="${user}">
+        <div class = grid-container>
         <input type="text" hidden
                th:value="${user.userID}"
                th:name="${user.userID}"
                th:field="*{userID}"/>
 
-        <div>
+        <div class="formSlot">
             <label for="name">Navn:</label>
             <input type="text" id="name"
                    th:value="${user.name}"
@@ -26,7 +28,7 @@
                    th:field="*{name}"/>
         </div>
 
-        <div>
+        <div class="formSlot">
             <label for="email">Email:</label>
             <input type="text" id="email"
                    th:value="${user.email}"
@@ -34,15 +36,17 @@
                    th:field="*{email}"/>
         </div>
 
-        <div>
+        <div class="formSlot">
             <label for="password">Passord:</label>
             <input type="text" id="password"
                    th:value="${user.password}"
                    th:name="${user.password}"
                    th:field="*{password}"/>
         </div>
-
+        </div>
+        <div class="button-container">
         <button type="submit">Opdater</button>
+        </div>
     </form>
 </main>
 <footer th:replace="fragments/footer :: footer"></footer>

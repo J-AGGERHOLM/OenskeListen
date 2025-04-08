@@ -3,7 +3,7 @@ main {
 
 /* Soft and centered form box */
 .grid-container {
-    height: 500px;
+    height: max-content;
     display: block;
     background-color: rgba(0, 0, 30, 0.7);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
@@ -48,4 +48,8 @@ form textarea {
 h1 {
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
     margin-bottom: -1rem;
+}
+
+.content{
+    min-height: 75vh;
 }

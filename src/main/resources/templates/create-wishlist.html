@@ -7,29 +7,35 @@
     <title>Create WishList</title>
     <link rel="general" href="/css/general.css">
     <link rel="stylesheet" href="/css/starry-night.css">
+    <link rel="stylesheet" href="/css/add-wish-edits.css">
 
 
 </head>
 <body class="addWish-body">
 <nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
-<div>
+
+    <div class="title">
+        <h1>Create WishList</h1>
+    </div>
+
     <div class="content">
         <div class="grid-container">
-            <h1>Create WishList</h1>
             <form role="form" action="#" method="post" th:action="@{/save}" th:object="${wishlist}">
                 <input type="hidden" name="userID" th:value="${userID}"/>
 
                 <label>WishList Name</label>
                 <input type="text" th:field="*{name}"/>
 
-                <br>
+                <div class="button-container">
                 <button type="submit">Submit</button>
+                    </div>
             </form>
         </div>
     </div>
-</div>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
+
 </html>
