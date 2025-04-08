@@ -159,7 +159,6 @@ class UserRepositoryTest {
         //Act
         User user = userRepository.getByEmail(email);
 
-
         //Assert
         assertNotNull(user);
         assertEquals("Bob Smith", user.getName());

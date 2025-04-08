@@ -41,6 +41,7 @@ class WishListRepositoryTest {
         // Assert
         assertEquals(expected, actualWishList.size());
     }
+
     @Sql(
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD,
             scripts = {"classpath:h2initNoData.sql"}
@@ -65,6 +66,7 @@ class WishListRepositoryTest {
         // Assert
         assertEquals(expected, actual);
     }
+
     @Test
     void getById_excepted_null() {
         // Arrange
@@ -80,7 +82,7 @@ class WishListRepositoryTest {
     @Test
     void add() {
         // Arrange
-        var expected =  new WishList(4, "Alices Birthday List", 1);
+        var expected = new WishList(4, "Alices Birthday List", 1);
 
         // Act
         var actual = getWishList(expected);
@@ -88,10 +90,11 @@ class WishListRepositoryTest {
         // Assert
         assertEquals(expected, actual);
     }
+
     @Test
     void add_wrong_id() {
         // Arrange
-        var wishList =  new WishList(5, "Alices Birthday List", 1);
+        var wishList = new WishList(5, "Alices Birthday List", 1);
         WishList expected = null;
 
         // Act
