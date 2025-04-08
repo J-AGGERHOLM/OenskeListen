@@ -81,7 +81,7 @@ public class UserRepository implements IUserRepository {
         try {
             jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
         } catch (DataAccessException e) {
-            throw new RuntimeException("Der er skete en fejl",e);
+            throw new RuntimeException("Der er skete en fejl", e);
         }
 
     }
@@ -100,9 +100,9 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public User getByEmail(String email) {
+        String sql = "SELECT * FROM users " +
+                "WHERE email = ?";
         try {
-            String sql = "SELECT * FROM users " +
-                    "WHERE email = ?";
             return jdbcTemplate.queryForObject(sql,
                     new UserRowMapper(),
                     email);
@@ -115,14 +115,13 @@ public class UserRepository implements IUserRepository {
     @Override
     public int getUserIDByWishListID(int wishListID) {
         String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
-        try{
-        return jdbcTemplate.queryForObject(sql, Integer.class, wishListID);
-    } catch (EmptyResultDataAccessException e) {
-        throw new NoSuchElementException("No user found for wishlist ID: " + wishListID);
-    } catch (DataAccessException e) {
-        throw new RuntimeException("DB error occurred while fetching user by wishlist ID", e);
-    }
-
+        try {
+            return jdbcTemplate.queryForObject(sql, Integer.class, wishListID);
+        } catch (EmptyResultDataAccessException e) {
+            throw new NoSuchElementException("No user found for wishlist ID: " + wishListID);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("DB error occurred while fetching user by wishlist ID", e);
+        }
     }
 
 }
