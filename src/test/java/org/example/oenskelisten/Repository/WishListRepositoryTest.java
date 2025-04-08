@@ -1,6 +1,7 @@
 package org.example.oenskelisten.Repository;
 
 import org.example.oenskelisten.Model.WishList;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,21 +23,25 @@ import static org.junit.jupiter.api.Assertions.*;
 // Rollback = true er default
 @Rollback
 class WishListRepositoryTest {
+    private List<WishList> actualWishList;
 
     @Autowired
     private WishListRepository wishListRepository;
+
+    @BeforeEach
+    void setUp() {
+        actualWishList = wishListRepository.getAll();
+    }
 
     @Test
     void getAll() {
         // Arrange
         int expected = 3;
 
-        // Act
-        var actual = wishListRepository.getAll();
-
         // Assert
-        assertEquals(expected, actual.size());
+        assertEquals(expected, actualWishList.size());
     }
+
     @Sql(
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD,
             scripts = {"classpath:h2initNoData.sql"}
@@ -46,11 +51,8 @@ class WishListRepositoryTest {
         // Arrange
         List<WishList> expected = new ArrayList<>();
 
-        // Act
-        var actual = wishListRepository.getAll();
-
         // Assert
-        assertEquals(expected, actual);
+        assertEquals(expected, actualWishList);
     }
 
     @Test
@@ -64,6 +66,7 @@ class WishListRepositoryTest {
         // Assert
         assertEquals(expected, actual);
     }
+
     @Test
     void getById_excepted_null() {
         // Arrange
@@ -79,27 +82,31 @@ class WishListRepositoryTest {
     @Test
     void add() {
         // Arrange
-        var expected =  new WishList(4, "Alices Birthday List", 1);
+        var expected = new WishList(4, "Alices Birthday List", 1);
 
         // Act
-        wishListRepository.add(expected);
-        var actual = wishListRepository.getById(expected.getId());
+        var actual = getWishList(expected);
 
         // Assert
         assertEquals(expected, actual);
     }
+
     @Test
     void add_wrong_id() {
         // Arrange
-        var wishList =  new WishList(5, "Alices Birthday List", 1);
+        var wishList = new WishList(5, "Alices Birthday List", 1);
         WishList expected = null;
 
         // Act
-        wishListRepository.add(wishList);
-        var actual = wishListRepository.getById(wishList.getId());
+        var actual = getWishList(wishList);
 
         // Assert
         assertEquals(expected, actual);
+    }
+
+    private WishList getWishList(WishList wishList) {
+        wishListRepository.add(wishList);
+        return wishListRepository.getById(wishList.getId());
     }
 
     @Test

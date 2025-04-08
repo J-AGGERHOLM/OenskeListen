@@ -25,13 +25,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest {
 
     private User mockUser;
+    private boolean booleanActual;
 
     @Autowired
     private UserRepository userRepository;
 
     @BeforeEach
     void setUp() {
-        mockUser = new User(1,"Alice Johnson", "alice@example.com", "password123");
+        mockUser = new User(1, "Alice Johnson", "alice@example.com", "password123");
     }
 
     @Test
@@ -39,12 +40,13 @@ class UserRepositoryTest {
         //Arrange
         int expected = 3;
 
-        //Act
-        List<User> actual = userRepository.getAll();
+        // Act
+        var actual = userRepository.getAll();
 
         // Assert
         assertEquals(expected, actual.size());
     }
+
     @Sql(
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD,
             scripts = {"classpath:h2initNoData.sql"}
@@ -54,8 +56,8 @@ class UserRepositoryTest {
         //Arrange
         List<User> expected = new ArrayList<>();
 
-        //Act
-        List<User> actual = userRepository.getAll();
+        // Act
+        var actual = userRepository.getAll();
 
         // Assert
         assertEquals(expected, actual);
@@ -72,6 +74,7 @@ class UserRepositoryTest {
         // Assert
         assertEquals(expected, actual);
     }
+
     @Test
     void getById_wrong_id() {
         // Arrange
@@ -90,11 +93,12 @@ class UserRepositoryTest {
         var expected = true;
 
         // Act
-        var actual = userRepository.edit(mockUser);
+        booleanActual = userRepository.edit(mockUser);
 
         // Assert
-        assertEquals(expected, actual);
+        assertEquals(expected, booleanActual);
     }
+
     @Test
     void edit_expect_false() {
         // Arrange
@@ -102,28 +106,27 @@ class UserRepositoryTest {
         mockUser = new User(10, "Alice Johnson", "alice@example.com", "password123");
 
         // Act
-        var actual = userRepository.edit(mockUser);
+        booleanActual = userRepository.edit(mockUser);
 
         // Assert
-        assertEquals(expected, actual);
+        assertEquals(expected, booleanActual);
     }
 
     @Test
     void add() {
         // Arrange
-
-        User newUser = new User();
-        newUser.setName("mr. man");
-        newUser.setEmail("man@example.com");
-        newUser.setPassword("password");
+        mockUser = new User();
+        mockUser.setName("mr. man");
+        mockUser.setEmail("man@example.com");
+        mockUser.setPassword("password");
 
         //Act
-        userRepository.add(newUser);
+        userRepository.add(mockUser);
         List<User> users = userRepository.getAll();
         User addedUser = null;
-        for(User u : users){
-            if (u.getEmail().equals("man@example.com")){
-                addedUser=u;
+        for (User u : users) {
+            if (u.getEmail().equals("man@example.com")) {
+                addedUser = u;
             }
         }
 
@@ -155,7 +158,6 @@ class UserRepositoryTest {
 
         //Act
         User user = userRepository.getByEmail(email);
-
 
         //Assert
         assertNotNull(user);
