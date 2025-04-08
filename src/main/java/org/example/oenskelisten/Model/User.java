@@ -59,6 +59,17 @@ public class User {
         this.userID = userID;
     }
 
+    // Bruges til test. Hvis vi skal lave assertEquals på 2 user objekter.
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+
+        if(!(other instanceof User)) return false;
+
+        return name.equals(((User) other).name)
+                && email.equals(((User) other).email)
+                && password.equals(((User) other).password);
+    }
 
     @Override
     public String toString() {
