@@ -55,8 +55,6 @@ public class WishListRepository implements IWishListRepository {
         } catch (DataAccessException e) {
             return null;
         }
-
-
     }
 
     @Transactional
@@ -68,7 +66,6 @@ public class WishListRepository implements IWishListRepository {
         } catch (DataAccessException e) {
             throw new RuntimeException("Kunne ikke tilføje: " + wishList.getName(), e);
         }
-
     }
 
     @Transactional

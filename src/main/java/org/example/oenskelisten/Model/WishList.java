@@ -52,4 +52,16 @@ public class WishList {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
+    // Bruger denne i assertEquals til at samligne objekter
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+
+        if(!(other instanceof WishList)) return false;
+
+        return id == ((WishList) other).id
+                && name.equals(((WishList) other).name)
+                && userID == ((WishList) other).userID;
+    }
 }
