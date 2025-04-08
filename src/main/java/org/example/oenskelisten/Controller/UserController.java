@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("{id}/user")
-    public String userMedID(@PathVariable("id") int id, Model model, HttpSession session) {
+    public String userByID(@PathVariable("id") int id, Model model, HttpSession session) {
         if (id <= 0) throw new IllegalArgumentException("Id kan ikke være mindre end 0");
         if (!SessionUtil.getLoggedIn(session)) throw new AccessDeniedException("Du er ikke logget ind");
 
@@ -77,7 +77,10 @@ public class UserController {
 
         userService.addUser(newUser);
 
-        return "redirect:/";
+        //makes sure we get the auto incremented id:
+        User savedUser = userService.checkEmail(newUser.getEmail());
+
+        return "redirect:/" + savedUser.getUserID() + "/user";
     }
 
     @GetMapping("/user-page")

@@ -19,6 +19,7 @@ public class WishListController {
         this.wishListService = service;
     }
 
+
     @GetMapping
     public String getAllWishListItems(Model model) {
         List<Wish> wishListItems = wishListService.getAllWishListItems();

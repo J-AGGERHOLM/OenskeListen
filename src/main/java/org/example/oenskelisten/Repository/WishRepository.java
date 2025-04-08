@@ -69,7 +69,7 @@ public class WishRepository implements IWishRepository {
 
     @Override
     public Wish getByName(String name) {
-        String sql = "SELECT * FROM wish WHERE name = ?";
+        String sql = "SELECT * FROM wishes WHERE name = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
         } catch (Exception e) {
@@ -80,13 +80,22 @@ public class WishRepository implements IWishRepository {
     @Override
     public List<Wish> getWishListById(int id) {
         String sql = "SELECT * FROM wishes WHERE wishes.wishListID = ?";
-        return jdbcTemplate.query(sql, new WishRowMapper(), id);
+        try {
+            return jdbcTemplate.query(sql, new WishRowMapper(), id);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     @Override
     public void deleteById(int id) {
         String sql = "DELETE FROM wishes WHERE wishID = ?";
-        jdbcTemplate.update(sql, id);
+        try {
+            jdbcTemplate.update(sql, id);
+        } catch (Exception e) {
+            throw new RuntimeException("Kunne ikke slette id: " + id, e);
+        }
     }
 
 
