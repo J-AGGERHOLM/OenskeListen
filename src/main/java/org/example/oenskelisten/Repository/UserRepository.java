@@ -78,22 +78,24 @@ public class UserRepository implements IUserRepository {
     @Transactional
     public void add(User newUser) {
         String sql = "INSERT INTO users (name, email, password) VALUES (?,?,?)";
-        try{
-        jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());}
-        catch (Exception e) {
-            throw new RuntimeException("Could not add user", e);
-            }
+        try {
+            jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Der er skete en fejl",e);
+        }
+
     }
 
     @Override
     @Transactional
     public void deleteById(int id) {
         String sql = "DELETE FROM users WHERE userID = ?";
-        try{
-        jdbcTemplate.update(sql, id);}
-        catch (Exception e){
-            throw new RuntimeException("Could not delete user", e);
+        try {
+            jdbcTemplate.update(sql, id);
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Kunne ikke slette id: " + id, e);
         }
+
     }
 
     @Override
