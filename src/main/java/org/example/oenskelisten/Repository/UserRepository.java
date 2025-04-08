@@ -4,11 +4,13 @@ import org.example.oenskelisten.Interface.IUserRepository;
 import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.UserRowMapper;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Repository
 public class UserRepository implements IUserRepository {
@@ -76,14 +78,22 @@ public class UserRepository implements IUserRepository {
     @Transactional
     public void add(User newUser) {
         String sql = "INSERT INTO users (name, email, password) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());
+        try{
+        jdbcTemplate.update(sql, newUser.getName(), newUser.getEmail(), newUser.getPassword());}
+        catch (Exception e) {
+            throw new RuntimeException("Could not add user", e);
+            }
     }
 
     @Override
     @Transactional
     public void deleteById(int id) {
         String sql = "DELETE FROM users WHERE userID = ?";
-        jdbcTemplate.update(sql, id);
+        try{
+        jdbcTemplate.update(sql, id);}
+        catch (Exception e){
+            throw new RuntimeException("Could not delete user", e);
+        }
     }
 
     @Override
@@ -103,7 +113,13 @@ public class UserRepository implements IUserRepository {
     @Override
     public int getUserIDByWishListID(int wishListID) {
         String sql = "SELECT wishlist.userID FROM wishlist WHERE wishlistID = ?";
+        try{
         return jdbcTemplate.queryForObject(sql, Integer.class, wishListID);
+    } catch (EmptyResultDataAccessException e) {
+        throw new NoSuchElementException("No user found for wishlist ID: " + wishListID);
+    } catch (DataAccessException e) {
+        throw new RuntimeException("DB error occurred while fetching user by wishlist ID", e);
+    }
 
     }
 
