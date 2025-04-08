@@ -43,6 +43,7 @@ public class WishListRowMapper implements RowMapper<WishList> {
         wish.setWishlistID(rs.getInt("wishlistID"));
         wish.setReserved(rs.getBoolean("reserved"));
         wish.setReserveeID(rs.getInt("reserveeID"));
+        wish.setReserveeName(rs.getString("reservee_name"));
         return wish;
 
     }

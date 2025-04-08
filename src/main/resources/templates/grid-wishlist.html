@@ -56,11 +56,11 @@
                         </form>
 
                         <form th:if="${displayReserveInfo}" role="form" action="#"  th:action="@{/wishlist/reserve}" method="post">
-                            <h4   th:if="${wish.reserved}" th:text="'Reserved By: ' + ${wish.reserveeID}"></h4>
+                            <h4   th:if="${wish.reserved}" th:text="'Reserved By: ' + ${wish.reserveeName}"></h4>
                             <h4 th:unless="${wish.reserved}">Not Reserved</h4>
                             <input type="number" th:name="id" th:value="${wish.id}" readonly hidden>
                             <input type="number" th:name="wishlistID" th:value="${wish.wishlistID}" hidden readonly>
-                            <button type="submit">Reserve Wish</button>
+                            <button type="submit">Reserve/Dereserve Wish</button>
 
                         </form>
 
