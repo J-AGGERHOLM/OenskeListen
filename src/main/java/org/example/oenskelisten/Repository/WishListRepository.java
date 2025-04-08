@@ -41,11 +41,14 @@ public class WishListRepository implements IWishListRepository {
         String sql = "SELECT \n" +
                 "    wishlist.name AS wishlist_name, \n" +
                 "    wishes.name AS wish_name, \n" +
+                "    users.name AS reservee_name,\n" +
                 "    wishlist.*, \n" +
                 "    wishes.*\n" +
                 "FROM wishlist \n" +
                 "LEFT JOIN wishes \n" +
-                "ON wishlist.wishlistID = wishes.wishlistID \n" +
+                "    ON wishlist.wishlistID = wishes.wishlistID \n" +
+                "LEFT JOIN users \n" +
+                "    ON wishes.reserveeID = users.userID\n" +
                 "WHERE wishlist.wishlistID = ?;";
         try {
             return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);

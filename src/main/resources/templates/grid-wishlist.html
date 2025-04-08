@@ -34,7 +34,7 @@
                     <h3 th:text="${wish.description}"></h3>
                     <h4 th:text="'Pris: ' + ${wish.price} + ' kr'"></h4>
 
-                    <div th:if="${userIsOwner}" class="wishButton-container">
+                    <div class="wishButton-container">
 
                         <a th:href="@{${wish.productLink}}">
                             <button>Link To Wish</button>
@@ -44,15 +44,24 @@
                         and wishlist id-->
 
 
-                        <form th:object="${wish}" th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}"
+                        <form th:if="${userIsOwner}" th:object="${wish}" th:action="@{/wishlist/{wishID}/edit(wishID=${wish.id})}"
                               method="get">
                             <button type="submit">Edit Wish</button>
                         </form>
 
-                        <form role="form" action="#" th:action="@{/wishlist/delete}" method="post">
+                        <form th:if="${userIsOwner}" role="form" action="#" th:action="@{/wishlist/delete}" method="post">
                             <input type="number" th:name="id" th:value="${wish.id}" readonly hidden>
                             <input type="number" th:name="wishlistID" th:value="${wish.wishlistID}" hidden readonly>
                             <button type="submit" class="deleteButton">DELETE WISH</button>
+                        </form>
+
+                        <form th:if="${displayReserveInfo}" role="form" action="#"  th:action="@{/wishlist/reserve}" method="post">
+                            <h4   th:if="${wish.reserved}" th:text="'Reserved By: ' + ${wish.reserveeName}"></h4>
+                            <h4 th:unless="${wish.reserved}">Not Reserved</h4>
+                            <input type="number" th:name="id" th:value="${wish.id}" readonly hidden>
+                            <input type="number" th:name="wishlistID" th:value="${wish.wishlistID}" hidden readonly>
+                            <button type="submit">Reserve/Dereserve Wish</button>
+
                         </form>
 
                     </div>

@@ -12,6 +12,16 @@ public class Wish {
     private boolean reserved;
     private int reserveeID;
 
+    public String getReserveeName() {
+        return reserveeName;
+    }
+
+    public void setReserveeName(String reserveeName) {
+        this.reserveeName = reserveeName;
+    }
+
+    private String reserveeName;
+
 
     public Wish(int id,
                 String name,
