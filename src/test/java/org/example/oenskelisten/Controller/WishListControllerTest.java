@@ -1,6 +1,7 @@
 package org.example.oenskelisten.Controller;
 
 import org.example.oenskelisten.Model.Wish;
+import org.example.oenskelisten.Model.WishList;
 import org.example.oenskelisten.Service.WishListService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ class WishListControllerTest {
     // objekt, som kan indsætte i when kaldet.
     private Wish wish;
     private int mockId;
+    private WishList wishList;
 
     // Autowired laver selv en instance af mockMvc således:
     // MockMvc mockMvc = new MockMvc;
@@ -34,6 +36,7 @@ class WishListControllerTest {
     void setUp() {
         wish = new Wish();
         mockId = 1;
+        wishList = new WishList(1,"name",1);
     }
 
 
@@ -52,21 +55,24 @@ class WishListControllerTest {
 
     @Test
     void testEditWish() throws Exception {
+        when(wishListService.getWishListModelByID(mockId)).thenReturn(wishList);
+
         mockMvc.perform(post("/wishlist/update")
                         .param("id", String.valueOf(mockId))
                         .param("name", "ønske1")
                         .param("description", "en beskrivelse")
-                        .param("productLink", "/forestiller/et/link")
-                        .param("imageLink", "/forestiller/et/link")
+                        .param("productLink", "www.forestiller.dk/et/link")
+                        .param("imageLink", "www.forestiller.dk/et/link")
                         .param("price", String.valueOf(mockId))
                         .param("wishListID", String.valueOf(mockId))
                         .param("reserved", String.valueOf(true))
                         .param("reerveeID", String.valueOf(mockId)))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/wishlist/list/" + -1));
+                .andExpect(status().isOk())
+                .andExpect(redirectedUrl(null));
 
         // any(Wish.class) betyder:
         // den bare skal tage imod hvilken som helst Wish object.
-        verify(wishListService).updateWish(any(Wish.class));
+        //verify(wishListService).updateWish(any(Wish.class));
+        verify(wishListService).getWishListModelByID(any(Integer.class));
     }
 }

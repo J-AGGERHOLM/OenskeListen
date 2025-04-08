@@ -34,7 +34,7 @@
                     <h3 th:text="${wish.description}"></h3>
                     <h4 th:text="'Pris: ' + ${wish.price} + ' kr'"></h4>
 
-                    <div class="wishButton-container">
+                    <div th:if="${userIsOwner}" class="wishButton-container">
 
                         <a th:href="@{${wish.productLink}}">
                             <button>Link To Wish</button>
