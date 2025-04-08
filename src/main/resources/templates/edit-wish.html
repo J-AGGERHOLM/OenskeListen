@@ -5,13 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Editing ' + ${wish.name}"></title>
-    <link rel="stylesheet" href="/css/stylesheet.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/starry-night.css">
+    <link rel="stylesheet" href="/css/add-wish-edits.css">
 </head>
 <body class="addWish-body">
+<div class="title">
 <h1 th:text="'Editing ' + ${wish.name}">Editing Wish</h1>
-
+</div>
 <div class="content">
+    <div class="grid-container">
     <form role="form" action="#" method="post" th:action="@{/wishlist/update}"
+
           th:object="${wish}">
 
 
@@ -34,8 +39,10 @@
 
         <label>Price</label>
         <input type="number" min="1" th:field="*{price}">
-
+    </div>
+    <div class="button-container">
         <button type="submit">Update Wish</button>
+    </div>
     </form>
 </div>
 
