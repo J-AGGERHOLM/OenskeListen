@@ -20,7 +20,6 @@ public class WishRepository implements IWishRepository {
 
     @Override
     public List<Wish> getAll() {
-        System.out.println("hello from getall");
         //String sql ="SELECT name, description, productLink, imageLink, price FROM wishes";
         String sql = "SELECT * FROM wishes";
         return jdbcTemplate.query(sql, new WishRowMapper());
@@ -69,16 +68,6 @@ public class WishRepository implements IWishRepository {
     }
 
     @Override
-    public Wish getByName(String name) {
-        String sql = "SELECT * FROM wishes WHERE name = ?";
-        try {
-            return jdbcTemplate.queryForObject(sql, new WishRowMapper(), name);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    @Override
     public List<Wish> getWishListById(int id) {
         String sql = "SELECT * FROM wishes WHERE wishes.wishListID = ?";
         try {
@@ -101,8 +90,8 @@ public class WishRepository implements IWishRepository {
 
     @Override
     public void reserve(Wish wish, User user){
-        String sql = "UPDATE Wishes\n" +
-                "SET reserved = ?, reserveeID = ?\n" +
+        String sql = "UPDATE Wishes " +
+                "SET reserved = ?, reserveeID = ? " +
                 "WHERE wishID = ?;";
 
         boolean reserve = true;
@@ -120,10 +109,7 @@ public class WishRepository implements IWishRepository {
 
     }
 
-
-
-
-    public String imagechecker(Wish wish) {
+    private String imagechecker(Wish wish) {
         String imageLink;
 
         if (wish.getImageLink().isBlank()

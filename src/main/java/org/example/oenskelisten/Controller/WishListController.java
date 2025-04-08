@@ -26,6 +26,7 @@ public class WishListController {
     @GetMapping
     public String getAllWishListItems(Model model) {
         List<Wish> wishListItems = wishListService.getAllWishListItems();
+
         model.addAttribute("wishListItems", wishListItems);
         return "wishlist";
     }
@@ -34,6 +35,7 @@ public class WishListController {
     public String getWishListByUserID(@PathVariable int id, Model model) {
         List<Wish> wishList = wishListService.getWishListByID(id);
         List<Wish> wishListItems = wishListService.getAllWishListItems();
+
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishListItems", wishListItems);
         return "wishlist";
@@ -42,11 +44,9 @@ public class WishListController {
 
     @GetMapping("/list/{id}")
     public String getWishList(@PathVariable("id") int id, Model model, HttpSession session) {
-        System.out.println("wishlist list id: " + id);
         model.addAttribute("pageID", id);
 
         WishList wishList = wishListService.getWishListModelByID(id);
-
         //checking to see if we are the owner of the wishlist:
         boolean userIsOwner = SessionUtil.isUserOwner(session, wishList.getUserID());
 
@@ -70,6 +70,7 @@ public class WishListController {
     public String addWish(@PathVariable int wishlistID, Model model) {
         Wish wish = new Wish();
         wish.setWishlistID(wishlistID);
+
         model.addAttribute("wish", wish);
         return "add-wish";
     }
@@ -79,7 +80,7 @@ public class WishListController {
         String destination = "wishlist/list/" + wish.getWishlistID();
 
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(SessionUtil.isUserOwner(session, wishList.getUserID())){
+        if (SessionUtil.isUserOwner(session, wishList.getUserID())) {
             wishListService.addWish(wish);
         }
 
@@ -89,6 +90,7 @@ public class WishListController {
     @GetMapping("/{id}/edit")
     public String editWish(@PathVariable int id, Model model) {
         Wish wish = wishListService.getWishById(id);
+
         model.addAttribute("wish", wish);
         return "edit-wish";
     }
@@ -96,7 +98,7 @@ public class WishListController {
     @PostMapping("/update")
     public String editWish(@ModelAttribute("wish") Wish wish, HttpSession session) {
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(SessionUtil.isUserOwner(session, wishList.getUserID())){
+        if (SessionUtil.isUserOwner(session, wishList.getUserID())) {
             wishListService.updateWish(wish);
         }
 
@@ -108,11 +110,9 @@ public class WishListController {
     @PostMapping("/delete")
     public String deleteWish(@ModelAttribute("wish") Wish formWish, HttpSession session) {
         Wish wish = wishListService.getWishById(formWish.getId());
+
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(SessionUtil.isUserOwner(session, wishList.getUserID())){
-            if (wish == null) {
-                throw new IllegalArgumentException("Wish does not exist");
-            }
+        if (SessionUtil.isUserOwner(session, wishList.getUserID())) {
             wishListService.deleteWishById(wish.getId());
         }
 
@@ -120,18 +120,15 @@ public class WishListController {
     }
 
     @PostMapping("/reserve")
-    public String reserveWish(@ModelAttribute("wish") Wish formWish, HttpSession session){
-        System.out.println("form wish ID:" + formWish.getId());
+    public String reserveWish(@ModelAttribute("wish") Wish formWish, HttpSession session) {
         Wish wish = wishListService.getWishById(formWish.getId());
 
-        User user = (User)session.getAttribute("user");
+        User user = SessionUtil.getCurrentUser(session);
         WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
-        if(!SessionUtil.isUserOwner(session, wishList.getUserID())){
-            wishListService.reserve(wish,user);
+        if (!SessionUtil.isUserOwner(session, wishList.getUserID())) {
+            wishListService.reserve(wish, user);
         }
 
         return "redirect:/wishlist/list/" + formWish.getWishlistID();
     }
-
-
 }

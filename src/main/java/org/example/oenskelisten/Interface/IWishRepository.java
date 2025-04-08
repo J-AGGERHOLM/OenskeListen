@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface IWishRepository extends IRepository<Wish>{
     boolean edit(Wish newObject);
-    Wish getByName(String name);
     List<Wish> getWishListById(int id);
 
     void reserve(Wish wish, User user);
