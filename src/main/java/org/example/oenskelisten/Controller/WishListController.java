@@ -49,7 +49,13 @@ public class WishListController {
 
         //checking to see if we are the owner of the wishlist:
         boolean userIsOwner = SessionUtil.isUserOwner(session, wishList.getUserID());
+
+        //checking to see if we should display the reserve button:
+        //logged in but not the owner
+        boolean displayReserveInfo = SessionUtil.getLoggedIn(session) && !userIsOwner;
+
         model.addAttribute("userIsOwner", userIsOwner);
+        model.addAttribute("displayReserveInfo", displayReserveInfo);
         model.addAttribute(wishList);
         return "grid-wishlist";
     }
@@ -108,6 +114,20 @@ public class WishListController {
                 throw new IllegalArgumentException("Wish does not exist");
             }
             wishListService.deleteWishById(wish.getId());
+        }
+
+        return "redirect:/wishlist/list/" + formWish.getWishlistID();
+    }
+
+    @PostMapping("/reserve")
+    public String reserveWish(@ModelAttribute("wish") Wish formWish, HttpSession session){
+        System.out.println("form wish ID:" + formWish.getId());
+        Wish wish = wishListService.getWishById(formWish.getId());
+
+        User user = (User)session.getAttribute("user");
+        WishList wishList = wishListService.getWishListModelByID(wish.getWishlistID());
+        if(!SessionUtil.isUserOwner(session, wishList.getUserID())){
+            wishListService.reserve(wish,user);
         }
 
         return "redirect:/wishlist/list/" + formWish.getWishlistID();

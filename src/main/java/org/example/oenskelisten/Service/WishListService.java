@@ -2,6 +2,7 @@ package org.example.oenskelisten.Service;
 
 import org.example.oenskelisten.Interface.IWishListRepository;
 import org.example.oenskelisten.Interface.IWishRepository;
+import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Model.WishList;
 import org.springframework.stereotype.Service;
@@ -55,5 +56,9 @@ public class WishListService {
 
     public Wish getByName(String name) {
         return wishRepository.getByName(name);
+    }
+
+    public void reserve(Wish wish, User user){
+        wishRepository.reserve(wish, user);
     }
 }

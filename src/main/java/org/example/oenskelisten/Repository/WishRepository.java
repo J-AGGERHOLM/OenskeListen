@@ -1,6 +1,7 @@
 package org.example.oenskelisten.Repository;
 
 import org.example.oenskelisten.Interface.IWishRepository;
+import org.example.oenskelisten.Model.User;
 import org.example.oenskelisten.Model.Wish;
 import org.example.oenskelisten.Model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -97,6 +98,29 @@ public class WishRepository implements IWishRepository {
             throw new RuntimeException("Kunne ikke slette id: " + id, e);
         }
     }
+
+    @Override
+    public void reserve(Wish wish, User user){
+        String sql = "UPDATE Wishes\n" +
+                "SET reserved = ?, reserveeID = ?\n" +
+                "WHERE wishID = ?;";
+
+        boolean reserve = true;
+        if(wish.isReserved()){
+            if(wish.getReserveeID() == user.getUserID()){
+                reserve = false;
+            }
+        }
+
+        try{
+            jdbcTemplate.update(sql,reserve,user.getUserID(),wish.getId());
+        }catch(Exception e){
+            throw new RuntimeException("error with reserving wish");
+        }
+
+    }
+
+
 
 
     public String imagechecker(Wish wish) {
