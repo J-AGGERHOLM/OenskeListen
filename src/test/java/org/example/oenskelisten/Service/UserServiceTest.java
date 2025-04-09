@@ -47,14 +47,16 @@ class UserServiceTest {
     void editUser() {
         // Arrange
         when(userRepository.getById(1)).thenReturn(user);
-
+        when(userRepository.edit(user)).thenReturn(true);
+        boolean expected = true;
 
         // Act
-        var result = userService.editUser(user);
+        var actual = userService.editUser(user);
 
         // Assert
-        assertNotNull(result);
-        assertEquals(user, result);
+        assertEquals(expected, actual);
+        verify(userRepository).getById(user.getUserID());
+        verify(userRepository).edit(user);
     }
 
     @Test
