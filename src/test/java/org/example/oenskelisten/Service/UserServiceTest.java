@@ -40,6 +40,7 @@ class UserServiceTest {
         assertNotNull(result);
         assertEquals(user, result);
         verify(userRepository).getById(user.getUserID());
+
     }
 
     @Test
