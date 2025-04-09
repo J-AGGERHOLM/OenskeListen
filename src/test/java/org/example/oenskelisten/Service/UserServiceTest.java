@@ -32,6 +32,14 @@ class UserServiceTest {
 
     @Test
     void getUser(){
+        //Arrange
+        when(userRepository.getById(user.getUserID())).thenReturn(user);
+        //Act
+        var result = userService.getUser(user.getUserID());
+        //Assert
+        assertNotNull(result);
+        assertEquals(user, result);
+        verify(userRepository).getById(user.getUserID());
     }
 
     @Test
