@@ -60,12 +60,6 @@ public class WishListController {
         return "grid-wishlist";
     }
 
-    @GetMapping("/{id}/wishListItem")
-    public String getWishListItem(@PathVariable int id, Model model) {
-        model.addAttribute("wishListItem", wishListService.getWishById(id));
-        return "wish-list-item";
-    }
-
     @GetMapping("/add/{wishlistID}")
     public String addWish(@PathVariable int wishlistID, Model model) {
         Wish wish = new Wish();
