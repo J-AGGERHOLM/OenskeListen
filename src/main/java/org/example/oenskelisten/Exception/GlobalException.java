@@ -34,5 +34,4 @@ public class GlobalException {
         model.addAttribute("error", ex.getMessage());
         return "error-page";
     }
-
 }
