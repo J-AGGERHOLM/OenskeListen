@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,5 +50,8 @@ class UserServiceTest {
 
     @Test
     void deleteUser() {
+        when(userRepository.getById(1)).thenReturn(user);
+        userService.deleteUser(1);
+        verify(userRepository).deleteById(1);
     }
 }
