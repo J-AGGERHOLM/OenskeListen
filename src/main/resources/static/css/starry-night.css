@@ -23,13 +23,13 @@ button, a.button-link {
     border: none;
     color: white;
     padding: 12px 24px;
-    font-size: 18px;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    display: inline-block;
+
+    font-size: 14px;
 }
 
 button:hover, a.button-link:hover {
@@ -153,7 +153,10 @@ button:hover, a.button-link:hover {
     width: 150px;
     max-width: 90%;
     text-align: center;
+    text-decoration: none;
 }
+
+
 
 .wishlist-box {
     background: rgba(30, 60, 114, 0.8);
@@ -256,4 +259,19 @@ button:hover, a.button-link:hover {
     min-height: 80vh;
     padding-bottom: 200px;
     padding-top: 200px;
+}
+
+.textBox{
+    white-space: normal;
+    word-wrap: break-word;
+    min-height: 0;
+    max-height: 50px;
+    overflow : auto;
+    scrollbar-width: none;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.textBox h2{
+    font-family: "Arial Rounded MT Bold";
 }

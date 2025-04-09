@@ -30,9 +30,9 @@
             <div th:unless="${wishList.wishes.isEmpty()}" class="grid-container">
                 <div th:each="wish : ${wishList.wishes}" class="wishlist-box">
                     <img class="wishlist-image" th:src="${wish.imageLink}">
-                    <h2 th:text="${wish.name}"></h2>
-                    <h3 th:text="${wish.description}"></h3>
-                    <h4 th:text="'Pris: ' + ${wish.price} + ' kr'"></h4>
+                    <h2 th:text="${wish.name}" class="textBox"></h2>
+                    <h3 th:text="${wish.description}" class="textBox"></h3>
+                    <h4 th:text="'Pris: ' + ${wish.price} + ' kr'" class="textBox"></h4>
 
                     <div class="wishButton-container">
 
